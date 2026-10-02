@@ -3,43 +3,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { authorProfile } from '../data/posts';
 
 const languagesDocumented = [
+  { name: "Simte", iso: "smt", branch: "Northern Kuki-Chin (Tibeto-Burman)", focus: "Pronominal System, Gender Marking, Morphosyntax" },
+  { name: "Kaipeng", iso: "kzp", branch: "Kuki-Chin (Tibeto-Burman)", focus: "Numeral Systems, Lexical Typology, Comparative Morphology" },
   { name: "Paite", iso: "pck", branch: "Northern Kuki-Chin (Tibeto-Burman)", focus: "Stem Alternation, Tone Sandhi, Ergativity" },
   { name: "Mizo (Lushai)", iso: "lus", branch: "Central Kuki-Chin", focus: "Tonal Register Contrasts, Serial Verb Constructions" },
-  { name: "Thadou / Kuki", iso: "tcz", branch: "Northern Kuki-Chin", focus: "Phonological tonogenesis, verbal agreement markers" },
   { name: "Tedim / Zo", iso: "ctd", branch: "Northern Kuki-Chin", focus: "Acoustic correlates of breathy voice, oral folklore" },
 ];
 
 const publications = [
   {
     year: 2026,
-    title: "Tonogenesis and Syllable-Final Laryngeal Offglides in Southern Kuki-Chin",
-    venue: "Linguistics of the Tibeto-Burman Area (LTBA), 49(1), 45–78",
-    type: "Journal Article",
-    pdfUrl: "#",
-    doi: "10.1075/ltba.2026.004",
+    title: "The Pronominal System in Simte: Morphological Structure and Agreement",
+    venue: "Working Papers in Tibeto-Burman Linguistics",
+    type: "Research Paper",
+    pdfUrl: "/papers/simte-pronouns.pdf",
+    doi: "",
   },
   {
     year: 2025,
-    title: "The Morphosyntax of Verb Stem II Alternation: Licensing Clitics and Nominalized Domains",
-    venue: "Journal of South Asian Linguistics, Vol. 14, pp. 112–148",
+    title: "Gender Categorization and Marking in Simte",
+    venue: "Journal of South Asian Linguistics & Typology",
     type: "Journal Article",
-    pdfUrl: "#",
-    doi: "10.5555/jsal.2025.112",
+    pdfUrl: "/papers/gender-in-simte.pdf",
+    doi: "",
   },
   {
     year: 2024,
-    title: "Split Ergative Case Marking and Information Structure in Paite Discourse",
-    venue: "Proceedings of the 33rd Southeast Asian Linguistics Society (SEALS XXXIII)",
-    type: "Conference Paper",
-    pdfUrl: "#",
-    doi: "10.15144/seals.2024.12",
+    title: "A Comparative Study of Numerals in Kaipeng and Simte",
+    venue: "Linguistic Studies in Northeast India",
+    type: "Comparative Research",
+    pdfUrl: "/papers/numerals-kaipeng-simte.pdf",
+    doi: "",
   },
   {
     year: 2023,
-    title: "Acoustic Realization of Tonal Contrasts in Disyllabic Compounds in Tedim",
-    venue: "International Conference on Sino-Tibetan Languages and Linguistics (ICSTLL 56)",
-    type: "Presentation & Extended Abstract",
-    pdfUrl: "#",
+    title: "A Brief History of the Advent of Christianity Among the Simtes",
+    venue: "Historical & Sociolinguistic Documentation Series",
+    type: "Documentation Monograph",
+    pdfUrl: "/papers/history-christianity-simte.pdf",
     doi: "",
   }
 ];
@@ -214,9 +215,11 @@ const publications = [
               )}
               <a
                 href={pub.pdfUrl}
-                class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="min-h-[44px] inline-flex items-center px-3 py-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium transition-colors"
               >
-                📥 Download PDF
+                📥 Read / Download PDF
               </a>
               <button
                 class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
