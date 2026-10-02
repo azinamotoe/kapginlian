@@ -2,8 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { samplePosts, type Post } from '../../data/posts';
 
+const feedPosts = samplePosts.filter((post) => post.postType !== "academic_paper");
+
 export function getStaticPaths() {
-  return samplePosts.map((post) => ({
+  const writings = samplePosts.filter((post) => post.postType !== "academic_paper");
+  return writings.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -15,15 +18,15 @@ interface Props {
 
 const { post } = Astro.props;
 
-// Find next and prev posts
-const currentIndex = samplePosts.findIndex((p) => p.slug === post.slug);
-const prevPost = currentIndex > 0 ? samplePosts[currentIndex - 1] : null;
-const nextPost = currentIndex < samplePosts.length - 1 ? samplePosts[currentIndex + 1] : null;
+// Find next and prev posts among writing/feed posts
+const currentIndex = feedPosts.findIndex((p) => p.slug === post.slug);
+const prevPost = currentIndex > 0 ? feedPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < feedPosts.length - 1 ? feedPosts[currentIndex + 1] : null;
 const isAcademic = post.postType === "academic_paper";
 ---
 
 <BaseLayout
-  title={`${post.title} | H. Kapginlian`}
+  title={`${post.title} | Writing | H. Kapginlian`}
   description={post.excerpt}
   ogImage={post.coverImage}
 >
@@ -32,7 +35,7 @@ const isAcademic = post.postType === "academic_paper";
     <nav class="flex items-center justify-between text-xs font-sans text-[var(--text-secondary)] mb-8">
       <div class="flex items-center gap-2">
         <a href="/feed" class="hover:text-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center font-medium">
-          ← Back to Feed
+          ← Back to Writing
         </a>
         <span>/</span>
         <span class="text-[var(--accent)] font-medium">{post.category}</span>

@@ -72,7 +72,7 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
           <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center">
             <!-- Left Monograph Plate (Larger, academic portrait book ratio) -->
             <div class="md:col-span-5 lg:col-span-4">
-              <a href={`/feed/${paper.slug}`} class="block group-hover:opacity-95 transition-opacity">
+              <a href={`/research/${paper.slug}`} class="block group-hover:opacity-95 transition-opacity">
                 <PostPlate post={paper} aspect="aspect-[4/3] sm:aspect-[3/4]" />
               </a>
             </div>
@@ -111,7 +111,7 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
 
               {/* Title */}
               <h2 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors leading-snug">
-                <a href={`/feed/${paper.slug}`}>
+                <a href={`/research/${paper.slug}`}>
                   {paper.title}
                 </a>
               </h2>
@@ -142,7 +142,7 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
               {/* Action Buttons: Read Full, Download PDF, Cite */}
               <div class="flex flex-wrap items-center gap-3 pt-2 font-sans text-xs font-semibold">
                 <a
-                  href={`/feed/${paper.slug}`}
+                  href={`/research/${paper.slug}`}
                   class="px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity inline-flex items-center gap-1.5"
                 >
                   Read Full Paper
@@ -164,7 +164,7 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
                 )}
 
                 <a
-                  href={`/feed/${paper.slug}#cite-publication`}
+                  href={`/research/${paper.slug}#cite-publication`}
                   class="px-3.5 py-2 rounded-lg border border-dashed border-[var(--border-color)] text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all inline-flex items-center gap-1 font-mono text-[11px]"
                 >
                   📋 Cite (BibTeX / APA)

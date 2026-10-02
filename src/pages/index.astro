@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostPlate from '../components/PostPlate.astro';
-import { samplePosts, authorProfile } from '../data/posts';
+import { samplePosts, authorProfile, getPostUrl } from '../data/posts';
 
 const recentPosts = samplePosts.slice(0, 4);
 ---
@@ -178,7 +178,7 @@ const recentPosts = samplePosts.slice(0, 4);
                   </div>
 
                   <h3 class="text-lg sm:text-xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                    <a href={`/feed/${post.slug}`}>
+                    <a href={getPostUrl(post)}>
                       {post.title}
                     </a>
                   </h3>
@@ -205,7 +205,7 @@ const recentPosts = samplePosts.slice(0, 4);
 
                 <!-- Academic Monograph Plate (Clean, uncluttered on Home) -->
                 <div class="sm:col-span-5 md:col-span-4">
-                  <a href={`/feed/${post.slug}`} class="block group-hover:opacity-95 transition-opacity">
+                  <a href={getPostUrl(post)} class="block group-hover:opacity-95 transition-opacity">
                     <PostPlate post={post} aspect="aspect-video sm:aspect-[4/3]" minimal={true} />
                   </a>
                 </div>

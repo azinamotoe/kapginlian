@@ -70,6 +70,10 @@ export const samplePosts: Post[] = [
   simtePoetryPost
 ];
 
+export function getPostUrl(post: { slug: string; postType?: string }): string {
+  return post.postType === "academic_paper" ? `/research/${post.slug}` : `/feed/${post.slug}`;
+}
+
 export const authorProfile = {
   name: "H. Kapginlian",
   shortName: "H. Kapginlian",
