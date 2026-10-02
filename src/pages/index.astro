@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PostPlate from '../components/PostPlate.astro';
 import { samplePosts, authorProfile } from '../data/posts';
 
 const recentPosts = samplePosts.slice(0, 4);
@@ -164,15 +165,10 @@ const recentPosts = samplePosts.slice(0, 4);
             <article class="group bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 transition-all duration-200">
               <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
                 
-                <!-- Thumbnail Image (placehold.co) -->
+                <!-- Academic Monograph Plate or Cover (Left on desktop) -->
                 <div class="sm:col-span-4 order-last sm:order-first">
-                  <a href={`/feed/${post.slug}`} class="block overflow-hidden rounded-xl aspect-video sm:aspect-square bg-[var(--bg-secondary)] border border-[var(--border-color)]">
-                    <img
-                      src={post.coverImage}
-                      alt={post.title}
-                      class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                  <a href={`/feed/${post.slug}`} class="block group-hover:opacity-95 transition-opacity">
+                    <PostPlate post={post} aspect="aspect-video sm:aspect-square" />
                   </a>
                 </div>
 

@@ -1,0 +1,163 @@
+---
+import type { Post } from '../data/posts';
+
+interface Props {
+  post: Post;
+  aspect?: string;
+  class?: string;
+}
+
+const { post, aspect = "aspect-video md:aspect-[4/3]", class: className = "" } = Astro.props;
+
+// Determine if the post has an authentic local photo or needs an Academic Monograph Plate
+const hasRealImage = post.coverImage && !post.coverImage.includes('placehold.co') && !post.coverImage.includes('placeholder');
+
+// Tailored metadata and typography per paper
+interface PlateConfig {
+  headerLabel: string;
+  themeClass: string;
+  accentBarClass: string;
+  subCategory: string;
+  formula: string;
+  formulaSub: string;
+  languageBadge: string;
+  statusBadge: string;
+  pattern: string;
+}
+
+const plateConfigs: Record<string, PlateConfig> = {
+  "pronouns-in-simte-pro-drop-emphatic": {
+    headerLabel: "LANG IN INDIA • VOL. 23:6",
+    themeClass: "from-slate-900 via-slate-800 to-indigo-950 text-slate-100",
+    accentBarClass: "bg-indigo-500",
+    subCategory: "MORPHOSYNTAX & CLUSIVITY",
+    formula: "kei · naŋ · amaʔ",
+    formulaSub: "[ki-] PRO-DROP • -maʔ EMPH",
+    languageBadge: "smt (Simte)",
+    statusBadge: "Peer-Reviewed",
+    pattern: "pro-drop",
+  },
+  "gender-marking-in-simte-human-animal": {
+    headerLabel: "VĀK MANTHAN • VOL. 10(II)",
+    themeClass: "from-stone-900 via-emerald-950 to-stone-900 text-stone-100",
+    accentBarClass: "bg-emerald-500",
+    subCategory: "SEMANTIC CLASSIFICATION",
+    formula: "[-human, +animal]",
+    formulaSub: "-tal (M) · -pi (F) / pu · pi",
+    languageBadge: "smt (Simte)",
+    statusBadge: "Peer-Reviewed",
+    pattern: "gender",
+  },
+  "numerals-kaipeng-simte-comparative": {
+    headerLabel: "JOELL • VOL. 12:2 (2025)",
+    themeClass: "from-stone-900 via-amber-950 to-stone-900 text-amber-50",
+    accentBarClass: "bg-amber-500",
+    subCategory: "COMPARATIVE NUMERATION",
+    formula: "kʰat-ka ↔ khat",
+    formulaSub: "BASE-10 • VEI- PREFIX / SUFFIX",
+    languageBadge: "kzp × smt",
+    statusBadge: "DOI Indexed",
+    pattern: "numerals",
+  },
+  "advent-of-christianity-simte-oral-history": {
+    headerLabel: "ARCHIVAL MONOGRAPH (1917–1958)",
+    themeClass: "from-stone-900 via-stone-800 to-rose-950 text-stone-100",
+    accentBarClass: "bg-rose-500",
+    subCategory: "ORAL HISTORY & MISSION",
+    formula: "1917 — 1958",
+    formulaSub: "THANLON • SENVON • SUMTUH",
+    languageBadge: "Simte Oral History",
+    statusBadge: "25 Footnotes",
+    pattern: "history",
+  },
+  "indigenous-knowledge-systems-language-documentation": {
+    headerLabel: "FIELDWORK DISPATCH • 2026",
+    themeClass: "from-neutral-900 via-stone-900 to-neutral-950 text-stone-200",
+    accentBarClass: "bg-amber-600",
+    subCategory: "INDIGENOUS KNOWLEDGE",
+    formula: "Memory & Identity",
+    formulaSub: "ORAL TRADITION & ECOLOGY",
+    languageBadge: "smt / kzp",
+    statusBadge: "Field Reflection",
+    pattern: "essay",
+  }
+};
+
+const config = plateConfigs[post.slug] || {
+  headerLabel: post.journal ? post.journal.slice(0, 26).toUpperCase() : "ACADEMIC PUBLICATION",
+  themeClass: "from-stone-900 via-stone-800 to-stone-900 text-stone-100",
+  accentBarClass: "bg-[var(--accent)]",
+  subCategory: post.category.toUpperCase(),
+  formula: post.language || "Linguistic Research",
+  formulaSub: post.readingTime,
+  languageBadge: post.language || "Kuki-Chin",
+  statusBadge: post.postType === "academic_paper" ? "Peer-Reviewed" : "Article",
+  pattern: "default",
+};
+---
+
+{hasRealImage ? (
+  <div class={`block overflow-hidden rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] ${aspect} ${className}`}>
+    <img
+      src={post.coverImage}
+      alt={post.title}
+      class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+      loading="lazy"
+    />
+  </div>
+) : (
+  <div
+    class={`relative flex flex-col justify-between overflow-hidden rounded-xl border border-stone-800/80 p-3.5 sm:p-4 select-none bg-gradient-to-br ${config.themeClass} ${aspect} ${className} shadow-sm group-hover:shadow-md group-hover:border-stone-700 transition-all duration-300`}
+  >
+    {/* Fine Top Accent Color Spine */}
+    <div class={`absolute top-0 left-0 right-0 h-1 ${config.accentBarClass}`}></div>
+
+    {/* Background Subtle Watermark Grid / Rings */}
+    <div class="absolute inset-0 opacity-[0.07] pointer-events-none" aria-hidden="true">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id={`plate-grid-${post.slug}`} width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill={`url(#plate-grid-${post.slug})`} />
+      </svg>
+    </div>
+
+    {/* Top Header Row */}
+    <div class="relative z-10 flex items-center justify-between gap-1 text-[10px] font-mono tracking-wider text-stone-300 uppercase">
+      <div class="flex items-center gap-1.5 truncate">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+        <span class="truncate font-semibold">{config.headerLabel}</span>
+      </div>
+      <span class="shrink-0 px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-stone-300 font-medium">
+        {post.year}
+      </span>
+    </div>
+
+    {/* Center Typography Block */}
+    <div class="relative z-10 py-2 sm:py-3 space-y-1 text-center">
+      <span class="block text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-stone-400 font-bold">
+        {config.subCategory}
+      </span>
+      <div class="text-base sm:text-lg font-bold font-serif tracking-tight text-white ipa group-hover:text-amber-200 transition-colors drop-shadow-xs line-clamp-1">
+        {config.formula}
+      </div>
+      <div class="text-[10px] sm:text-[11px] font-mono text-stone-300 tracking-tight truncate">
+        {config.formulaSub}
+      </div>
+    </div>
+
+    {/* Bottom Metadata Badges */}
+    <div class="relative z-10 flex items-center justify-between text-[10px] font-mono pt-2 border-t border-white/10">
+      <span class="inline-flex items-center gap-1 text-stone-300 font-medium">
+        <span class="text-stone-400">#</span>
+        <span class="truncate">{config.languageBadge}</span>
+      </span>
+      <span class="inline-flex items-center gap-1 text-[10px] text-stone-300 font-medium bg-white/5 px-2 py-0.5 rounded border border-white/10">
+        <span>📄</span>
+        <span>{config.statusBadge}</span>
+      </span>
+    </div>
+  </div>
+)}

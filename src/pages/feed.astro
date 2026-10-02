@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PostPlate from '../components/PostPlate.astro';
 import { samplePosts } from '../data/posts';
 const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.category)))];
 ---
@@ -95,18 +96,13 @@ const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.catego
               </div>
             </div>
 
-            <!-- Right Thumbnail (placehold.co) -->
+            <!-- Right Academic Monograph Plate or Cover -->
             <div class="md:col-span-4">
               <a
                 href={`/feed/${post.slug}`}
-                class="block overflow-hidden rounded-xl aspect-video md:aspect-[4/3] bg-[var(--bg-secondary)] border border-[var(--border-color)]"
+                class="block group-hover:opacity-95 transition-opacity"
               >
-                <img
-                  src={post.coverImage}
-                  alt={post.title}
-                  class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
-                  loading="lazy"
-                />
+                <PostPlate post={post} aspect="aspect-video md:aspect-[4/3]" />
               </a>
             </div>
           </div>
