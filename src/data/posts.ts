@@ -119,7 +119,7 @@ export const authorProfile = {
     "Welcome to my world of language, culture, thought, faith, and words."
   ],
   avatar: "/images/author-avatar.jpg",
-  fullPhoto: "/images/author-full.jpg",
+  fullPhoto: "/images/author-centered.jpg",
   location: "Northeast India",
   email: "contact@lianhangluah.com",
   orcid: "0009-0008-9045-3527",
