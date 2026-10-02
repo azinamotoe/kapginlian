@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialIcon from '../components/SocialIcon.astro';
 import { authorProfile } from '../data/posts';
 import { socialLinks, linkhubConfig } from '../data/socials';
 
@@ -54,16 +55,17 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
 
       <!-- Quick Action Badges -->
       <div class="pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs">
-        <span class="px-3 py-1 rounded-full bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)]">
-          📍 Shillong, Meghalaya • Manipur
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)]">
+          <SocialIcon name="pin" class="w-3.5 h-3.5 text-[var(--accent)]" />
+          <span>Shillong, Meghalaya • Manipur</span>
         </span>
         <button
           type="button"
           id="share-linkhub-btn"
-          class="px-3 py-1 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity cursor-pointer inline-flex items-center gap-1 font-sans"
+          class="px-3.5 py-1 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity cursor-pointer inline-flex items-center gap-1.5 font-sans"
         >
-          <span>Share Linkhub</span>
-          <span>🔗</span>
+          <span id="share-btn-text">Share Linkhub</span>
+          <SocialIcon name="share" class="w-3.5 h-3.5" />
         </button>
       </div>
     </div>
@@ -71,8 +73,8 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
     <!-- SECTION 1: ACADEMIC & CITATION REGISTRIES -->
     <div class="space-y-4">
       <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
-        <span>🎓</span>
-        <span>Academic Registries & Citations</span>
+        <SocialIcon name="academic" class="w-4 h-4 text-[var(--accent)]" />
+        <span>Academic Registries &amp; Citations</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 font-sans">
@@ -83,21 +85,28 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
             rel="noopener noreferrer"
             class={`group p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
           >
-            <div class="space-y-2">
+            <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
-                  {item.badge}
-                </span>
+                <div class="p-2 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] shadow-2xs group-hover:scale-105 transition-transform">
+                  <SocialIcon name={item.icon} class="w-5 h-5" />
+                </div>
                 <span class="text-xs font-sans text-[var(--text-secondary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                   ↗
                 </span>
               </div>
-              <h3 class="text-base font-bold text-[var(--text-primary)]">
-                {item.title}
-              </h3>
-              <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
-                {item.handle}
-              </p>
+              <div>
+                <div class="flex items-center gap-1.5 mb-1">
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+                    {item.badge}
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-[var(--text-primary)]">
+                  {item.title}
+                </h3>
+                <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
+                  {item.handle}
+                </p>
+              </div>
             </div>
             <p class="text-[11px] font-serif text-[var(--text-secondary)] mt-3 leading-snug line-clamp-2">
               {item.description}
@@ -110,8 +119,8 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
     <!-- SECTION 2: SOCIAL & COMMUNITY CHANNELS (FB, TWITTER, WA) -->
     <div class="space-y-4">
       <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
-        <span>🌐</span>
-        <span>Social & Community Channels</span>
+        <SocialIcon name="globe" class="w-4 h-4 text-[var(--accent)]" />
+        <span>Social &amp; Community Channels</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 font-sans">
@@ -122,21 +131,28 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
             rel="noopener noreferrer"
             class={`group p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
           >
-            <div class="space-y-2">
+            <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
-                  {item.badge}
-                </span>
+                <div class="p-2 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] shadow-2xs group-hover:scale-105 transition-transform">
+                  <SocialIcon name={item.icon} class="w-5 h-5" />
+                </div>
                 <span class="text-xs font-sans text-[var(--text-secondary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                   ↗
                 </span>
               </div>
-              <h3 class="text-base font-bold text-[var(--text-primary)]">
-                {item.title}
-              </h3>
-              <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
-                {item.handle}
-              </p>
+              <div>
+                <div class="flex items-center gap-1.5 mb-1">
+                  <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+                    {item.badge}
+                  </span>
+                </div>
+                <h3 class="text-base font-bold text-[var(--text-primary)]">
+                  {item.title}
+                </h3>
+                <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
+                  {item.handle}
+                </p>
+              </div>
             </div>
             <p class="text-[11px] font-serif text-[var(--text-secondary)] mt-3 leading-snug line-clamp-2">
               {item.description}
@@ -149,8 +165,8 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
     <!-- SECTION 3: DIRECT CONTACT & WEB REPOSITORY SHORTCUTS -->
     <div class="space-y-4">
       <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
-        <span>✉️</span>
-        <span>Direct Correspondence & Permanent Archives</span>
+        <SocialIcon name="email" class="w-4 h-4 text-[var(--accent)]" />
+        <span>Direct Correspondence &amp; Permanent Archives</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
@@ -159,19 +175,22 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
             href={item.href}
             class={`group p-5 rounded-2xl border transition-all duration-200 flex items-center justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
           >
-            <div class="space-y-1 max-w-[85%]">
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+            <div class="space-y-2 max-w-[85%]">
+              <div class="flex items-center gap-2.5">
+                <div class="p-2 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] shadow-2xs text-[var(--text-primary)]">
+                  <SocialIcon name={item.icon} class="w-5 h-5" />
+                </div>
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
                   {item.badge}
                 </span>
               </div>
-              <h3 class="text-base font-bold text-[var(--text-primary)] pt-1">
+              <h3 class="text-base font-bold text-[var(--text-primary)] pt-0.5">
                 {item.title}
               </h3>
               <p class="text-xs font-mono text-[var(--accent)] truncate">
                 {item.handle}
               </p>
-              <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed pt-1">
+              <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
                 {item.description}
               </p>
             </div>
@@ -209,10 +228,13 @@ const directLinks = socialLinks.filter((s) => s.category === "direct");
         });
       } else {
         await navigator.clipboard.writeText(shareUrl);
-        shareBtn.innerHTML = '<span>Link Copied! ✓</span>';
-        setTimeout(() => {
-          shareBtn.innerHTML = '<span>Share Linkhub</span><span>🔗</span>';
-        }, 2000);
+        const textSpan = document.getElementById('share-btn-text');
+        if (textSpan) {
+          textSpan.textContent = 'Link Copied! ✓';
+          setTimeout(() => {
+            textSpan.textContent = 'Share Linkhub';
+          }, 2000);
+        }
       }
     } catch (err) {
       console.log('Share canceled or failed:', err);
