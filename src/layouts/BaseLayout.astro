@@ -40,16 +40,12 @@ const {
       rel="stylesheet"
     />
 
-    <!-- Theme detection before render -->
+    <!-- Theme detection before render — dark is the site default -->
     <script is:inline>
-      if (
-        localStorage.getItem('color-theme') === 'dark' ||
-        (!('color-theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        document.documentElement.classList.add('dark');
-      } else {
+      if (localStorage.getItem('color-theme') === 'light') {
         document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
       }
     </script>
   </head>
