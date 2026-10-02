@@ -1,5 +1,6 @@
 ---
 import { url } from '../utils/url';
+import SocialIcon from './SocialIcon.astro';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -35,9 +36,9 @@ const currentYear = new Date().getFullYear();
         <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">Archive &amp; Legal</h4>
         <ul class="text-xs sm:text-sm space-y-1.5 font-sans">
           <li>
-            <a href="https://orcid.org/0009-0008-9045-3527" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-flex items-center gap-1">
+            <a href="https://orcid.org/0009-0008-9045-3527" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-flex items-center gap-1.5">
               <span>ORCID Registry</span>
-              <span class="text-xs">↗</span>
+              <SocialIcon name="external" class="w-3 h-3 opacity-70" />
             </a>
           </li>
           <li><a href={url("/terms")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Terms &amp; Citation Use</a></li>
