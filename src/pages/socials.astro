@@ -1,140 +1,221 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { authorProfile } from '../data/posts';
+import { socialLinks, linkhubConfig } from '../data/socials';
 
-const socialLinks = [
-  {
-    title: "Google Scholar",
-    handle: "H. Kapginlian",
-    desc: "Citations, verified peer-reviewed publications, co-authored volumes, and citation metrics.",
-    icon: "🎓",
-    href: authorProfile.scholar,
-    tag: "Academic"
-  },
-  {
-    title: "ORCID",
-    handle: authorProfile.orcid,
-    desc: "Permanent Open Researcher and Contributor ID registry for cross-institutional authorship verification.",
-    icon: "🆔",
-    href: `https://orcid.org/${authorProfile.orcid}`,
-    tag: "Identifier"
-  },
-  {
-    title: "GitHub",
-    handle: "@kapginlian",
-    desc: "Astro blog templates, Leipzig gloss parser scripts, Praat phonetic acoustic automation scripts, and corpus tools.",
-    icon: "💻",
-    href: authorProfile.github,
-    tag: "Open Source"
-  },
-  {
-    title: "Bluesky / Academic Feed",
-    handle: "@kapginlian.bsky.social",
-    desc: "Discussions on Sino-Tibetan historical linguistics, syntax typology, field dispatches, and conference commentary.",
-    icon: "🦋",
-    href: authorProfile.bluesky,
-    tag: "Microblogging"
-  },
-  {
-    title: "ResearchGate & Preprints",
-    handle: "H_Kapginlian",
-    desc: "Early working drafts, presentation slides, conference handouts, and question-and-answer threads with peers.",
-    icon: "📑",
-    href: "https://www.researchgate.net",
-    tag: "Preprints"
-  },
-  {
-    title: "Direct Email",
-    handle: authorProfile.email,
-    desc: "For academic queries, manuscript inquiries, fieldwork collaborations, or speaker consultations.",
-    icon: "✉️",
-    href: `mailto:${authorProfile.email}`,
-    tag: "Inquiries"
-  }
-];
+const academicLinks = socialLinks.filter((s) => s.category === "academic");
+const socialMediaLinks = socialLinks.filter((s) => s.category === "social");
+const directLinks = socialLinks.filter((s) => s.category === "direct");
 ---
 
 <BaseLayout
-  title="Socials & Academic Directory | H. Kapginlian"
-  description="Connect with H. Kapginlian on Google Scholar, ORCID, GitHub, Bluesky, or email."
+  title="Linkhub & Social Directory | H. Kapginlian"
+  description="Connect with H. Kapginlian across academic networks, social channels, WhatsApp, and direct correspondence."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
-    <!-- Header -->
-    <div class="border-b border-[var(--border-color)] pb-8">
-      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
-        Academic Network & Correspondence
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
-        Socials & Academic Hub
-      </h1>
-      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
-        Connect across academic networks, explore open-source computational linguistic code repositories, or get in touch directly.
-      </p>
-    </div>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+    
+    <!-- Linkhub Bento Hero Profile Card -->
+    <div class="relative overflow-hidden rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 p-6 sm:p-8 text-center space-y-4 shadow-xs">
+      <!-- Background subtle gradient glow -->
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-[var(--accent)]/10 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 font-sans">
-      {socialLinks.map((item) => (
-        <a
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group p-6 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/90 hover:border-[var(--accent)] transition-all duration-200 flex flex-col justify-between"
-        >
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-2xl">{item.icon}</span>
-              <span class="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)]">
-                {item.tag}
-              </span>
-            </div>
-
-            <div>
-              <h2 class="text-lg font-bold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                {item.title}
-              </h2>
-              <p class="text-xs font-mono text-[var(--accent)] mt-0.5">
-                {item.handle}
-              </p>
-            </div>
-
-            <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
-              {item.desc}
-            </p>
-          </div>
-
-          <div class="pt-4 mt-2 border-t border-[var(--border-color)]/60 flex items-center justify-between text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] font-medium">
-            <span>Visit Profile</span>
-            <span class="group-hover:translate-x-1 transition-transform">↗</span>
-          </div>
-        </a>
-      ))}
-    </div>
-
-    <!-- RSS Subscription Card -->
-    <div id="rss" class="p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] space-y-3 font-sans">
-      <div class="flex items-center gap-3">
-        <span class="text-2xl">📡</span>
-        <h2 class="text-xl font-bold text-[var(--text-primary)]">RSS / Atom Subscription</h2>
-      </div>
-      <p class="text-sm font-serif text-[var(--text-secondary)] leading-relaxed">
-        Prefer reading via an RSS reader like NetNewsWire, Feedly, or Inoreader? You can subscribe directly to the feed to receive new essays and field notes without algorithms or trackers.
-      </p>
-      <div class="pt-2 flex flex-wrap items-center gap-3">
-        <input
-          type="text"
-          readonly
-          value="https://hkhangluah.pages.dev/rss.xml"
-          class="px-3.5 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] font-mono text-xs text-[var(--text-primary)] w-full sm:w-80"
-          id="rss-input"
+      <!-- Avatar with Verified Ring -->
+      <div class="relative inline-block mx-auto">
+        <img
+          src={authorProfile.avatar}
+          alt={authorProfile.name}
+          class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[var(--bg-primary)] shadow-md mx-auto"
         />
-        <button
-          class="px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer"
-          onclick="navigator.clipboard.writeText('https://hkhangluah.pages.dev/rss.xml'); alert('RSS feed URL copied!');"
+        <span
+          class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-[var(--accent)] text-white text-xs flex items-center justify-center border-2 border-[var(--bg-primary)] shadow-xs"
+          title="Verified Academic Profile"
         >
-          Copy Feed Link
+          ✓
+        </span>
+      </div>
+
+      <!-- Identity & Affiliation -->
+      <div class="space-y-1.5">
+        <h1 class="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+          {authorProfile.name}
+        </h1>
+        <p class="text-sm sm:text-base font-serif text-[var(--accent)] font-medium">
+          {authorProfile.title}
+        </p>
+        <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)]">
+          {authorProfile.affiliation}
+        </p>
+      </div>
+
+      <!-- Location & Bio snippet -->
+      <p class="text-xs sm:text-sm font-serif text-[var(--text-secondary)] max-w-lg mx-auto leading-relaxed">
+        Linguist documenting Tibeto-Burman &amp; Kuki-Chin morphology, syntax, Indigenous Knowledge Systems, and intangible cultural heritage.
+      </p>
+
+      <!-- Quick Action Badges -->
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-2 font-mono text-xs">
+        <span class="px-3 py-1 rounded-full bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)]">
+          📍 Shillong, Meghalaya • Manipur
+        </span>
+        <button
+          type="button"
+          id="share-linkhub-btn"
+          class="px-3 py-1 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity cursor-pointer inline-flex items-center gap-1 font-sans"
+        >
+          <span>Share Linkhub</span>
+          <span>🔗</span>
         </button>
       </div>
     </div>
+
+    <!-- SECTION 1: ACADEMIC & CITATION REGISTRIES -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
+        <span>🎓</span>
+        <span>Academic Registries & Citations</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 font-sans">
+        {academicLinks.map((item) => (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`group p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
+          >
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+                  {item.badge}
+                </span>
+                <span class="text-xs font-sans text-[var(--text-secondary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                  ↗
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-primary)]">
+                {item.title}
+              </h3>
+              <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
+                {item.handle}
+              </p>
+            </div>
+            <p class="text-[11px] font-serif text-[var(--text-secondary)] mt-3 leading-snug line-clamp-2">
+              {item.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- SECTION 2: SOCIAL & COMMUNITY CHANNELS (FB, TWITTER, WA) -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
+        <span>🌐</span>
+        <span>Social & Community Channels</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 font-sans">
+        {socialMediaLinks.map((item) => (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`group p-4 rounded-2xl border transition-all duration-200 flex flex-col justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
+          >
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+                  {item.badge}
+                </span>
+                <span class="text-xs font-sans text-[var(--text-secondary)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+                  ↗
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-primary)]">
+                {item.title}
+              </h3>
+              <p class="text-xs font-mono text-[var(--text-secondary)] truncate">
+                {item.handle}
+              </p>
+            </div>
+            <p class="text-[11px] font-serif text-[var(--text-secondary)] mt-3 leading-snug line-clamp-2">
+              {item.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- SECTION 3: DIRECT CONTACT & WEB REPOSITORY SHORTCUTS -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[var(--text-secondary)] font-semibold">
+        <span>✉️</span>
+        <span>Direct Correspondence & Permanent Archives</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+        {directLinks.map((item) => (
+          <a
+            href={item.href}
+            class={`group p-5 rounded-2xl border transition-all duration-200 flex items-center justify-between ${item.colorTheme} shadow-xs hover:shadow-md`}
+          >
+            <div class="space-y-1 max-w-[85%]">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)]/80 text-[var(--text-primary)] border border-[var(--border-color)]">
+                  {item.badge}
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-[var(--text-primary)] pt-1">
+                {item.title}
+              </h3>
+              <p class="text-xs font-mono text-[var(--accent)] truncate">
+                {item.handle}
+              </p>
+              <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed pt-1">
+                {item.description}
+              </p>
+            </div>
+            <span class="text-lg font-sans text-[var(--text-secondary)] group-hover:text-[var(--accent)] group-hover:translate-x-1 transition-all">
+              →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- CMS Customization Note Footer -->
+    <div class="p-6 rounded-2xl border border-dashed border-[var(--border-color)] bg-[var(--bg-secondary)]/30 text-center font-sans space-y-2">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+        Custom CMS Integration
+      </span>
+      <p class="text-xs sm:text-sm font-serif text-[var(--text-secondary)] max-w-lg mx-auto leading-relaxed">
+        All links, social handles, and direct communication channels are centrally managed via <code class="px-1.5 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-color)] font-mono text-[11px] text-[var(--text-primary)]">src/data/socials.ts</code>. Handles and links can be updated anytime without altering page markup.
+      </p>
+    </div>
+
   </div>
 </BaseLayout>
+
+<script>
+  // Share Linkhub 1-click clipboard button
+  const shareBtn = document.getElementById('share-linkhub-btn');
+  shareBtn?.addEventListener('click', async () => {
+    const shareUrl = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "H. Kapginlian | Social & Academic Linkhub",
+          url: shareUrl,
+        });
+      } else {
+        await navigator.clipboard.writeText(shareUrl);
+        shareBtn.innerHTML = '<span>Link Copied! ✓</span>';
+        setTimeout(() => {
+          shareBtn.innerHTML = '<span>Share Linkhub</span><span>🔗</span>';
+        }, 2000);
+      }
+    } catch (err) {
+      console.log('Share canceled or failed:', err);
+    }
+  });
+</script>
