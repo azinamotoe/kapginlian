@@ -26,8 +26,8 @@ export const simtePoetryPost: Post = {
         "The verse presented below reflects the traditional voice of solitude, filial affection, and attachment to the ancestral hills:"
       ],
       blockquote: {
-        text: "Aw Simlei ningzuo awng, ka vangkhuo ngai ing e;\nTuongtuong a guon dam lai, lungzuong a vei ing e.\n\n(O gentle hills of home, how my spirit pines for you;\nThrough the rolling green valleys, my thoughts forever wander.)",
-        source: "Traditional Simte oral fragment, recorded and transcribed by H. Kapginlian"
+        text: "O gentle hills of home, how my spirit longs for you;\nThrough rolling green valleys, my thoughts forever wander.",
+        source: "H. Kapginlian (from traditional oral verse)"
       }
     },
     {

@@ -2,39 +2,45 @@ import type { Post } from '../posts';
 
 export const changVuiHarvestPost: Post = {
   slug: "chang-vui-harvest-couplets-simte",
-  title: "Chang Vui: Harvest Songs and Hillside Rhythms",
-  subtitle: "Traditional agricultural chants (Lhang La) from the shifting cultivation terraces of Pherzawl",
-  excerpt: "A collection of harvest couplets celebrating the ripening of golden paddy, communal labor, and the joyous festival chants that echoed across the hill slopes of southern Manipur.",
+  title: "Song of the Golden Terraces",
+  subtitle: "A harvest poem of autumn hills, shared labor, and celebration",
+  excerpt: "A celebration of golden fields, the joy of communal harvest across the mountainsides, and the warmth of family, hearth, and songs.",
   date: "August 2024",
   year: 2024,
-  readingTime: "5 min read",
-  category: "Poetry & Oral Literature",
-  languageFamily: "Tibeto-Burman",
-  language: "Simte",
+  readingTime: "3 min read",
+  category: "Poetry & Literature",
+  languageFamily: "English Verse",
+  language: "English",
   articleLanguage: "English",
-  tags: ["Poetry", "Harvest Songs", "Lhang La", "Indigenous Knowledge", "Simte", "Pherzawl"],
-  coverImage: "https://placehold.co/800x450/78350f/ffffff?text=Chang+Vui+Harvest",
+  tags: ["Poetry", "Harvest", "Community", "Autumn", "Songs"],
+  coverImage: "https://placehold.co/800x450/78350f/ffffff?text=Golden+Terraces",
   featured: false,
   postType: "poem",
   authors: "H. Kapginlian",
-  abstract: "Agricultural songs (*Lhang La*) occupy a central place in Simte folklore. Sung antiphonally by groups of harvesters working shoulder-to-shoulder on steep slopes, these couplets synchronise communal labor with rhythmic breath and cheerful banter.",
+  abstract: "Inspired by the autumn harvest in the mountain villages, where neighbors come together to reap the fields on steep hill slopes, singing in rhythm to lift each other's spirits.",
   sections: [
     {
-      heading: "I. The Golden Terraces: Chang Vui Min Hun",
+      heading: "Song of the Golden Terraces",
       paragraphs: [
-        "In the traditional jhum fields (*lou-gam*), harvest season in autumn was a time of immense physical toil repaid by festive abundance. As sickle blades cut through mature stalks, singers would initiate melodic calls across the valleys, answered in unison by neighboring working groups (*lawm*).",
-        "The verse preserved below captures the pride of bringing the golden crop back to the village granary:"
+        "When golden ears of harvest crown the hill,",
+        "The ridges wake and every hearth grows still.",
+        "With grateful hands that worked the summer sun,",
+        "We lift our song until the day is done.",
+        "",
+        "Across the slope our neighbor's laughter calls,",
+        "As evening on the quiet terrace falls.",
+        "The grain is gathered and the baskets full,",
+        "A season's blessing in the autumn cool."
       ],
       blockquote: {
-        text: "Chang vui a min hun chiang in, singgam muolte’n puon a silh hi;\nNu leh pa te tha lawm in, khopi zaila i sa khawm hi.\n\n(When golden ears of grain ripen, the high ridges clothe themselves in celebration;\nReaping the fruits of our parents’ labor, our village raises songs of joy together.)",
-        source: "Traditional Simte harvest verse (*Lhang La*), transcribed by H. Kapginlian"
+        text: "When golden ears of harvest crown the hill,\nThe ridges wake and every hearth grows still.\nWith grateful hands that worked the summer sun,\nWe lift our song until the day is done.",
+        source: "H. Kapginlian"
       }
     },
     {
-      heading: "II. Antiphonal Chant & Communal Endurance",
+      heading: "The Joy of Shared Labor",
       paragraphs: [
-        "The linguistic feature of these harvest chants is call-and-response parallelism. The lead singer sets a lyrical question or emotional observation, and the harvesting company completes the line in rhythmic harmony, lightening the physical weight of mountain agriculture.",
-        "Preserving these texts offers crucial linguistic insight into agricultural terminology and archaic botanical terms that are rapidly disappearing with modernization."
+        "Harvest in the hills is never solitary. It is a shared rhythm where work turns into celebration, and songs echo from ridge to ridge as the daylight gently fades."
       ]
     }
   ]
