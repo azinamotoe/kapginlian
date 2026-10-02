@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -20,12 +21,12 @@ const currentYear = new Date().getFullYear();
       <div class="md:col-span-4 space-y-2">
         <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">Navigation</h4>
         <ul class="text-xs sm:text-sm space-y-1.5 font-sans">
-          <li><a href="/" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Home</a></li>
-          <li><a href="/research" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Research Publications</a></li>
-          <li><a href="/feed" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing &amp; Dispatches</a></li>
-          <li><a href="/archive" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing Archive &amp; Search</a></li>
-          <li><a href="/about" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Curriculum &amp; Biography</a></li>
-          <li><a href="/socials" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Academic Hub &amp; Socials</a></li>
+          <li><a href={url("/")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Home</a></li>
+          <li><a href={url("/research")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Research Publications</a></li>
+          <li><a href={url("/feed")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing &amp; Dispatches</a></li>
+          <li><a href={url("/archive")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing Archive &amp; Search</a></li>
+          <li><a href={url("/about")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Curriculum &amp; Biography</a></li>
+          <li><a href={url("/socials")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Academic Hub &amp; Socials</a></li>
         </ul>
       </div>
 
@@ -39,8 +40,8 @@ const currentYear = new Date().getFullYear();
               <span class="text-xs">↗</span>
             </a>
           </li>
-          <li><a href="/terms" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Terms &amp; Citation Use</a></li>
-          <li><a href="/privacy" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Privacy Policy</a></li>
+          <li><a href={url("/terms")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Terms &amp; Citation Use</a></li>
+          <li><a href={url("/privacy")} class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Privacy Policy</a></li>
         </ul>
       </div>
     </div>

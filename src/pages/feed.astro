@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostPlate from '../components/PostPlate.astro';
 import { samplePosts } from '../data/posts';
+import { url } from '../utils/url';
 
 const feedPosts = samplePosts.filter((p) => p.postType !== "academic_paper");
 const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category)))];
@@ -32,7 +33,7 @@ const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category
           <span class="text-base">📄</span>
           <span>Looking for peer-reviewed linguistics papers & journal publications?</span>
         </div>
-        <a href="/research" class="font-semibold text-[var(--accent)] hover:underline inline-flex items-center gap-1 shrink-0">
+        <a href={url("/research")} class="font-semibold text-[var(--accent)] hover:underline inline-flex items-center gap-1 shrink-0">
           Visit Research & Publications →
         </a>
       </div>

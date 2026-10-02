@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { samplePosts, type Post } from '../../data/posts';
+import { samplePosts, type Post, getPostUrl } from '../../data/posts';
+import { url } from '../../utils/url';
 
 const researchPosts = samplePosts.filter((p) => p.postType === "academic_paper");
 
@@ -33,7 +34,7 @@ const nextPost = currentIndex < researchPosts.length - 1 ? researchPosts[current
     <!-- Breadcrumb & Back navigation -->
     <nav class="flex items-center justify-between text-xs font-sans text-[var(--text-secondary)] mb-8">
       <div class="flex items-center gap-2">
-        <a href="/research" class="hover:text-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center font-medium">
+        <a href={url("/research")} class="hover:text-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center font-medium">
           ← Back to Research
         </a>
         <span>/</span>
@@ -344,7 +345,7 @@ const nextPost = currentIndex < researchPosts.length - 1 ? researchPosts[current
     <nav class="mt-14 pt-8 border-t border-[var(--border-color)] grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs">
       {prevPost ? (
         <a
-          href={`/research/${prevPost.slug}`}
+          href={getPostUrl(prevPost)}
           class="p-4 rounded-xl border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors space-y-1 block"
         >
           <span class="text-[var(--text-secondary)] uppercase tracking-wider font-semibold block">
@@ -358,7 +359,7 @@ const nextPost = currentIndex < researchPosts.length - 1 ? researchPosts[current
 
       {nextPost && (
         <a
-          href={`/research/${nextPost.slug}`}
+          href={getPostUrl(nextPost)}
           class="p-4 rounded-xl border border-[var(--border-color)] hover:border-[var(--accent)] transition-colors space-y-1 block sm:text-right"
         >
           <span class="text-[var(--text-secondary)] uppercase tracking-wider font-semibold block">

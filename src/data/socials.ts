@@ -1,3 +1,5 @@
+import { url } from '../utils/url';
+
 export interface SocialLink {
   id: string;
   title: string;
@@ -116,7 +118,7 @@ export const socialLinks: SocialLink[] = [
     description: "Direct access to 4 peer-reviewed linguistics papers with Leipzig glosses and downloadable PDFs.",
     category: "direct",
     badge: "Internal Archive",
-    href: "/research",
+    href: url("/research"),
     icon: "paper",
     colorTheme: "border-[var(--accent)]/30 bg-[var(--accent)]/5 hover:bg-[var(--accent)]/15 text-[var(--accent)]",
     isActive: true,

@@ -70,8 +70,10 @@ export const samplePosts: Post[] = [
   simtePoetryPost
 ];
 
+import { url } from '../utils/url';
+
 export function getPostUrl(post: { slug: string; postType?: string }): string {
-  return post.postType === "academic_paper" ? `/research/${post.slug}` : `/feed/${post.slug}`;
+  return post.postType === "academic_paper" ? url(`/research/${post.slug}`) : url(`/feed/${post.slug}`);
 }
 
 export const authorProfile = {
@@ -86,8 +88,8 @@ export const authorProfile = {
     "For me, language is more than a system of words and grammar—it is a repository of memory, identity, knowledge, and lived experience. Through my research and writings, I hope to explore these connections and contribute, in my own small way, to the understanding and preservation of Indigenous languages and cultures.",
     "Welcome to my world of language, culture, thought, faith, and words."
   ],
-  avatar: "/images/author-avatar.jpg",
-  fullPhoto: "/images/author-centered.jpg",
+  avatar: url("/images/author-avatar.jpg"),
+  fullPhoto: url("/images/author-centered.jpg"),
   location: "NEHU, Shillong • Manipur, Northeast India",
   email: "contact@lianhangluah.com",
   orcid: "0009-0008-9045-3527",
