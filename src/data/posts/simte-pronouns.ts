@@ -11,6 +11,7 @@ export const simtePronounsPost: Post = {
   category: "Linguistics",
   languageFamily: "Tibeto-Burman",
   language: "Simte",
+  articleLanguage: "English",
   tags: ["Morphosyntax", "Simte", "Pronouns", "Pro-Drop", "Clusivity", "Kuki-Chin"],
   coverImage: "https://placehold.co/800x450/1e293b/ffffff?text=Pronouns+in+Simte+(Language+in+India)",
   featured: true,

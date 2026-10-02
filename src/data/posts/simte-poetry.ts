@@ -11,6 +11,7 @@ export const simtePoetryPost: Post = {
   category: "Poetry & Oral Literature",
   languageFamily: "Tibeto-Burman",
   language: "Simte",
+  articleLanguage: "English",
   tags: ["Poetry", "Simte", "Oral Literature", "Ballads", "Cultural Heritage", "Indigenous Verse"],
   coverImage: "https://placehold.co/800x450/3b0764/ffffff?text=Aw+Simlei+Poetry",
   featured: false,

@@ -11,6 +11,7 @@ export const historyChristianityPost: Post = {
   category: "Society & Culture",
   languageFamily: "Tibeto-Burman",
   language: "Simte",
+  articleLanguage: "English",
   tags: ["Oral History", "Simte", "Christianity", "Thanlon", "Heritage", "Church History"],
   coverImage: "https://placehold.co/800x450/292524/ffffff?text=Advent+of+Christianity+Among+the+Simtes",
   featured: false,

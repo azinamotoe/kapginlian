@@ -39,7 +39,8 @@ export interface Post {
   readingTime: string;
   category: string;
   languageFamily?: string;
-  language?: string;
+  language?: string; // Linguistic focus / subject language
+  articleLanguage?: "English" | "Simte"; // Language the article is written in
   tags: string[];
   coverImage: string;
   featured?: boolean;

@@ -7,8 +7,9 @@ const academicPosts = samplePosts.filter((p) => p.postType === "academic_paper")
 const essayPosts = samplePosts.filter((p) => p.postType === "essay");
 const poemPosts = samplePosts.filter((p) => p.postType === "poem");
 
-// Language filters: Simte and English only
-const allowedLanguages = ["Simte", "English"];
+// Article composition languages
+const englishPosts = samplePosts.filter((p) => (p.articleLanguage || 'English').toLowerCase() === "english");
+const simtePosts = samplePosts.filter((p) => (p.articleLanguage || '').toLowerCase() === "simte");
 
 // Extract unique tags and years
 const allTags = Array.from(new Set(samplePosts.flatMap((p) => p.tags))).sort();
@@ -17,7 +18,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
 <BaseLayout
   title="Archive & Index | H. Kapginlian"
-  description="Search and browse research papers, essays, poems, and linguistic data by category, language, tag, and year."
+  description="Search and browse research papers, essays, poems, and linguistic data by category, article language, tag, and year."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
     <!-- Header -->
@@ -71,10 +72,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         </div>
       </div>
 
-      <!-- Language Filter: Simte and English only -->
+      <!-- Article Composition Language (Written In) -->
       <div class="space-y-2 font-sans pt-1">
-        <div class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-          Language Focus:
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+          <span>Article Language (Written In):</span>
+          <span class="text-[10px] lowercase font-normal italic text-[var(--text-secondary)]">
+            (medium of text)
+          </span>
         </div>
         <div class="flex flex-wrap items-center gap-2" id="lang-filter-group">
           <button
@@ -82,17 +86,22 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
             class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-lang="all"
           >
-            All Languages
+            All Languages <span class="ml-1 opacity-75 font-mono">({samplePosts.length})</span>
           </button>
-          {allowedLanguages.map((lang) => (
-            <button
-              type="button"
-              class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
-              data-lang={lang.toLowerCase()}
-            >
-              {lang}
-            </button>
-          ))}
+          <button
+            type="button"
+            class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
+            data-lang="english"
+          >
+            English <span class="ml-1 opacity-75">({englishPosts.length})</span>
+          </button>
+          <button
+            type="button"
+            class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
+            data-lang="simte"
+          >
+            Simte <span class="ml-1 text-[10px] opacity-75 font-sans">(Native Tongue: {simtePosts.length})</span>
+          </button>
         </div>
       </div>
 
@@ -155,8 +164,8 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
             <ul class="space-y-4">
               {postsInYear.map((post) => {
-                const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.journal || ''} ${post.postType}`.toLowerCase();
-                const langValue = (post.language || 'english').toLowerCase();
+                const articleLang = (post.articleLanguage || 'English').toLowerCase();
+                const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.journal || ''} ${post.postType} ${articleLang}`.toLowerCase();
                 const tagsList = post.tags.map((t) => t.toLowerCase()).join(',');
                 
                 return (
@@ -164,11 +173,11 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
                     class="archive-entry group flex flex-col sm:flex-row sm:items-baseline justify-between p-4 rounded-xl hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-color)] transition-all gap-4"
                     data-search={searchCorpus}
                     data-type={post.postType}
-                    data-language={langValue}
+                    data-article-lang={articleLang}
                     data-tags={tagsList}
                   >
                     <div class="space-y-2 sm:max-w-2xl">
-                      {/* Top Badges: Type & Language */}
+                      {/* Top Badges: Type, Linguistic Focus & Language of Composition */}
                       <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
                         {post.postType === "academic_paper" && (
                           <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
@@ -188,7 +197,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
                         {post.language && (
                           <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium">
-                            {post.language}
+                            Focus: {post.language}
+                          </span>
+                        )}
+
+                        {post.articleLanguage === "Simte" && (
+                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                            🗣️ Native Simte
                           </span>
                         )}
 
@@ -264,10 +279,39 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       })}
     </div>
 
-    <!-- No Match State -->
+    <!-- Empty State: Native Simte future placeholder -->
+    <div id="simte-future-notice" class="hidden text-center py-16 px-4 font-sans rounded-2xl border border-dashed border-[var(--border-color)] bg-[var(--bg-secondary)]/30">
+      <div class="w-12 h-12 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mx-auto mb-4 text-xl">
+        🗣️
+      </div>
+      <h3 class="text-lg font-bold text-[var(--text-primary)]">
+        No articles published in Simte yet
+      </h3>
+      <p class="text-sm font-serif text-[var(--text-secondary)] mt-2 max-w-md mx-auto leading-relaxed">
+        All current peer-reviewed research papers and essays are composed in English. Future dispatches, folklore transcriptions, essays, and poetry written directly in native Simte will appear here.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <button
+          type="button"
+          id="view-english-btn"
+          class="px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] text-xs font-semibold cursor-pointer hover:opacity-90 transition-opacity"
+        >
+          View English Articles ({englishPosts.length})
+        </button>
+        <button
+          type="button"
+          id="simte-reset-btn"
+          class="px-4 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-xs font-medium cursor-pointer"
+        >
+          View All Works
+        </button>
+      </div>
+    </div>
+
+    <!-- General No Match State -->
     <div id="no-archive-results" class="hidden text-center py-16 font-sans">
       <p class="text-base font-bold text-[var(--text-primary)]">No matching research records found.</p>
-      <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the type, language filter, or search query.</p>
+      <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the publication type, search query, or topic tag.</p>
       <button
         type="button"
         id="empty-reset-btn"
@@ -287,10 +331,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
   const entryTagBtns = document.querySelectorAll<HTMLButtonElement>('.entry-tag-btn');
   const resetBtn = document.getElementById('reset-filters');
   const emptyResetBtn = document.getElementById('empty-reset-btn');
+  const viewEnglishBtn = document.getElementById('view-english-btn');
+  const simteResetBtn = document.getElementById('simte-reset-btn');
   const archiveEntries = document.querySelectorAll<HTMLElement>('.archive-entry');
   const yearSections = document.querySelectorAll<HTMLElement>('.year-section');
   const resultsCount = document.getElementById('results-count');
   const noResults = document.getElementById('no-archive-results');
+  const simteFutureNotice = document.getElementById('simte-future-notice');
 
   const totalEntriesCount = archiveEntries.length;
 
@@ -362,12 +409,12 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     archiveEntries.forEach((entry) => {
       const text = entry.getAttribute('data-search') || '';
       const entryType = entry.getAttribute('data-type') || '';
-      const entryLang = (entry.getAttribute('data-language') || '').toLowerCase();
+      const entryArticleLang = (entry.getAttribute('data-article-lang') || '').toLowerCase();
       const entryTags = (entry.getAttribute('data-tags') || '').split(',');
 
       const matchesSearch = !query || text.includes(query);
       const matchesType = activeType === 'all' || entryType === activeType;
-      const matchesLang = activeLang === 'all' || entryLang.includes(activeLang);
+      const matchesLang = activeLang === 'all' || entryArticleLang === activeLang;
       const matchesTag = !activeTag || entryTags.includes(activeTag);
 
       if (matchesSearch && matchesType && matchesLang && matchesTag) {
@@ -378,7 +425,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       }
     });
 
-    // Check year sections using robust display property check
+    // Check year sections
     yearSections.forEach((sec) => {
       const visibleEntries = Array.from(sec.querySelectorAll<HTMLElement>('.archive-entry')).filter(
         (el) => el.style.display !== 'none'
@@ -397,8 +444,18 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       }
     }
 
-    if (noResults) {
-      noResults.style.display = matchesCount === 0 ? 'block' : 'none';
+    // Special empty state for Simte native articles vs generic empty state
+    if (matchesCount === 0) {
+      if (activeLang === 'simte' && !query && activeType === 'all' && !activeTag) {
+        if (simteFutureNotice) simteFutureNotice.style.display = 'block';
+        if (noResults) noResults.style.display = 'none';
+      } else {
+        if (simteFutureNotice) simteFutureNotice.style.display = 'none';
+        if (noResults) noResults.style.display = 'block';
+      }
+    } else {
+      if (simteFutureNotice) simteFutureNotice.style.display = 'none';
+      if (noResults) noResults.style.display = 'none';
     }
 
     if (resetBtn) {
@@ -415,7 +472,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     });
   });
 
-  // Language filter clicks
+  // Article language filter clicks
   langBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       activeLang = (btn.getAttribute('data-lang') || 'all').toLowerCase();
@@ -463,6 +520,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
   resetBtn?.addEventListener('click', resetAllFilters);
   emptyResetBtn?.addEventListener('click', resetAllFilters);
+  simteResetBtn?.addEventListener('click', resetAllFilters);
+
+  viewEnglishBtn?.addEventListener('click', () => {
+    activeLang = 'english';
+    updateLangButtonsUI();
+    filterArchive();
+  });
 
   // Initial run
   filterArchive();

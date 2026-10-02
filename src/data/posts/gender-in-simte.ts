@@ -11,6 +11,7 @@ export const genderInSimtePost: Post = {
   category: "Linguistics",
   languageFamily: "Tibeto-Burman",
   language: "Simte",
+  articleLanguage: "English",
   tags: ["Morphology", "Gender", "Simte", "Kinship", "Honorifics"],
   coverImage: "https://placehold.co/800x450/334155/ffffff?text=Gender+in+Simte+(Vāk+Manthan)",
   featured: true,
