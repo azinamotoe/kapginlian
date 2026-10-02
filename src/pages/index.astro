@@ -15,7 +15,7 @@ const recentPosts = samplePosts.slice(0, 4);
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
       <!-- LEFT COLUMN: Sticky Bio Card & Credentials -->
-      <aside class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+      <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
         <div class="bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] rounded-2xl p-6 sm:p-7 shadow-xs">
           <!-- Author Avatar & Name -->
           <div class="flex items-center gap-4 mb-5">
@@ -140,7 +140,7 @@ const recentPosts = samplePosts.slice(0, 4);
       </aside>
 
       <!-- RIGHT COLUMN: Recent Writing & Field Notes Feed -->
-      <section class="lg:col-span-7 space-y-8">
+      <section class="lg:col-span-8 space-y-8">
         <div class="flex items-baseline justify-between border-b border-[var(--border-color)] pb-3">
           <div>
             <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
@@ -159,23 +159,16 @@ const recentPosts = samplePosts.slice(0, 4);
           </a>
         </div>
 
-        <!-- Post Cards List -->
+        <!-- Post Cards List (Wide horizontal layout matching feed) -->
         <div class="space-y-6">
           {recentPosts.map((post) => (
             <article class="group bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 transition-all duration-200">
-              <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center">
                 
-                <!-- Academic Monograph Plate or Cover (Left on desktop) -->
-                <div class="sm:col-span-4 order-last sm:order-first">
-                  <a href={`/feed/${post.slug}`} class="block group-hover:opacity-95 transition-opacity">
-                    <PostPlate post={post} aspect="aspect-video sm:aspect-square" />
-                  </a>
-                </div>
-
-                <!-- Text Content -->
-                <div class="sm:col-span-8 space-y-2">
+                <!-- Text Content (on left, leads the card) -->
+                <div class="sm:col-span-7 md:col-span-8 space-y-2.5">
                   <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
-                    <span class="px-2 py-0.5 rounded bg-[var(--accent-light)] text-[var(--accent)] font-medium">
+                    <span class="px-2.5 py-0.5 rounded bg-[var(--accent-light)] text-[var(--accent)] font-semibold">
                       {post.category}
                     </span>
                     <span>•</span>
@@ -191,7 +184,7 @@ const recentPosts = samplePosts.slice(0, 4);
                   </h3>
 
                   {post.subtitle && (
-                    <p class="text-xs font-sans text-[var(--text-secondary)] font-medium line-clamp-1">
+                    <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] font-medium line-clamp-1">
                       {post.subtitle}
                     </p>
                   )}
@@ -209,6 +202,14 @@ const recentPosts = samplePosts.slice(0, 4);
                     ))}
                   </div>
                 </div>
+
+                <!-- Academic Monograph Plate (on right, like feed.astro) -->
+                <div class="sm:col-span-5 md:col-span-4">
+                  <a href={`/feed/${post.slug}`} class="block group-hover:opacity-95 transition-opacity">
+                    <PostPlate post={post} aspect="aspect-video sm:aspect-[4/3]" />
+                  </a>
+                </div>
+
               </div>
             </article>
           ))}
