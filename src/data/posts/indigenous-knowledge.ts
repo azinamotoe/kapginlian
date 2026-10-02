@@ -10,11 +10,11 @@ export const indigenousKnowledgePost: Post = {
   readingTime: "5 min read",
   category: "Indigenous Knowledge",
   languageFamily: "Tibeto-Burman",
-  language: "Kuki-Chin / General",
+  language: "English",
   tags: ["Indigenous Knowledge", "Heritage", "Oral Literature", "Philosophy", "Fieldwork"],
   coverImage: "https://placehold.co/800x450/1e1e24/ffffff?text=Indigenous+Knowledge+Systems",
   featured: false,
-  postType: "article",
+  postType: "essay",
   sections: [
     {
       heading: "Language as Memory and Lived Experience",

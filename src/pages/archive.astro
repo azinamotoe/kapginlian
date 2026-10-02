@@ -2,31 +2,96 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { samplePosts } from '../data/posts';
 
+// Content types & counts
+const academicPosts = samplePosts.filter((p) => p.postType === "academic_paper");
+const essayPosts = samplePosts.filter((p) => p.postType === "essay");
+const poemPosts = samplePosts.filter((p) => p.postType === "poem");
+
+// Language filters: Simte and English only
+const allowedLanguages = ["Simte", "English"];
+
 // Extract unique tags and years
 const allTags = Array.from(new Set(samplePosts.flatMap((p) => p.tags))).sort();
-const allLanguages = Array.from(new Set(samplePosts.map((p) => p.language).filter(Boolean))).sort();
 const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) => b - a);
 ---
 
 <BaseLayout
   title="Archive & Index | H. Kapginlian"
-  description="Search and browse research papers, field notes, and linguistic data by category, tag, and year."
+  description="Search and browse research papers, essays, poems, and linguistic data by category, language, tag, and year."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
     <!-- Header -->
-    <div class="border-b border-[var(--border-color)] pb-8 mb-8">
-      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
-        Research Directory
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
-        Archive & Subject Index
-      </h1>
-      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
-        Search across all published notes, filter by linguistic subdiscipline, or browse by language family.
-      </p>
+    <div class="border-b border-[var(--border-color)] pb-8 mb-8 space-y-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Curated Archive
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
+          Archive & Subject Index
+        </h1>
+        <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
+          Explore peer-reviewed academic papers, cultural and historical essays, poetry, and linguistic documentation.
+        </p>
+      </div>
+
+      <!-- Segmented Type Tabs: Academic Papers, Essays, Poems -->
+      <div class="space-y-3 font-sans">
+        <div class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+          Publication Type:
+        </div>
+        <div class="flex flex-wrap gap-2" id="type-filter-group">
+          <button
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm transition-all cursor-pointer"
+            data-type="all"
+          >
+            All Works <span class="ml-1 opacity-75 font-mono">({samplePosts.length})</span>
+          </button>
+          <button
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            data-type="academic_paper"
+          >
+            Academic Papers <span class="ml-1 opacity-75 font-mono">({academicPosts.length})</span>
+          </button>
+          <button
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            data-type="essay"
+          >
+            Essays & Monograph <span class="ml-1 opacity-75 font-mono">({essayPosts.length})</span>
+          </button>
+          <button
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            data-type="poem"
+          >
+            Poems & Verse <span class="ml-1 opacity-75 font-mono">({poemPosts.length})</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Language Filter: Simte and English only -->
+      <div class="space-y-2 font-sans pt-1">
+        <div class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
+          Language Focus:
+        </div>
+        <div class="flex flex-wrap items-center gap-2" id="lang-filter-group">
+          <button
+            class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold transition-all cursor-pointer"
+            data-lang="all"
+          >
+            All Languages
+          </button>
+          {allowedLanguages.map((lang) => (
+            <button
+              class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono"
+              data-lang={lang.toLowerCase()}
+            >
+              {lang}
+            </button>
+          ))}
+        </div>
+      </div>
 
       <!-- Real-time Search Bar -->
-      <div class="mt-6 relative font-sans">
+      <div class="relative font-sans pt-2">
         <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--text-secondary)]">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -35,17 +100,17 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         <input
           type="text"
           id="archive-search"
-          placeholder="Search by keyword, topic, tone, case, or language (e.g. 'ergative', 'tonogenesis', 'Paite')..."
+          placeholder="Search by title, gloss, DOI, journal, or topic (e.g. 'pronouns', 'Leipzig', 'JOELL', 'Thanlon')..."
           class="w-full pl-10 pr-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 focus:bg-[var(--bg-primary)] focus:border-[var(--accent)] focus:outline-none text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] transition-all"
         />
       </div>
 
-      <!-- Tag Cloud -->
-      <div class="mt-6 space-y-3 font-sans">
+      <!-- Topic Tag Cloud -->
+      <div class="space-y-2.5 font-sans pt-1">
         <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
           <span class="font-semibold uppercase tracking-wider">Filter by Topic Tag:</span>
-          <button id="reset-filters" class="text-[var(--accent)] hover:underline hidden cursor-pointer">
-            Clear filter ✕
+          <button id="reset-filters" class="text-[var(--accent)] hover:underline hidden cursor-pointer font-medium">
+            Reset all filters ✕
           </button>
         </div>
         <div class="flex flex-wrap gap-1.5">
@@ -78,40 +143,102 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
             </div>
 
             <ul class="space-y-4">
-              {postsInYear.map((post) => (
-                <li
-                  class="archive-entry group flex flex-col sm:flex-row sm:items-baseline justify-between p-3.5 rounded-lg hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-color)] transition-all"
-                  data-search={`${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''}`.toLowerCase()}
-                >
-                  <div class="space-y-1 sm:max-w-xl">
-                    <a
-                      href={`/feed/${post.slug}`}
-                      class="text-base font-bold font-sans text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors"
-                    >
-                      {post.title}
-                    </a>
-                    <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
-                      <span class="text-[var(--accent)] font-medium">{post.category}</span>
-                      {post.language && (
-                        <>
-                          <span>•</span>
-                          <span class="font-mono">{post.language}</span>
-                        </>
+              {postsInYear.map((post) => {
+                const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.journal || ''} ${post.postType}`.toLowerCase();
+                const langValue = (post.language || 'english').toLowerCase();
+                
+                return (
+                  <li
+                    class="archive-entry group flex flex-col sm:flex-row sm:items-baseline justify-between p-4 rounded-xl hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-color)] transition-all gap-4"
+                    data-search={searchCorpus}
+                    data-type={post.postType}
+                    data-language={langValue}
+                  >
+                    <div class="space-y-2 sm:max-w-2xl">
+                      {/* Top Badges: Type & Language */}
+                      <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
+                        {post.postType === "academic_paper" && (
+                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                            Academic Paper
+                          </span>
+                        )}
+                        {post.postType === "essay" && (
+                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                            Essay
+                          </span>
+                        )}
+                        {post.postType === "poem" && (
+                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                            Poem
+                          </span>
+                        )}
+
+                        {post.language && (
+                          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium">
+                            {post.language}
+                          </span>
+                        )}
+
+                        <span class="text-[var(--text-secondary)] font-medium">•</span>
+                        <span class="text-[var(--accent)] font-medium">{post.category}</span>
+                      </div>
+
+                      {/* Title */}
+                      <a
+                        href={`/feed/${post.slug}`}
+                        class="text-base sm:text-lg font-bold font-sans text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors block"
+                      >
+                        {post.title}
+                      </a>
+
+                      {/* Subtitle / Excerpt preview */}
+                      {post.subtitle && (
+                        <p class="text-xs sm:text-sm font-serif text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+                          {post.subtitle}
+                        </p>
                       )}
-                      <span>•</span>
-                      <div class="flex gap-1">
-                        {post.tags.slice(0, 3).map((t) => (
-                          <span class="text-[11px] text-[var(--text-secondary)]">#{t}</span>
-                        ))}
+
+                      {/* Publication metadata / Tags */}
+                      <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)] pt-1">
+                        {post.journal && (
+                          <span class="font-serif italic text-xs text-[var(--text-secondary)]">
+                            {post.journal}
+                          </span>
+                        )}
+                        {post.pdfUrl && (
+                          <>
+                            <span>•</span>
+                            <a
+                              href={post.pdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-[var(--accent)] hover:underline inline-flex items-center gap-1 font-mono text-[11px]"
+                            >
+                              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                              </svg>
+                              PDF
+                            </a>
+                          </>
+                        )}
+                        <span>•</span>
+                        <div class="flex flex-wrap gap-1">
+                          {post.tags.slice(0, 3).map((t) => (
+                            <span class="text-[11px] text-[var(--text-secondary)]">#{t}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="mt-2 sm:mt-0 text-xs font-mono text-[var(--text-secondary)] sm:text-right shrink-0">
-                    <time datetime={post.date}>{post.date}</time>
-                  </div>
-                </li>
-              ))}
+                    <div class="sm:text-right shrink-0 font-mono text-xs text-[var(--text-secondary)]">
+                      <time datetime={post.date}>{post.date}</time>
+                      <div class="text-[11px] mt-1 text-[var(--text-secondary)] font-sans">
+                        {post.readingTime}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         );
@@ -121,27 +248,68 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     <!-- No Match State -->
     <div id="no-archive-results" class="hidden text-center py-16 font-sans">
       <p class="text-base font-bold text-[var(--text-primary)]">No matching research records found.</p>
-      <p class="text-xs text-[var(--text-secondary)] mt-1">Try a different spelling, tag, or clearing the search query.</p>
+      <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the type, language filter, or search query.</p>
     </div>
   </div>
 </BaseLayout>
 
 <script>
   const searchInput = document.getElementById('archive-search') as HTMLInputElement | null;
-  const tagBtns = document.querySelectorAll('.tag-filter-btn');
+  const typeBtns = document.querySelectorAll<HTMLButtonElement>('.type-tab-btn');
+  const langBtns = document.querySelectorAll<HTMLButtonElement>('.lang-pill-btn');
+  const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
   const resetBtn = document.getElementById('reset-filters');
   const archiveEntries = document.querySelectorAll<HTMLElement>('.archive-entry');
   const yearSections = document.querySelectorAll<HTMLElement>('.year-section');
   const resultsCount = document.getElementById('results-count');
   const noResults = document.getElementById('no-archive-results');
 
+  let activeType = 'all';
+  let activeLang = 'all';
   let activeTag = '';
 
-  // Check URL params on load (e.g. ?q=phonology)
+  // Parse URL query parameters (e.g. ?type=academic_paper&lang=simte)
   const urlParams = new URLSearchParams(window.location.search);
   const initialQuery = urlParams.get('q');
+  const initialType = urlParams.get('type');
+  const initialLang = urlParams.get('lang');
+
   if (initialQuery && searchInput) {
     searchInput.value = initialQuery;
+  }
+  if (initialType) {
+    activeType = initialType;
+    updateTypeButtonsUI();
+  }
+  if (initialLang) {
+    activeLang = initialLang.toLowerCase();
+    updateLangButtonsUI();
+  }
+
+  function updateTypeButtonsUI() {
+    typeBtns.forEach((btn) => {
+      const btnType = btn.getAttribute('data-type');
+      if (btnType === activeType) {
+        btn.classList.remove('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
+        btn.classList.add('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'shadow-sm');
+      } else {
+        btn.classList.remove('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'shadow-sm');
+        btn.classList.add('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
+      }
+    });
+  }
+
+  function updateLangButtonsUI() {
+    langBtns.forEach((btn) => {
+      const btnLang = btn.getAttribute('data-lang');
+      if (btnLang === activeLang) {
+        btn.classList.remove('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
+        btn.classList.add('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'font-semibold');
+      } else {
+        btn.classList.remove('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'font-semibold');
+        btn.classList.add('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
+      }
+    });
   }
 
   function filterArchive() {
@@ -150,10 +318,15 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
     archiveEntries.forEach((entry) => {
       const text = entry.getAttribute('data-search') || '';
-      const matchesSearch = !query || text.includes(query);
-      const matchesActiveTag = !activeTag || text.includes(activeTag);
+      const entryType = entry.getAttribute('data-type') || '';
+      const entryLang = (entry.getAttribute('data-language') || '').toLowerCase();
 
-      if (matchesSearch && matchesActiveTag) {
+      const matchesSearch = !query || text.includes(query);
+      const matchesType = activeType === 'all' || entryType === activeType;
+      const matchesLang = activeLang === 'all' || entryLang.includes(activeLang);
+      const matchesTag = !activeTag || text.includes(activeTag);
+
+      if (matchesSearch && matchesType && matchesLang && matchesTag) {
         entry.style.display = 'flex';
         matchesCount++;
       } else {
@@ -161,10 +334,10 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       }
     });
 
-    // Check year sections
+    // Toggle year headers based on visible entries
     yearSections.forEach((sec) => {
       const visibleEntries = sec.querySelectorAll<HTMLElement>('.archive-entry[style*="display: flex"]');
-      if (visibleEntries.length === 0 && (query || activeTag)) {
+      if (visibleEntries.length === 0 && (query || activeType !== 'all' || activeLang !== 'all' || activeTag)) {
         sec.style.display = 'none';
       } else {
         sec.style.display = 'block';
@@ -180,13 +353,31 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       noResults.style.display = matchesCount === 0 ? 'block' : 'none';
     }
 
+    const hasActiveFilters = query || activeType !== 'all' || activeLang !== 'all' || activeTag;
     if (resetBtn) {
-      resetBtn.style.display = (query || activeTag) ? 'inline-block' : 'none';
+      resetBtn.style.display = hasActiveFilters ? 'inline-block' : 'none';
     }
   }
 
-  searchInput?.addEventListener('input', filterArchive);
+  // Type filter clicks
+  typeBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeType = btn.getAttribute('data-type') || 'all';
+      updateTypeButtonsUI();
+      filterArchive();
+    });
+  });
 
+  // Language filter clicks
+  langBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeLang = (btn.getAttribute('data-lang') || 'all').toLowerCase();
+      updateLangButtonsUI();
+      filterArchive();
+    });
+  });
+
+  // Tag filter clicks
   tagBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const tag = btn.getAttribute('data-tag') || '';
@@ -202,15 +393,21 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     });
   });
 
+  // Search input typing
+  searchInput?.addEventListener('input', filterArchive);
+
+  // Reset button
   resetBtn?.addEventListener('click', () => {
     if (searchInput) searchInput.value = '';
+    activeType = 'all';
+    activeLang = 'all';
     activeTag = '';
+    updateTypeButtonsUI();
+    updateLangButtonsUI();
     tagBtns.forEach((b) => b.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]'));
     filterArchive();
   });
 
-  // Run on initial load if query was in URL
-  if (initialQuery) {
-    filterArchive();
-  }
+  // Initial run
+  filterArchive();
 </script>

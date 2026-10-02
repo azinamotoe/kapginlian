@@ -81,6 +81,17 @@ const plateConfigs: Record<string, PlateConfig> = {
     languageBadge: "smt / kzp",
     statusBadge: "Field Reflection",
     pattern: "essay",
+  },
+  "aw-simlei-simte-oral-poetry-memory": {
+    headerLabel: "SIMTE ORAL VERSE & LA • 2024",
+    themeClass: "from-slate-950 via-purple-950 to-stone-950 text-purple-100",
+    accentBarClass: "bg-purple-500",
+    subCategory: "POETRY & ORAL LITERATURE",
+    formula: "Aw Simlei ningzuo",
+    formulaSub: "METRICAL BALLADS • FOLK SONGS",
+    languageBadge: "Simte Oral Verse",
+    statusBadge: "Poetry",
+    pattern: "default",
   }
 };
 
@@ -92,7 +103,7 @@ const config = plateConfigs[post.slug] || {
   formula: post.language || "Linguistic Research",
   formulaSub: post.readingTime,
   languageBadge: post.language || "Kuki-Chin",
-  statusBadge: post.postType === "academic_paper" ? "Peer-Reviewed" : "Article",
+  statusBadge: post.postType === "academic_paper" ? "Peer-Reviewed" : (post.postType === "poem" ? "Poetry" : "Essay"),
   pattern: "default",
 };
 ---

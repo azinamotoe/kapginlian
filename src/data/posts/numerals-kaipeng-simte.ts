@@ -10,7 +10,7 @@ export const numeralsKaipengSimtePost: Post = {
   readingTime: "15 min read",
   category: "Linguistics",
   languageFamily: "Tibeto-Burman",
-  language: "Kaipeng / Simte",
+  language: "Simte",
   tags: ["Comparative", "Kaipeng", "Simte", "Numerals", "Typology", "Kuki-Chin"],
   coverImage: "https://placehold.co/800x450/1e293b/ffffff?text=Numerals+in+Kaipeng+%26+Simte+(JOELL)",
   featured: true,

@@ -3,6 +3,7 @@ import { genderInSimtePost } from './posts/gender-in-simte';
 import { numeralsKaipengSimtePost } from './posts/numerals-kaipeng-simte';
 import { historyChristianityPost } from './posts/history-christianity-simte';
 import { indigenousKnowledgePost } from './posts/indigenous-knowledge';
+import { simtePoetryPost } from './posts/simte-poetry';
 
 export interface PostSection {
   heading: string;
@@ -42,7 +43,7 @@ export interface Post {
   tags: string[];
   coverImage: string;
   featured?: boolean;
-  postType: "academic_paper" | "article";
+  postType: "academic_paper" | "essay" | "poem";
   
   // Academic paper specific metadata
   journal?: string;
@@ -64,7 +65,8 @@ export const samplePosts: Post[] = [
   genderInSimtePost,
   numeralsKaipengSimtePost,
   historyChristianityPost,
-  indigenousKnowledgePost
+  indigenousKnowledgePost,
+  simtePoetryPost
 ];
 
 export const authorProfile = {
