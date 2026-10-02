@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { samplePosts } from '../data/posts';
+
+const categories = ["All", "Phonology", "Morphosyntax", "Language Documentation", "Syntax", "Digital Humanities"];
+---
+
+<BaseLayout
+  title="Feed | H.K. Hangluah"
+  description="Chronological feed of linguistics essays, field notes, and working papers by H. Kapginlian Hangluah."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-color)] pb-8 mb-10">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+        Chronological Dispatches
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
+        Writing & Field Notes
+      </h1>
+      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+        Essays, acoustic fieldwork logs, and grammatical analyses focusing on Tibeto-Burman morphology and phonology.
+      </p>
+
+      <!-- Category Filter Pills (Client interactive) -->
+      <div class="flex flex-wrap gap-2 mt-6 font-sans text-xs" id="category-filters">
+        {categories.map((cat, idx) => (
+          <button
+            class={`category-pill px-3 py-1.5 rounded-full border transition-all cursor-pointer ${
+              idx === 0
+                ? "bg-[var(--text-primary)] text-[var(--bg-primary)] border-[var(--text-primary)] font-semibold active-pill"
+                : "bg-[var(--bg-secondary)] text-[var(--text-secondary)] border-[var(--border-color)] hover:text-[var(--text-primary)]"
+            }`}
+            data-category={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Feed Articles List -->
+    <div class="space-y-10" id="posts-container">
+      {samplePosts.map((post) => (
+        <article
+          class="post-item group border-b border-[var(--border-color)] pb-10 transition-opacity duration-200"
+          data-category={post.category}
+        >
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+            <!-- Left Info & Text -->
+            <div class="md:col-span-8 space-y-3">
+              <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
+                <span class="font-semibold text-[var(--accent)]">
+                  {post.category}
+                </span>
+                <span>•</span>
+                <time datetime={post.date}>{post.date}</time>
+                <span>•</span>
+                <span>{post.readingTime}</span>
+                {post.language && (
+                  <>
+                    <span>•</span>
+                    <span class="font-mono bg-[var(--bg-secondary)] px-1.5 py-0.5 rounded text-[11px]">
+                      {post.language}
+                    </span>
+                  </>
+                )}
+              </div>
+
+              <h2 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                <a href={`/feed/${post.slug}`}>
+                  {post.title}
+                </a>
+              </h2>
+
+              {post.subtitle && (
+                <p class="text-sm font-sans font-medium text-[var(--text-secondary)]">
+                  {post.subtitle}
+                </p>
+              )}
+
+              <p class="text-base font-serif text-[var(--text-secondary)] leading-relaxed">
+                {post.excerpt}
+              </p>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 pt-1 font-sans">
+                {post.tags.map((tag) => (
+                  <a
+                    href={`/archive?q=${encodeURIComponent(tag)}`}
+                    class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
+                  >
+                    #{tag.toLowerCase()}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Right Thumbnail (placehold.co) -->
+            <div class="md:col-span-4">
+              <a
+                href={`/feed/${post.slug}`}
+                class="block overflow-hidden rounded-xl aspect-video md:aspect-[4/3] bg-[var(--bg-secondary)] border border-[var(--border-color)]"
+              >
+                <img
+                  src={post.coverImage}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Empty State (Hidden by default) -->
+    <div id="no-results" class="hidden text-center py-16 font-sans">
+      <p class="text-lg font-bold text-[var(--text-primary)]">No posts found in this category.</p>
+      <p class="text-sm text-[var(--text-secondary)] mt-1">Try selecting another topic filter above.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const pills = document.querySelectorAll('.category-pill');
+  const postItems = document.querySelectorAll<HTMLElement>('.post-item');
+  const noResults = document.getElementById('no-results');
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const selectedCategory = pill.getAttribute('data-category');
+
+      // Update pill styles
+      pills.forEach((p) => {
+        p.classList.remove('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'border-[var(--text-primary)]', 'font-semibold');
+        p.classList.add('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]', 'border-[var(--border-color)]');
+      });
+      pill.classList.add('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'border-[var(--text-primary)]', 'font-semibold');
+      pill.classList.remove('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]', 'border-[var(--border-color)]');
+
+      // Filter articles
+      let visibleCount = 0;
+      postItems.forEach((item) => {
+        const itemCat = item.getAttribute('data-category');
+        if (selectedCategory === 'All' || itemCat === selectedCategory) {
+          item.style.display = 'block';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  });
+</script>

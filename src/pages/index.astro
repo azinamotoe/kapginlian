@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { samplePosts, authorProfile } from '../data/posts';
+
+const recentPosts = samplePosts.slice(0, 4);
+---
+
+<BaseLayout
+  title="H.K. Hangluah | Linguist & Language Researcher"
+  description="Personal academic website, fieldwork notes, and linguistic essays by H. Kapginlian Hangluah."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <!-- Split Layout: Desktop 2-column (Left Sticky Bio, Right Feed), Mobile Stacked -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+      
+      <!-- LEFT COLUMN: Sticky Bio Card & Credentials -->
+      <aside class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+        <div class="bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] rounded-xl p-6 sm:p-7 shadow-xs">
+          <!-- Author Avatar & Name -->
+          <div class="flex items-center gap-4 mb-5">
+            <img
+              src={authorProfile.avatar}
+              alt={authorProfile.name}
+              class="w-18 h-18 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-[var(--border-color)] shadow-sm"
+              loading="eager"
+            />
+            <div>
+              <h1 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+                {authorProfile.name}
+              </h1>
+              <p class="text-xs sm:text-sm font-sans font-medium text-[var(--accent)] mt-0.5">
+                {authorProfile.title}
+              </p>
+              <p class="text-xs font-mono text-[var(--text-secondary)] mt-0.5">
+                📍 {authorProfile.location}
+              </p>
+            </div>
+          </div>
+
+          <!-- Bio text -->
+          <p class="text-sm font-serif leading-relaxed text-[var(--text-secondary)] mb-5">
+            {authorProfile.bio}
+          </p>
+
+          <!-- Research Focus Tags -->
+          <div class="mb-6">
+            <h2 class="text-xs font-sans font-semibold uppercase tracking-wider text-[var(--text-secondary)] mb-2.5">
+              Primary Research Areas
+            </h2>
+            <div class="flex flex-wrap gap-1.5 font-sans">
+              <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)]">
+                Morphosyntax
+              </span>
+              <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)]">
+                Tonogenesis & Acoustics
+              </span>
+              <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)]">
+                Verb Stem Alternation
+              </span>
+              <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)]">
+                Kuki-Chin (Tibeto-Burman)
+              </span>
+              <span class="px-2.5 py-1 text-xs font-medium rounded-md bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)]">
+                Language Documentation
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Metrics -->
+          <div class="grid grid-cols-2 gap-3 py-3 px-4 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-color)] text-center mb-6">
+            <div>
+              <span class="block text-base font-bold font-sans text-[var(--text-primary)]">4</span>
+              <span class="text-xs text-[var(--text-secondary)]">Doc. Dialects</span>
+            </div>
+            <div class="border-l border-[var(--border-color)]">
+              <span class="block text-base font-bold font-sans text-[var(--text-primary)]">120+</span>
+              <span class="text-xs text-[var(--text-secondary)]">Audio Hours</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-2.5 font-sans">
+            <a
+              href="/about"
+              class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 font-medium text-sm transition-opacity"
+            >
+              <span>Full Biography & Research</span>
+              <span>→</span>
+            </a>
+            <div class="grid grid-cols-2 gap-2">
+              <a
+                href="/about#publications"
+                class="inline-flex items-center justify-center px-3 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
+              >
+                📄 Publications
+              </a>
+              <a
+                href="/socials"
+                class="inline-flex items-center justify-center px-3 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
+              >
+                🌐 Academic Hub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linguistic Feature Showcase Card: Interactive Leipzig Gloss Sample -->
+        <div class="bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] rounded-xl p-5 text-sm">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-sans font-bold uppercase tracking-wider text-[var(--accent)]">
+              Morphology Sample (Leipzig Gloss)
+            </span>
+            <span class="text-xs font-mono text-[var(--text-secondary)]">Paite / Mizo</span>
+          </div>
+          <div class="gloss-block text-xs bg-[var(--bg-primary)] my-0">
+            <div class="gloss-words">
+              <div class="gloss-word-unit">
+                <span class="word-src">a-nau-te</span>
+                <span class="word-gloss">3SG.POSS-sibling-PL</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src">in</span>
+                <span class="word-gloss">ERG</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src">in-lam</span>
+                <span class="word-gloss">house-DIR</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src">a-zuon</span>
+                <span class="word-gloss">3SG.NOM-go.towards.PST</span>
+              </div>
+            </div>
+            <p class="gloss-line-trans text-xs mt-2 text-[var(--text-secondary)]">
+              'His younger siblings headed towards home.'
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN: Recent Writing & Field Notes Feed -->
+      <section class="lg:col-span-7 space-y-8">
+        <div class="flex items-baseline justify-between border-b border-[var(--border-color)] pb-3">
+          <div>
+            <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+              Recent Dispatches
+            </h2>
+            <p class="text-xs sm:text-sm font-sans text-[var(--text-secondary)] mt-0.5">
+              Field notes, phonological analyses, and working hypotheses.
+            </p>
+          </div>
+          <a
+            href="/feed"
+            class="text-xs sm:text-sm font-sans font-medium text-[var(--accent)] hover:underline flex items-center gap-1"
+          >
+            <span>All Posts</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- Post Cards List -->
+        <div class="space-y-6">
+          {recentPosts.map((post) => (
+            <article class="group bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 border border-[var(--border-color)] rounded-xl p-5 sm:p-6 transition-all duration-200">
+              <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
+                
+                <!-- Thumbnail Image (placehold.co) -->
+                <div class="sm:col-span-4 order-last sm:order-first">
+                  <a href={`/feed/${post.slug}`} class="block overflow-hidden rounded-lg aspect-video sm:aspect-square bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                    <img
+                      src={post.coverImage}
+                      alt={post.title}
+                      class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
+
+                <!-- Text Content -->
+                <div class="sm:col-span-8 space-y-2">
+                  <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
+                    <span class="px-2 py-0.5 rounded bg-[var(--accent-light)] text-[var(--accent)] font-medium">
+                      {post.category}
+                    </span>
+                    <span>•</span>
+                    <time datetime={post.date}>{post.date}</time>
+                    <span>•</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+
+                  <h3 class="text-lg sm:text-xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                    <a href={`/feed/${post.slug}`}>
+                      {post.title}
+                    </a>
+                  </h3>
+
+                  {post.subtitle && (
+                    <p class="text-xs font-sans text-[var(--text-secondary)] font-medium line-clamp-1">
+                      {post.subtitle}
+                    </p>
+                  )}
+
+                  <p class="text-sm font-serif text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+                    {post.excerpt}
+                  </p>
+
+                  <!-- Tags -->
+                  <div class="flex flex-wrap gap-1.5 pt-1 font-sans">
+                    {post.tags.slice(0, 3).map((tag) => (
+                      <span class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                        #{tag.toLowerCase()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Bottom Feed Navigation CTA -->
+        <div class="p-6 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-center sm:text-left">
+          <div>
+            <h4 class="font-bold text-sm text-[var(--text-primary)]">Looking for specific language tags or topics?</h4>
+            <p class="text-xs text-[var(--text-secondary)] mt-0.5">Explore the categorized archive with real-time keyword search.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <a
+              href="/feed"
+              class="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
+            >
+              Chronological Feed
+            </a>
+            <a
+              href="/archive"
+              class="px-4 py-2 text-xs font-medium rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] transition-colors"
+            >
+              Search Archive
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>

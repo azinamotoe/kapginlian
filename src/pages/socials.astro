@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { authorProfile } from '../data/posts';
+
+const socialLinks = [
+  {
+    title: "Google Scholar",
+    handle: "H. Kapginlian Hangluah",
+    desc: "Citations, verified peer-reviewed publications, co-authored volumes, and citation metrics.",
+    icon: "🎓",
+    href: authorProfile.scholar,
+    tag: "Academic"
+  },
+  {
+    title: "ORCID",
+    handle: authorProfile.orcid,
+    desc: "Permanent Open Researcher and Contributor ID registry for cross-institutional authorship verification.",
+    icon: "🆔",
+    href: `https://orcid.org/${authorProfile.orcid}`,
+    tag: "Identifier"
+  },
+  {
+    title: "GitHub",
+    handle: "@hkhangluah",
+    desc: "Astro blog templates, Leipzig gloss parser scripts, Praat phonetic acoustic automation scripts, and corpus tools.",
+    icon: "💻",
+    href: authorProfile.github,
+    tag: "Open Source"
+  },
+  {
+    title: "Bluesky / Academic Feed",
+    handle: "@hangluah.bsky.social",
+    desc: "Discussions on Sino-Tibetan historical linguistics, syntax typology, field dispatches, and conference commentary.",
+    icon: "🦋",
+    href: authorProfile.bluesky,
+    tag: "Microblogging"
+  },
+  {
+    title: "ResearchGate & Preprints",
+    handle: "H_Kapginlian_Hangluah",
+    desc: "Early working drafts, presentation slides, conference handouts, and question-and-answer threads with peers.",
+    icon: "📑",
+    href: "https://www.researchgate.net",
+    tag: "Preprints"
+  },
+  {
+    title: "Direct Email",
+    handle: authorProfile.email,
+    desc: "For academic queries, manuscript inquiries, fieldwork collaborations, or speaker consultations.",
+    icon: "✉️",
+    href: `mailto:${authorProfile.email}`,
+    tag: "Inquiries"
+  }
+];
+---
+
+<BaseLayout
+  title="Socials & Academic Directory | H.K. Hangluah"
+  description="Connect with H. Kapginlian Hangluah on Google Scholar, ORCID, GitHub, Bluesky, or email."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-12">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-color)] pb-8">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+        Academic Network & Correspondence
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
+        Socials & Academic Hub
+      </h1>
+      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
+        Connect across academic networks, explore open-source computational linguistic code repositories, or get in touch directly.
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 font-sans">
+      {socialLinks.map((item) => (
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group p-6 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/90 hover:border-[var(--accent)] transition-all duration-200 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">{item.icon}</span>
+              <span class="text-[11px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)]">
+                {item.tag}
+              </span>
+            </div>
+
+            <div>
+              <h2 class="text-lg font-bold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                {item.title}
+              </h2>
+              <p class="text-xs font-mono text-[var(--accent)] mt-0.5">
+                {item.handle}
+              </p>
+            </div>
+
+            <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+
+          <div class="pt-4 mt-2 border-t border-[var(--border-color)]/60 flex items-center justify-between text-xs text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] font-medium">
+            <span>Visit Profile</span>
+            <span class="group-hover:translate-x-1 transition-transform">↗</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- RSS Subscription Card -->
+    <div id="rss" class="p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] space-y-3 font-sans">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">📡</span>
+        <h2 class="text-xl font-bold text-[var(--text-primary)]">RSS / Atom Subscription</h2>
+      </div>
+      <p class="text-sm font-serif text-[var(--text-secondary)] leading-relaxed">
+        Prefer reading via an RSS reader like NetNewsWire, Feedly, or Inoreader? You can subscribe directly to the feed to receive new essays and field notes without algorithms or trackers.
+      </p>
+      <div class="pt-2 flex flex-wrap items-center gap-3">
+        <input
+          type="text"
+          readonly
+          value="https://hkhangluah.pages.dev/rss.xml"
+          class="px-3.5 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] font-mono text-xs text-[var(--text-primary)] w-full sm:w-80"
+          id="rss-input"
+        />
+        <button
+          class="px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer"
+          onclick="navigator.clipboard.writeText('https://hkhangluah.pages.dev/rss.xml'); alert('RSS feed URL copied!');"
+        >
+          Copy Feed Link
+        </button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

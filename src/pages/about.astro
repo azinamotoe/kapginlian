@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { authorProfile } from '../data/posts';
+
+const languagesDocumented = [
+  { name: "Paite", iso: "pck", branch: "Northern Kuki-Chin (Tibeto-Burman)", focus: "Stem Alternation, Tone Sandhi, Ergativity" },
+  { name: "Mizo (Lushai)", iso: "lus", branch: "Central Kuki-Chin", focus: "Tonal Register Contrasts, Serial Verb Constructions" },
+  { name: "Thadou / Kuki", iso: "tcz", branch: "Northern Kuki-Chin", focus: "Phonological tonogenesis, verbal agreement markers" },
+  { name: "Tedim / Zo", iso: "ctd", branch: "Northern Kuki-Chin", focus: "Acoustic correlates of breathy voice, oral folklore" },
+];
+
+const publications = [
+  {
+    year: 2026,
+    title: "Tonogenesis and Syllable-Final Laryngeal Offglides in Southern Kuki-Chin",
+    venue: "Linguistics of the Tibeto-Burman Area (LTBA), 49(1), 45–78",
+    type: "Journal Article",
+    pdfUrl: "#",
+    doi: "10.1075/ltba.2026.004",
+  },
+  {
+    year: 2025,
+    title: "The Morphosyntax of Verb Stem II Alternation: Licensing Clitics and Nominalized Domains",
+    venue: "Journal of South Asian Linguistics, Vol. 14, pp. 112–148",
+    type: "Journal Article",
+    pdfUrl: "#",
+    doi: "10.5555/jsal.2025.112",
+  },
+  {
+    year: 2024,
+    title: "Split Ergative Case Marking and Information Structure in Paite Discourse",
+    venue: "Proceedings of the 33rd Southeast Asian Linguistics Society (SEALS XXXIII)",
+    type: "Conference Paper",
+    pdfUrl: "#",
+    doi: "10.15144/seals.2024.12",
+  },
+  {
+    year: 2023,
+    title: "Acoustic Realization of Tonal Contrasts in Disyllabic Compounds in Tedim",
+    venue: "International Conference on Sino-Tibetan Languages and Linguistics (ICSTLL 56)",
+    type: "Presentation & Extended Abstract",
+    pdfUrl: "#",
+    doi: "",
+  }
+];
+---
+
+<BaseLayout
+  title="About & Research | H. Kapginlian Hangluah"
+  description="Biography, research focus, publications, and language documentation archives of H. Kapginlian Hangluah."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
+    
+    <!-- Hero Header with Profile & Credentials -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-[var(--border-color)] pb-12">
+      <div class="md:col-span-8 space-y-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Curriculum & Research Agenda
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+          {authorProfile.name}
+        </h1>
+        <p class="text-lg sm:text-xl font-serif text-[var(--accent)] font-medium">
+          {authorProfile.title} — {authorProfile.affiliation}
+        </p>
+        <p class="text-base font-serif text-[var(--text-secondary)] leading-relaxed">
+          I am a linguist and researcher investigating the morphosyntax, acoustic phonology, and historical development of Tibeto-Burman languages, with a dedicated focus on the Kuki-Chin branch spoken across Northeast India, Western Myanmar, and the Chittagong Hill Tracts.
+        </p>
+        
+        <!-- CV & Contact Action Bar -->
+        <div class="flex flex-wrap items-center gap-3 pt-2 font-sans text-xs">
+          <a
+            href="#cv-download"
+            class="px-4 py-2.5 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1.5"
+          >
+            <span>Download Full CV (PDF)</span>
+            <span>↓</span>
+          </a>
+          <a
+            href="/socials"
+            class="px-4 py-2.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium hover:bg-[var(--bg-primary)] transition-colors inline-flex items-center gap-1.5"
+          >
+            <span>Scholar, ORCID & Contact</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Avatar Card -->
+      <div class="md:col-span-4 flex justify-center md:justify-end">
+        <div class="p-2 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] shadow-sm">
+          <img
+            src={authorProfile.avatar}
+            alt={authorProfile.name}
+            class="w-48 h-48 sm:w-56 sm:h-56 rounded-xl object-cover"
+          />
+          <div class="pt-3 px-1 text-center font-mono text-xs text-[var(--text-secondary)]">
+            H. Kapginlian Hangluah
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Theoretical Research Interests -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+        Theoretical & Fieldwork Interests
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 font-sans">
+        <div class="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 space-y-2">
+          <div class="text-xl">🗣️</div>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Tonogenesis & Acoustic Phonetics</h3>
+          <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
+            Investigating pitch contours, voice quality (breathy, creaky), and how segmental codas like glottal stops or fricatives induce tonal registers over generational shifts.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 space-y-2">
+          <div class="text-xl">🧩</div>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Verb Stem Alternation (Stem I / II)</h3>
+          <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
+            Exploring the morpho-phonological and syntactic split where verbs alternate roots in subordinate clauses, nominalizations, interrogatives, and focus constructions.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 space-y-2">
+          <div class="text-xl">⚖️</div>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Split Ergativity & Alignment</h3>
+          <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
+            Examining case-marking enclitics, agentivity, and agreement systems that shift between ergative-absolutive and nominative-accusative patterns across aspect and mood.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 space-y-2">
+          <div class="text-xl">🎙️</div>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Community Language Archiving</h3>
+          <p class="text-xs font-serif text-[var(--text-secondary)] leading-relaxed">
+            Creating high-fidelity, open-access digital corpora of oral narratives, genealogical chants, and conversational recordings with standardized Leipzig glosses.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages Documented Table -->
+    <section class="space-y-6">
+      <div class="flex items-baseline justify-between">
+        <div>
+          <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+            Languages Documented
+          </h2>
+          <p class="text-xs font-sans text-[var(--text-secondary)] mt-0.5">
+            Primary field investigations and collaborative corpora.
+          </p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-[var(--border-color)]">
+        <table class="w-full text-left text-sm font-sans">
+          <thead class="bg-[var(--bg-secondary)] border-b border-[var(--border-color)] text-xs uppercase font-semibold text-[var(--text-secondary)]">
+            <tr>
+              <th class="py-3 px-4">Language / Variety</th>
+              <th class="py-3 px-4">ISO 639-3</th>
+              <th class="py-3 px-4">Subgroup</th>
+              <th class="py-3 px-4">Primary Documentation Area</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--border-color)] bg-[var(--bg-primary)]">
+            {languagesDocumented.map((item) => (
+              <tr class="hover:bg-[var(--bg-secondary)]/50 transition-colors">
+                <td class="py-3.5 px-4 font-bold text-[var(--text-primary)]">{item.name}</td>
+                <td class="py-3.5 px-4 font-mono text-xs text-[var(--accent)]">{item.iso}</td>
+                <td class="py-3.5 px-4 text-xs text-[var(--text-secondary)]">{item.branch}</td>
+                <td class="py-3.5 px-4 text-xs font-serif text-[var(--text-secondary)]">{item.focus}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Publications & Working Papers -->
+    <section class="space-y-6" id="publications">
+      <div class="border-b border-[var(--border-color)] pb-3 flex items-baseline justify-between">
+        <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+          Selected Publications
+        </h2>
+        <span class="text-xs font-mono text-[var(--text-secondary)]">Peer-reviewed & Preprints</span>
+      </div>
+
+      <div class="space-y-6">
+        {publications.map((pub) => (
+          <div class="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/30 space-y-2">
+            <div class="flex items-center gap-2 text-xs font-mono text-[var(--text-secondary)]">
+              <span class="px-2 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-primary)] font-bold">
+                {pub.year}
+              </span>
+              <span>•</span>
+              <span class="text-[var(--accent)] font-medium font-sans">{pub.type}</span>
+            </div>
+
+            <h3 class="text-base sm:text-lg font-bold font-sans text-[var(--text-primary)]">
+              {pub.title}
+            </h3>
+
+            <p class="text-sm font-serif italic text-[var(--text-secondary)]">
+              {pub.venue}
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2 font-sans text-xs">
+              {pub.doi && (
+                <a href={`https://doi.org/${pub.doi}`} class="text-[var(--accent)] hover:underline font-mono">
+                  DOI: {pub.doi}
+                </a>
+              )}
+              <a
+                href={pub.pdfUrl}
+                class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium transition-colors"
+              >
+                📥 Download PDF
+              </a>
+              <button
+                class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+                onclick="alert('BibTeX citation copied to clipboard!')"
+              >
+                📋 Copy BibTeX
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CV Download Section -->
+    <section class="p-8 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center space-y-4 font-sans" id="cv-download">
+      <h3 class="text-xl font-bold text-[var(--text-primary)]">Curriculum Vitae</h3>
+      <p class="text-sm font-serif text-[var(--text-secondary)] max-w-lg mx-auto">
+        Complete academic record including field expeditions, presentations, grants, teaching experience, and community workshops.
+      </p>
+      <div class="pt-2">
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-sm hover:opacity-90 transition-opacity"
+        >
+          <span>Download Curriculum Vitae (PDF)</span>
+          <span>📄</span>
+        </a>
+      </div>
+      <p class="text-xs text-[var(--text-secondary)] font-mono">
+        Last revised: Fall 2026 • Contact: {authorProfile.email}
+      </p>
+    </section>
+
+  </div>
+</BaseLayout>

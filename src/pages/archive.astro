@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { samplePosts } from '../data/posts';
+
+// Extract unique tags and years
+const allTags = Array.from(new Set(samplePosts.flatMap((p) => p.tags))).sort();
+const allLanguages = Array.from(new Set(samplePosts.map((p) => p.language).filter(Boolean))).sort();
+const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Archive & Index | H.K. Hangluah"
+  description="Search and browse research papers, field notes, and linguistic data by category, tag, and year."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Header -->
+    <div class="border-b border-[var(--border-color)] pb-8 mb-8">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+        Research Directory
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
+        Archive & Subject Index
+      </h1>
+      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
+        Search across all published notes, filter by linguistic subdiscipline, or browse by language family.
+      </p>
+
+      <!-- Real-time Search Bar -->
+      <div class="mt-6 relative font-sans">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[var(--text-secondary)]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="archive-search"
+          placeholder="Search by keyword, topic, tone, case, or language (e.g. 'ergative', 'tonogenesis', 'Paite')..."
+          class="w-full pl-10 pr-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 focus:bg-[var(--bg-primary)] focus:border-[var(--accent)] focus:outline-none text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] transition-all"
+        />
+      </div>
+
+      <!-- Tag Cloud -->
+      <div class="mt-6 space-y-3 font-sans">
+        <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
+          <span class="font-semibold uppercase tracking-wider">Filter by Topic Tag:</span>
+          <button id="reset-filters" class="text-[var(--accent)] hover:underline hidden cursor-pointer">
+            Clear filter ✕
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-1.5">
+          {allTags.map((tag) => (
+            <button
+              class="tag-filter-btn px-2.5 py-1 text-xs rounded-md border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 hover:bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+              data-tag={tag.toLowerCase()}
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Results count indicator -->
+    <div id="results-count" class="text-xs font-mono text-[var(--text-secondary)] mb-6 font-sans">
+      Showing all {samplePosts.length} entries
+    </div>
+
+    <!-- Archive List Grouped by Year -->
+    <div id="archive-list" class="space-y-12">
+      {years.map((yr) => {
+        const postsInYear = samplePosts.filter((p) => p.year === yr);
+        return (
+          <div class="year-section" data-year={yr}>
+            <div class="flex items-center gap-3 border-b border-[var(--border-color)] pb-2 mb-6">
+              <span class="text-2xl font-bold font-sans text-[var(--text-primary)]">{yr}</span>
+              <span class="text-xs font-mono text-[var(--text-secondary)]">({postsInYear.length} entries)</span>
+            </div>
+
+            <ul class="space-y-4">
+              {postsInYear.map((post) => (
+                <li
+                  class="archive-entry group flex flex-col sm:flex-row sm:items-baseline justify-between p-3.5 rounded-lg hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-color)] transition-all"
+                  data-search={`${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''}`.toLowerCase()}
+                >
+                  <div class="space-y-1 sm:max-w-xl">
+                    <a
+                      href={`/feed/${post.slug}`}
+                      class="text-base font-bold font-sans text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors"
+                    >
+                      {post.title}
+                    </a>
+                    <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
+                      <span class="text-[var(--accent)] font-medium">{post.category}</span>
+                      {post.language && (
+                        <>
+                          <span>•</span>
+                          <span class="font-mono">{post.language}</span>
+                        </>
+                      )}
+                      <span>•</span>
+                      <div class="flex gap-1">
+                        {post.tags.slice(0, 3).map((t) => (
+                          <span class="text-[11px] text-[var(--text-secondary)]">#{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-2 sm:mt-0 text-xs font-mono text-[var(--text-secondary)] sm:text-right shrink-0">
+                    <time datetime={post.date}>{post.date}</time>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- No Match State -->
+    <div id="no-archive-results" class="hidden text-center py-16 font-sans">
+      <p class="text-base font-bold text-[var(--text-primary)]">No matching research records found.</p>
+      <p class="text-xs text-[var(--text-secondary)] mt-1">Try a different spelling, tag, or clearing the search query.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('archive-search') as HTMLInputElement | null;
+  const tagBtns = document.querySelectorAll('.tag-filter-btn');
+  const resetBtn = document.getElementById('reset-filters');
+  const archiveEntries = document.querySelectorAll<HTMLElement>('.archive-entry');
+  const yearSections = document.querySelectorAll<HTMLElement>('.year-section');
+  const resultsCount = document.getElementById('results-count');
+  const noResults = document.getElementById('no-archive-results');
+
+  let activeTag = '';
+
+  // Check URL params on load (e.g. ?q=phonology)
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialQuery = urlParams.get('q');
+  if (initialQuery && searchInput) {
+    searchInput.value = initialQuery;
+  }
+
+  function filterArchive() {
+    const query = searchInput?.value.toLowerCase().trim() || '';
+    let matchesCount = 0;
+
+    archiveEntries.forEach((entry) => {
+      const text = entry.getAttribute('data-search') || '';
+      const matchesSearch = !query || text.includes(query);
+      const matchesActiveTag = !activeTag || text.includes(activeTag);
+
+      if (matchesSearch && matchesActiveTag) {
+        entry.style.display = 'flex';
+        matchesCount++;
+      } else {
+        entry.style.display = 'none';
+      }
+    });
+
+    // Check year sections
+    yearSections.forEach((sec) => {
+      const visibleEntries = sec.querySelectorAll<HTMLElement>('.archive-entry[style*="display: flex"]');
+      if (visibleEntries.length === 0 && (query || activeTag)) {
+        sec.style.display = 'none';
+      } else {
+        sec.style.display = 'block';
+      }
+    });
+
+    // Update count indicator
+    if (resultsCount) {
+      resultsCount.textContent = `Showing ${matchesCount} matching ${matchesCount === 1 ? 'entry' : 'entries'}`;
+    }
+
+    if (noResults) {
+      noResults.style.display = matchesCount === 0 ? 'block' : 'none';
+    }
+
+    if (resetBtn) {
+      resetBtn.style.display = (query || activeTag) ? 'inline-block' : 'none';
+    }
+  }
+
+  searchInput?.addEventListener('input', filterArchive);
+
+  tagBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag') || '';
+      if (activeTag === tag) {
+        activeTag = '';
+        btn.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
+      } else {
+        tagBtns.forEach((b) => b.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]'));
+        activeTag = tag;
+        btn.classList.add('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
+      }
+      filterArchive();
+    });
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    activeTag = '';
+    tagBtns.forEach((b) => b.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]'));
+    filterArchive();
+  });
+
+  // Run on initial load if query was in URL
+  if (initialQuery) {
+    filterArchive();
+  }
+</script>
