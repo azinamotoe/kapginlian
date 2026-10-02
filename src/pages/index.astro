@@ -125,43 +125,56 @@ const recentPosts = samplePosts.slice(0, 4);
 
         </div>
 
-        <!-- Compact Linguistic Showcase Card (Under Bio in Sidebar) -->
-        <div class="bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] rounded-2xl p-5 text-sm space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-[var(--accent)]">
-              Morphology Sample
-            </span>
-            <span class="text-xs font-mono text-[var(--text-secondary)]">Simte (smt)</span>
-          </div>
-          <div class="gloss-block text-xs bg-[var(--bg-primary)] my-0 p-3 rounded-xl border border-[var(--border-color)]">
-            <div class="gloss-words flex gap-4 overflow-x-auto">
-              <div class="gloss-word-unit">
-                <span class="word-src ipa">kou</span>
-                <span class="word-gloss">1PL.EXCL</span>
-              </div>
-              <div class="gloss-word-unit">
-                <span class="word-src ipa">ka</span>
-                <span class="word-gloss">1PL.AGR</span>
-              </div>
-              <div class="gloss-word-unit">
-                <span class="word-src ipa">ki-it</span>
-                <span class="word-gloss">RECIP-love</span>
-              </div>
-              <div class="gloss-word-unit">
-                <span class="word-src ipa">-uʔ</span>
-                <span class="word-gloss">PL</span>
-              </div>
-            </div>
-            <p class="gloss-line-trans text-xs mt-2 text-[var(--text-secondary)] font-serif italic">
-              ‘We love each other.’ (Kapginlian 2023)
-            </p>
-          </div>
-        </div>
-
       </aside>
 
       <!-- RIGHT COLUMN: Recent Writing & Field Notes Feed (Classic Compact Scale) -->
       <section class="lg:col-span-8 space-y-8">
+
+        <!-- Linguistic Feature Showcase: Leipzig Interlinear Gloss -->
+        <div class="bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 shadow-xs space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-[var(--accent-light)] text-[var(--accent)] border border-[var(--accent)]/20">
+                Fieldwork Spotlight
+              </span>
+              <span class="text-xs font-mono text-[var(--text-secondary)]">
+                Simte (smt) • Leipzig Interlinear Gloss
+              </span>
+            </div>
+            <a
+              href="/research/pronouns-in-simte-pro-drop-emphatic"
+              class="text-xs font-sans font-medium text-[var(--accent)] hover:underline inline-flex items-center gap-1 min-h-[32px]"
+            >
+              <span>Explore Study (Vāk Manthan 2023)</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="gloss-block text-sm bg-[var(--bg-primary)] my-0 overflow-x-auto p-4 sm:p-5 rounded-xl border border-[var(--border-color)]">
+            <div class="gloss-words min-w-max flex gap-6 sm:gap-8">
+              <div class="gloss-word-unit">
+                <span class="word-src ipa font-semibold text-sm sm:text-base">kou</span>
+                <span class="word-gloss text-xs text-[var(--text-secondary)]">1PL.EXCL</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src ipa font-semibold text-sm sm:text-base">ka</span>
+                <span class="word-gloss text-xs text-[var(--text-secondary)]">1PL.AGR</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src ipa font-semibold text-sm sm:text-base">ki-it</span>
+                <span class="word-gloss text-xs text-[var(--text-secondary)]">RECIP-love</span>
+              </div>
+              <div class="gloss-word-unit">
+                <span class="word-src ipa font-semibold text-sm sm:text-base">-uʔ</span>
+                <span class="word-gloss text-xs text-[var(--text-secondary)]">PL</span>
+              </div>
+            </div>
+            <p class="gloss-line-trans text-xs sm:text-sm mt-3 pt-2 border-t border-[var(--border-color)]/60 text-[var(--text-secondary)] font-serif italic">
+              ‘We love each other.’ (Simte Reciprocal Construction &amp; Pro-Drop Morphology, Kapginlian 2023)
+            </p>
+          </div>
+        </div>
+
         <div class="flex items-baseline justify-between border-b border-[var(--border-color)] pb-3">
           <div>
             <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
