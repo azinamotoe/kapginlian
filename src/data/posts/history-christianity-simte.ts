@@ -123,7 +123,7 @@ export const historyChristianityPost: Post = {
       ]
     },
     {
-      heading: "9. Conclusion: Faith, Identity, and Intangible Heritage",
+      heading: "9. Conclusion: Faith, Identity, and Intangible Cultural Heritage",
       paragraphs: [
         "The early Simte Christian pioneers faced fierce chieftain persecution, social ostracization, and linguistic marginalization. Yet, their commitment not only transformed the spiritual landscape of southern Manipur, but also catalyzed the institutional emergence of the Simte language into print culture and modern education.",
         "Today, the history of the advent of Christianity among the Simtes stands as an essential chapter in the tribe's cultural memory—a testimony to indigenous resilience, community solidarity, and the preservation of mother-tongue heritage."

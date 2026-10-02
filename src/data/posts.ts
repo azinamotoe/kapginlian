@@ -79,8 +79,9 @@ export function getPostUrl(post: { slug: string; postType?: string }): string {
 export const authorProfile = {
   name: "H. Kapginlian",
   shortName: "H. Kapginlian",
-  title: "Ph.D. Scholar in Linguistics",
-  affiliation: "North-Eastern Hill University (NEHU), Shillong",
+  title: "PhD in Linguistics",
+  affiliation: "NEHU, Shillong",
+  qualification: "Completed PhD in Linguistics from NEHU, Shillong",
   shortBio: "I am H. Kapginlian, a linguist working at the intersection of morphology and syntax, Indigenous Knowledge Systems, language documentation, traditional folklore and folktales, and intangible cultural heritage.",
   fullBio: [
     "I am H. Kapginlian, a linguist working at the intersection of morphology and syntax, Indigenous Knowledge Systems, language documentation, traditional folklore and folktales, and intangible cultural heritage.",
