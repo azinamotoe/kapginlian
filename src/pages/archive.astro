@@ -2,82 +2,54 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { samplePosts } from '../data/posts';
 
-// Content types & counts
-const academicPosts = samplePosts.filter((p) => p.postType === "academic_paper");
-const essayPosts = samplePosts.filter((p) => p.postType === "essay");
-const poemPosts = samplePosts.filter((p) => p.postType === "poem");
+// Archive is for feed / blog writings (essays, oral history, reflections, poetry)
+const archivePosts = samplePosts.filter((p) => p.postType !== "academic_paper");
 
 // Article composition languages
-const englishPosts = samplePosts.filter((p) => (p.articleLanguage || 'English').toLowerCase() === "english");
-const simtePosts = samplePosts.filter((p) => (p.articleLanguage || '').toLowerCase() === "simte");
+const englishPosts = archivePosts.filter((p) => (p.articleLanguage || 'English').toLowerCase() === "english");
+const simtePosts = archivePosts.filter((p) => (p.articleLanguage || '').toLowerCase() === "simte");
 
 // Extract unique tags and years
-const allTags = Array.from(new Set(samplePosts.flatMap((p) => p.tags))).sort();
-const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) => b - a);
+const allTags = Array.from(new Set(archivePosts.flatMap((p) => p.tags))).sort();
+const years = Array.from(new Set(archivePosts.map((p) => p.year))).sort((a, b) => b - a);
 ---
 
 <BaseLayout
-  title="Archive & Index | H. Kapginlian"
-  description="Search and browse research papers, essays, poems, and linguistic data by category, article language, tag, and year."
+  title="Writing Archive & Index | H. Kapginlian"
+  description="Chronological archive of essays, oral history monographs, dispatches, and poetry by H. Kapginlian."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
     <!-- Header -->
     <div class="border-b border-[var(--border-color)] pb-8 mb-8 space-y-6">
       <div>
         <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
-          Curated Archive
+          Writing Directory
         </span>
         <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
-          Archive & Subject Index
+          Archive & Index
         </h1>
         <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed">
-          Explore peer-reviewed academic papers, cultural and historical essays, poetry, and linguistic documentation.
+          Chronological index of essays, oral histories, field reflections, and poetry.
         </p>
       </div>
 
-      <!-- Segmented Type Tabs: Academic Papers, Essays, Poems -->
-      <div class="space-y-3 font-sans">
-        <div class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-          Publication Type:
+      <!-- Quick Link to Academic Papers -->
+      <div class="p-3.5 rounded-xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-sans">
+        <div class="flex items-center gap-2 text-[var(--text-secondary)]">
+          <span class="text-base">📄</span>
+          <span>Looking for peer-reviewed academic papers & journal studies?</span>
         </div>
-        <div class="flex flex-wrap gap-2" id="type-filter-group">
-          <button
-            type="button"
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
-            data-type="all"
-          >
-            All Works <span class="ml-1 opacity-75 font-mono">({samplePosts.length})</span>
-          </button>
-          <button
-            type="button"
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
-            data-type="academic_paper"
-          >
-            Academic Papers <span class="ml-1 opacity-75 font-mono">({academicPosts.length})</span>
-          </button>
-          <button
-            type="button"
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
-            data-type="essay"
-          >
-            Essays & Monograph <span class="ml-1 opacity-75 font-mono">({essayPosts.length})</span>
-          </button>
-          <button
-            type="button"
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
-            data-type="poem"
-          >
-            Poems & Verse <span class="ml-1 opacity-75 font-mono">({poemPosts.length})</span>
-          </button>
-        </div>
+        <a href="/research" class="font-semibold text-[var(--accent)] hover:underline inline-flex items-center gap-1 shrink-0">
+          Visit Research Archive →
+        </a>
       </div>
 
       <!-- Article Composition Language (Written In) -->
       <div class="space-y-2 font-sans pt-1">
         <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">
-          <span>Article Language (Written In):</span>
+          <span>Article Language:</span>
           <span class="text-[10px] lowercase font-normal italic text-[var(--text-secondary)]">
-            (medium of text)
+            (written medium)
           </span>
         </div>
         <div class="flex flex-wrap items-center gap-2" id="lang-filter-group">
@@ -86,7 +58,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
             class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-lang="all"
           >
-            All Languages <span class="ml-1 opacity-75 font-mono">({samplePosts.length})</span>
+            All Languages <span class="ml-1 opacity-75 font-mono">({archivePosts.length})</span>
           </button>
           <button
             type="button"
@@ -115,7 +87,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         <input
           type="text"
           id="archive-search"
-          placeholder="Search by title, gloss, DOI, journal, or topic (e.g. 'pronouns', 'Leipzig', 'JOELL', 'Thanlon')..."
+          placeholder="Search by title, topic, folklore, or keyword (e.g. 'Thanlon', 'heritage', 'Christianity')..."
           class="w-full pl-10 pr-4 py-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 focus:bg-[var(--bg-primary)] focus:border-[var(--accent)] focus:outline-none text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] transition-all"
         />
       </div>
@@ -148,13 +120,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
     <!-- Results count indicator -->
     <div id="results-count" class="text-xs font-mono text-[var(--text-secondary)] mb-6 font-sans">
-      Showing all {samplePosts.length} entries
+      Showing all {archivePosts.length} entries
     </div>
 
     <!-- Archive List Grouped by Year -->
     <div id="archive-list" class="space-y-12">
       {years.map((yr) => {
-        const postsInYear = samplePosts.filter((p) => p.year === yr);
+        const postsInYear = archivePosts.filter((p) => p.year === yr);
         return (
           <div class="year-section" data-year={yr}>
             <div class="flex items-center gap-3 border-b border-[var(--border-color)] pb-2 mb-6">
@@ -165,40 +137,30 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
             <ul class="space-y-4">
               {postsInYear.map((post) => {
                 const articleLang = (post.articleLanguage || 'English').toLowerCase();
-                const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.journal || ''} ${post.postType} ${articleLang}`.toLowerCase();
+                const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.postType} ${articleLang}`.toLowerCase();
                 const tagsList = post.tags.map((t) => t.toLowerCase()).join(',');
                 
                 return (
                   <li
                     class="archive-entry group flex flex-col sm:flex-row sm:items-baseline justify-between p-4 rounded-xl hover:bg-[var(--bg-secondary)] border border-transparent hover:border-[var(--border-color)] transition-all gap-4"
                     data-search={searchCorpus}
-                    data-type={post.postType}
                     data-article-lang={articleLang}
                     data-tags={tagsList}
                   >
                     <div class="space-y-2 sm:max-w-2xl">
-                      {/* Top Badges: Type, Linguistic Focus & Language of Composition */}
+                      {/* Top Badges */}
                       <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
-                        {post.postType === "academic_paper" && (
-                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                            Academic Paper
-                          </span>
-                        )}
-                        {post.postType === "essay" && (
-                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
-                            Essay
-                          </span>
-                        )}
-                        {post.postType === "poem" && (
-                          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
-                            Poem
-                          </span>
-                        )}
+                        <span class="text-[var(--accent)] font-semibold">
+                          {post.category}
+                        </span>
 
                         {post.language && (
-                          <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium">
-                            Focus: {post.language}
-                          </span>
+                          <>
+                            <span class="text-[var(--text-secondary)]">•</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium">
+                              Focus: {post.language}
+                            </span>
+                          </>
                         )}
 
                         {post.articleLanguage === "Simte" && (
@@ -206,9 +168,6 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
                             🗣️ Native Simte
                           </span>
                         )}
-
-                        <span class="text-[var(--text-secondary)] font-medium">•</span>
-                        <span class="text-[var(--accent)] font-medium">{post.category}</span>
                       </div>
 
                       {/* Title */}
@@ -226,41 +185,17 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
                         </p>
                       )}
 
-                      {/* Publication metadata / Tags */}
-                      <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)] pt-1">
-                        {post.journal && (
-                          <span class="font-serif italic text-xs text-[var(--text-secondary)]">
-                            {post.journal}
-                          </span>
-                        )}
-                        {post.pdfUrl && (
-                          <>
-                            <span>•</span>
-                            <a
-                              href={post.pdfUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="text-[var(--accent)] hover:underline inline-flex items-center gap-1 font-mono text-[11px]"
-                            >
-                              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                              </svg>
-                              PDF
-                            </a>
-                          </>
-                        )}
-                        <span>•</span>
-                        <div class="flex flex-wrap gap-1">
-                          {post.tags.slice(0, 3).map((t) => (
-                            <button
-                              type="button"
-                              class="entry-tag-btn text-[11px] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
-                              data-tag={t.toLowerCase()}
-                            >
-                              #{t}
-                            </button>
-                          ))}
-                        </div>
+                      {/* Tags */}
+                      <div class="flex flex-wrap items-center gap-1.5 pt-1 font-sans">
+                        {post.tags.slice(0, 4).map((t) => (
+                          <button
+                            type="button"
+                            class="entry-tag-btn text-[11px] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+                            data-tag={t.toLowerCase()}
+                          >
+                            #{t}
+                          </button>
+                        ))}
                       </div>
                     </div>
 
@@ -285,10 +220,10 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         🗣️
       </div>
       <h3 class="text-lg font-bold text-[var(--text-primary)]">
-        No articles published in Simte yet
+        No writings published in Simte yet
       </h3>
       <p class="text-sm font-serif text-[var(--text-secondary)] mt-2 max-w-md mx-auto leading-relaxed">
-        All current peer-reviewed research papers and essays are composed in English. Future dispatches, folklore transcriptions, essays, and poetry written directly in native Simte will appear here.
+        All current essays and dispatches are composed in English. Future dispatches, folklore transcriptions, oral songs, and poetry composed directly in the native Simte language will appear here.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <button
@@ -296,22 +231,22 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
           id="view-english-btn"
           class="px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] text-xs font-semibold cursor-pointer hover:opacity-90 transition-opacity"
         >
-          View English Articles ({englishPosts.length})
+          View English Writings ({englishPosts.length})
         </button>
         <button
           type="button"
           id="simte-reset-btn"
           class="px-4 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] text-xs font-medium cursor-pointer"
         >
-          View All Works
+          View All Writings
         </button>
       </div>
     </div>
 
     <!-- General No Match State -->
     <div id="no-archive-results" class="hidden text-center py-16 font-sans">
-      <p class="text-base font-bold text-[var(--text-primary)]">No matching research records found.</p>
-      <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the publication type, search query, or topic tag.</p>
+      <p class="text-base font-bold text-[var(--text-primary)]">No matching writings found.</p>
+      <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the search query or topic tag.</p>
       <button
         type="button"
         id="empty-reset-btn"
@@ -325,7 +260,6 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
 <script>
   const searchInput = document.getElementById('archive-search') as HTMLInputElement | null;
-  const typeBtns = document.querySelectorAll<HTMLButtonElement>('.type-tab-btn');
   const langBtns = document.querySelectorAll<HTMLButtonElement>('.lang-pill-btn');
   const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
   const entryTagBtns = document.querySelectorAll<HTMLButtonElement>('.entry-tag-btn');
@@ -341,39 +275,20 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
   const totalEntriesCount = archiveEntries.length;
 
-  let activeType = 'all';
   let activeLang = 'all';
   let activeTag = '';
 
-  // Parse URL query parameters (e.g. ?type=academic_paper&lang=simte&q=pronouns)
+  // Parse URL query parameters (e.g. ?lang=simte&q=heritage)
   const urlParams = new URLSearchParams(window.location.search);
   const initialQuery = urlParams.get('q');
-  const initialType = urlParams.get('type');
   const initialLang = urlParams.get('lang');
 
   if (initialQuery && searchInput) {
     searchInput.value = initialQuery;
   }
-  if (initialType) {
-    activeType = initialType;
-    updateTypeButtonsUI();
-  }
   if (initialLang) {
     activeLang = initialLang.toLowerCase();
     updateLangButtonsUI();
-  }
-
-  function updateTypeButtonsUI() {
-    typeBtns.forEach((btn) => {
-      const btnType = btn.getAttribute('data-type');
-      if (btnType === activeType) {
-        btn.classList.remove('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
-        btn.classList.add('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'shadow-sm');
-      } else {
-        btn.classList.remove('bg-[var(--text-primary)]', 'text-[var(--bg-primary)]', 'shadow-sm');
-        btn.classList.add('bg-[var(--bg-secondary)]', 'text-[var(--text-secondary)]');
-      }
-    });
   }
 
   function updateLangButtonsUI() {
@@ -408,16 +323,14 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
     archiveEntries.forEach((entry) => {
       const text = entry.getAttribute('data-search') || '';
-      const entryType = entry.getAttribute('data-type') || '';
       const entryArticleLang = (entry.getAttribute('data-article-lang') || '').toLowerCase();
       const entryTags = (entry.getAttribute('data-tags') || '').split(',');
 
       const matchesSearch = !query || text.includes(query);
-      const matchesType = activeType === 'all' || entryType === activeType;
       const matchesLang = activeLang === 'all' || entryArticleLang === activeLang;
       const matchesTag = !activeTag || entryTags.includes(activeTag);
 
-      if (matchesSearch && matchesType && matchesLang && matchesTag) {
+      if (matchesSearch && matchesLang && matchesTag) {
         entry.style.display = 'flex';
         matchesCount++;
       } else {
@@ -433,7 +346,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       sec.style.display = visibleEntries.length === 0 ? 'none' : 'block';
     });
 
-    const hasActiveFilters = Boolean(query || activeType !== 'all' || activeLang !== 'all' || activeTag);
+    const hasActiveFilters = Boolean(query || activeLang !== 'all' || activeTag);
 
     // Update count indicator
     if (resultsCount) {
@@ -446,7 +359,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
 
     // Special empty state for Simte native articles vs generic empty state
     if (matchesCount === 0) {
-      if (activeLang === 'simte' && !query && activeType === 'all' && !activeTag) {
+      if (activeLang === 'simte' && !query && !activeTag) {
         if (simteFutureNotice) simteFutureNotice.style.display = 'block';
         if (noResults) noResults.style.display = 'none';
       } else {
@@ -462,15 +375,6 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       resetBtn.style.display = hasActiveFilters ? 'inline-block' : 'none';
     }
   }
-
-  // Type filter clicks
-  typeBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      activeType = btn.getAttribute('data-type') || 'all';
-      updateTypeButtonsUI();
-      filterArchive();
-    });
-  });
 
   // Article language filter clicks
   langBtns.forEach((btn) => {
@@ -509,10 +413,8 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
   // Full reset function
   function resetAllFilters() {
     if (searchInput) searchInput.value = '';
-    activeType = 'all';
     activeLang = 'all';
     activeTag = '';
-    updateTypeButtonsUI();
     updateLangButtonsUI();
     updateTagButtonsUI();
     filterArchive();

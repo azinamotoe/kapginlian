@@ -2,28 +2,43 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostPlate from '../components/PostPlate.astro';
 import { samplePosts } from '../data/posts';
-const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.category)))];
+
+const feedPosts = samplePosts.filter((p) => p.postType !== "academic_paper");
+const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category)))];
 ---
 
 <BaseLayout
-  title="Feed | H. Kapginlian"
-  description="Chronological feed of linguistics essays, field notes, and working papers by H. Kapginlian."
+  title="Writing & Dispatches | H. Kapginlian"
+  description="Chronological dispatches, essays on Indigenous Knowledge Systems, oral history, and poetry by H. Kapginlian."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
     <!-- Header -->
-    <div class="border-b border-[var(--border-color)] pb-8 mb-10">
-      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
-        Chronological Dispatches
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
-        Writing & Field Notes
-      </h1>
-      <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed max-w-2xl">
-        Essays, acoustic fieldwork logs, and grammatical analyses focusing on Tibeto-Burman morphology and phonology.
-      </p>
+    <div class="border-b border-[var(--border-color)] pb-8 mb-10 space-y-4">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Chronological Dispatches
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-3">
+          Writing & Field Notes
+        </h1>
+        <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+          Essays on Indigenous Knowledge Systems, oral history documentation, theological reflections, and poetry.
+        </p>
+      </div>
+
+      <!-- Quick Link to Academic Papers -->
+      <div class="p-3.5 rounded-xl bg-[var(--bg-secondary)]/60 border border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-sans">
+        <div class="flex items-center gap-2 text-[var(--text-secondary)]">
+          <span class="text-base">📄</span>
+          <span>Looking for peer-reviewed linguistics papers & journal publications?</span>
+        </div>
+        <a href="/research" class="font-semibold text-[var(--accent)] hover:underline inline-flex items-center gap-1 shrink-0">
+          Visit Research & Publications →
+        </a>
+      </div>
 
       <!-- Category Filter Pills (Client interactive) -->
-      <div class="flex flex-wrap gap-2 mt-6 font-sans text-xs" id="category-filters">
+      <div class="flex flex-wrap gap-2 pt-2 font-sans text-xs" id="category-filters">
         {categories.map((cat, idx) => (
           <button
             class={`category-pill px-3 py-1.5 rounded-full border transition-all cursor-pointer ${
@@ -41,7 +56,7 @@ const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.catego
 
     <!-- Feed Articles List -->
     <div class="space-y-10" id="posts-container">
-      {samplePosts.map((post) => (
+      {feedPosts.map((post) => (
         <article
           class="post-item group border-b border-[var(--border-color)] pb-10 transition-opacity duration-200"
           data-category={post.category}
