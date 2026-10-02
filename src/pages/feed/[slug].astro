@@ -165,6 +165,18 @@ const isAcademic = post.postType === "academic_paper";
             </p>
           ))}
 
+          {/* Styled Scholarly Blockquote / Oral History Quote */}
+          {sec.blockquote && (
+            <figure class="my-6 pl-4 border-l-4 border-[var(--accent)] italic text-[var(--text-primary)] font-serif bg-[var(--bg-secondary)]/50 p-4 rounded-r-xl">
+              <p class="text-base sm:text-lg mb-2">"{sec.blockquote.text}"</p>
+              {sec.blockquote.source && (
+                <figcaption class="text-xs font-sans not-italic text-[var(--text-secondary)] font-medium">
+                  — {sec.blockquote.source}
+                </figcaption>
+              )}
+            </figure>
+          )}
+
           {/* Formatted Linguistic Table (e.g. Pronoun paradigm or Numeral comparison) */}
           {sec.table && (
             <div class="my-6 overflow-x-auto rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)]">
