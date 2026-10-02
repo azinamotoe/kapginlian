@@ -41,25 +41,29 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         </div>
         <div class="flex flex-wrap gap-2" id="type-filter-group">
           <button
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm transition-all cursor-pointer"
+            type="button"
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] shadow-sm transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-type="all"
           >
             All Works <span class="ml-1 opacity-75 font-mono">({samplePosts.length})</span>
           </button>
           <button
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            type="button"
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-type="academic_paper"
           >
             Academic Papers <span class="ml-1 opacity-75 font-mono">({academicPosts.length})</span>
           </button>
           <button
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            type="button"
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-type="essay"
           >
             Essays & Monograph <span class="ml-1 opacity-75 font-mono">({essayPosts.length})</span>
           </button>
           <button
-            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer"
+            type="button"
+            class="type-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-type="poem"
           >
             Poems & Verse <span class="ml-1 opacity-75 font-mono">({poemPosts.length})</span>
@@ -74,14 +78,16 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
         </div>
         <div class="flex flex-wrap items-center gap-2" id="lang-filter-group">
           <button
-            class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold transition-all cursor-pointer"
+            type="button"
+            class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold transition-all cursor-pointer focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
             data-lang="all"
           >
             All Languages
           </button>
           {allowedLanguages.map((lang) => (
             <button
-              class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono"
+              type="button"
+              class="lang-pill-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all cursor-pointer font-mono focus:ring-2 focus:ring-[var(--accent)] focus:outline-none"
               data-lang={lang.toLowerCase()}
             >
               {lang}
@@ -109,13 +115,18 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       <div class="space-y-2.5 font-sans pt-1">
         <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
           <span class="font-semibold uppercase tracking-wider">Filter by Topic Tag:</span>
-          <button id="reset-filters" class="text-[var(--accent)] hover:underline hidden cursor-pointer font-medium">
+          <button
+            type="button"
+            id="reset-filters"
+            class="text-[var(--accent)] hover:underline hidden cursor-pointer font-medium"
+          >
             Reset all filters ✕
           </button>
         </div>
-        <div class="flex flex-wrap gap-1.5">
+        <div class="flex flex-wrap gap-1.5" id="tags-cloud">
           {allTags.map((tag) => (
             <button
+              type="button"
               class="tag-filter-btn px-2.5 py-1 text-xs rounded-md border border-[var(--border-color)] bg-[var(--bg-secondary)]/70 hover:bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
               data-tag={tag.toLowerCase()}
             >
@@ -146,6 +157,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
               {postsInYear.map((post) => {
                 const searchCorpus = `${post.title} ${post.subtitle || ''} ${post.excerpt} ${post.tags.join(' ')} ${post.category} ${post.language || ''} ${post.journal || ''} ${post.postType}`.toLowerCase();
                 const langValue = (post.language || 'english').toLowerCase();
+                const tagsList = post.tags.map((t) => t.toLowerCase()).join(',');
                 
                 return (
                   <li
@@ -153,6 +165,7 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
                     data-search={searchCorpus}
                     data-type={post.postType}
                     data-language={langValue}
+                    data-tags={tagsList}
                   >
                     <div class="space-y-2 sm:max-w-2xl">
                       {/* Top Badges: Type & Language */}
@@ -224,7 +237,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
                         <span>•</span>
                         <div class="flex flex-wrap gap-1">
                           {post.tags.slice(0, 3).map((t) => (
-                            <span class="text-[11px] text-[var(--text-secondary)]">#{t}</span>
+                            <button
+                              type="button"
+                              class="entry-tag-btn text-[11px] text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
+                              data-tag={t.toLowerCase()}
+                            >
+                              #{t}
+                            </button>
                           ))}
                         </div>
                       </div>
@@ -249,6 +268,13 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     <div id="no-archive-results" class="hidden text-center py-16 font-sans">
       <p class="text-base font-bold text-[var(--text-primary)]">No matching research records found.</p>
       <p class="text-xs text-[var(--text-secondary)] mt-1">Try adjusting the type, language filter, or search query.</p>
+      <button
+        type="button"
+        id="empty-reset-btn"
+        class="mt-4 px-4 py-2 rounded-lg bg-[var(--accent)] text-white text-xs font-semibold cursor-pointer hover:opacity-90 transition-opacity"
+      >
+        Clear all filters
+      </button>
     </div>
   </div>
 </BaseLayout>
@@ -258,17 +284,21 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
   const typeBtns = document.querySelectorAll<HTMLButtonElement>('.type-tab-btn');
   const langBtns = document.querySelectorAll<HTMLButtonElement>('.lang-pill-btn');
   const tagBtns = document.querySelectorAll<HTMLButtonElement>('.tag-filter-btn');
+  const entryTagBtns = document.querySelectorAll<HTMLButtonElement>('.entry-tag-btn');
   const resetBtn = document.getElementById('reset-filters');
+  const emptyResetBtn = document.getElementById('empty-reset-btn');
   const archiveEntries = document.querySelectorAll<HTMLElement>('.archive-entry');
   const yearSections = document.querySelectorAll<HTMLElement>('.year-section');
   const resultsCount = document.getElementById('results-count');
   const noResults = document.getElementById('no-archive-results');
 
+  const totalEntriesCount = archiveEntries.length;
+
   let activeType = 'all';
   let activeLang = 'all';
   let activeTag = '';
 
-  // Parse URL query parameters (e.g. ?type=academic_paper&lang=simte)
+  // Parse URL query parameters (e.g. ?type=academic_paper&lang=simte&q=pronouns)
   const urlParams = new URLSearchParams(window.location.search);
   const initialQuery = urlParams.get('q');
   const initialType = urlParams.get('type');
@@ -312,6 +342,19 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     });
   }
 
+  function updateTagButtonsUI() {
+    tagBtns.forEach((btn) => {
+      const tag = btn.getAttribute('data-tag') || '';
+      if (tag === activeTag) {
+        btn.classList.add('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
+        btn.classList.remove('bg-[var(--bg-secondary)]/70', 'text-[var(--text-secondary)]');
+      } else {
+        btn.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
+        btn.classList.add('bg-[var(--bg-secondary)]/70', 'text-[var(--text-secondary)]');
+      }
+    });
+  }
+
   function filterArchive() {
     const query = searchInput?.value.toLowerCase().trim() || '';
     let matchesCount = 0;
@@ -320,11 +363,12 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       const text = entry.getAttribute('data-search') || '';
       const entryType = entry.getAttribute('data-type') || '';
       const entryLang = (entry.getAttribute('data-language') || '').toLowerCase();
+      const entryTags = (entry.getAttribute('data-tags') || '').split(',');
 
       const matchesSearch = !query || text.includes(query);
       const matchesType = activeType === 'all' || entryType === activeType;
       const matchesLang = activeLang === 'all' || entryLang.includes(activeLang);
-      const matchesTag = !activeTag || text.includes(activeTag);
+      const matchesTag = !activeTag || entryTags.includes(activeTag);
 
       if (matchesSearch && matchesType && matchesLang && matchesTag) {
         entry.style.display = 'flex';
@@ -334,26 +378,29 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
       }
     });
 
-    // Toggle year headers based on visible entries
+    // Check year sections using robust display property check
     yearSections.forEach((sec) => {
-      const visibleEntries = sec.querySelectorAll<HTMLElement>('.archive-entry[style*="display: flex"]');
-      if (visibleEntries.length === 0 && (query || activeType !== 'all' || activeLang !== 'all' || activeTag)) {
-        sec.style.display = 'none';
-      } else {
-        sec.style.display = 'block';
-      }
+      const visibleEntries = Array.from(sec.querySelectorAll<HTMLElement>('.archive-entry')).filter(
+        (el) => el.style.display !== 'none'
+      );
+      sec.style.display = visibleEntries.length === 0 ? 'none' : 'block';
     });
+
+    const hasActiveFilters = Boolean(query || activeType !== 'all' || activeLang !== 'all' || activeTag);
 
     // Update count indicator
     if (resultsCount) {
-      resultsCount.textContent = `Showing ${matchesCount} matching ${matchesCount === 1 ? 'entry' : 'entries'}`;
+      if (!hasActiveFilters) {
+        resultsCount.textContent = `Showing all ${totalEntriesCount} entries`;
+      } else {
+        resultsCount.textContent = `Showing ${matchesCount} matching ${matchesCount === 1 ? 'entry' : 'entries'}`;
+      }
     }
 
     if (noResults) {
       noResults.style.display = matchesCount === 0 ? 'block' : 'none';
     }
 
-    const hasActiveFilters = query || activeType !== 'all' || activeLang !== 'all' || activeTag;
     if (resetBtn) {
       resetBtn.style.display = hasActiveFilters ? 'inline-block' : 'none';
     }
@@ -377,18 +424,24 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
     });
   });
 
-  // Tag filter clicks
+  // Tag cloud clicks
   tagBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       const tag = btn.getAttribute('data-tag') || '';
-      if (activeTag === tag) {
-        activeTag = '';
-        btn.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
-      } else {
-        tagBtns.forEach((b) => b.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]'));
-        activeTag = tag;
-        btn.classList.add('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]');
-      }
+      activeTag = activeTag === tag ? '' : tag;
+      updateTagButtonsUI();
+      filterArchive();
+    });
+  });
+
+  // Entry internal tag clicks
+  entryTagBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const tag = btn.getAttribute('data-tag') || '';
+      activeTag = activeTag === tag ? '' : tag;
+      updateTagButtonsUI();
       filterArchive();
     });
   });
@@ -396,17 +449,20 @@ const years = Array.from(new Set(samplePosts.map((p) => p.year))).sort((a, b) =>
   // Search input typing
   searchInput?.addEventListener('input', filterArchive);
 
-  // Reset button
-  resetBtn?.addEventListener('click', () => {
+  // Full reset function
+  function resetAllFilters() {
     if (searchInput) searchInput.value = '';
     activeType = 'all';
     activeLang = 'all';
     activeTag = '';
     updateTypeButtonsUI();
     updateLangButtonsUI();
-    tagBtns.forEach((b) => b.classList.remove('bg-[var(--accent)]', 'text-white', 'border-[var(--accent)]'));
+    updateTagButtonsUI();
     filterArchive();
-  });
+  }
+
+  resetBtn?.addEventListener('click', resetAllFilters);
+  emptyResetBtn?.addEventListener('click', resetAllFilters);
 
   // Initial run
   filterArchive();
