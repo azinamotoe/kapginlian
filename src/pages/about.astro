@@ -12,33 +12,41 @@ const languagesDocumented = [
 
 const publications = [
   {
-    year: 2026,
-    title: "The Pronominal System in Simte: Morphological Structure and Agreement",
-    venue: "Working Papers in Tibeto-Burman Linguistics",
-    type: "Research Paper",
-    pdfUrl: "/papers/simte-pronouns.pdf",
-    doi: "",
+    year: 2025,
+    title: "Numerals in Kaipeng and Simte",
+    authors: "Lorina D. Tariang & H. Kapginlian",
+    venue: "Veda's Journal of English Language and Literature (JOELL), Vol. 12, Issue 2, pp. 11–20",
+    issn: "2349-9788",
+    type: "Peer-Reviewed Article",
+    pdfUrl: "/papers/numerals-kaipeng-simte.pdf",
+    doi: "10.54513/JOELL.2024.12202",
   },
   {
-    year: 2025,
-    title: "Gender Categorization and Marking in Simte",
-    venue: "Journal of South Asian Linguistics & Typology",
-    type: "Journal Article",
+    year: 2024,
+    title: "Gender in Simte",
+    authors: "H. Kapginlian & Dr. Saralin A. Lyngdoh",
+    venue: "Vāk Manthan (SEL India), Vol. 10, Issue II, pp. 28–36",
+    issn: "2426-2149",
+    type: "Peer-Reviewed Article",
     pdfUrl: "/papers/gender-in-simte.pdf",
     doi: "",
   },
   {
-    year: 2024,
-    title: "A Comparative Study of Numerals in Kaipeng and Simte",
-    venue: "Linguistic Studies in Northeast India",
-    type: "Comparative Research",
-    pdfUrl: "/papers/numerals-kaipeng-simte.pdf",
+    year: 2023,
+    title: "Pronouns in Simte",
+    authors: "H. Kapginlian & Dr. Saralin A. Lyngdoh",
+    venue: "Language in India, Vol. 23:6 (June 2023), pp. 172–181",
+    issn: "1930-2940",
+    type: "Peer-Reviewed Article",
+    pdfUrl: "/papers/simte-pronouns.pdf",
     doi: "",
   },
   {
-    year: 2023,
-    title: "A Brief History of the Advent of Christianity Among the Simtes",
+    year: 2022,
+    title: "Brief History of the Advent of Christianity Among the Simtes (1917–1958)",
+    authors: "H. Kapginlian",
     venue: "Historical & Sociolinguistic Documentation Series",
+    issn: "",
     type: "Documentation Monograph",
     pdfUrl: "/papers/history-christianity-simte.pdf",
     doi: "",
@@ -215,13 +223,17 @@ const publications = [
               {pub.title}
             </h3>
 
+            <p class="text-xs font-sans font-medium text-[var(--accent)]">
+              {pub.authors}
+            </p>
+
             <p class="text-sm font-serif italic text-[var(--text-secondary)]">
-              {pub.venue}
+              {pub.venue} {pub.issn && <span class="font-mono not-italic text-xs text-[var(--text-secondary)]">({pub.issn})</span>}
             </p>
 
             <div class="flex flex-wrap items-center gap-3 pt-2 font-sans text-xs">
               {pub.doi && (
-                <a href={`https://doi.org/${pub.doi}`} class="text-[var(--accent)] hover:underline font-mono">
+                <a href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener noreferrer" class="text-[var(--accent)] hover:underline font-mono">
                   DOI: {pub.doi}
                 </a>
               )}
