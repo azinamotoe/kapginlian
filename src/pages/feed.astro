@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostPlate from '../components/PostPlate.astro';
-import { samplePosts } from '../data/posts';
+import { samplePosts, getPostUrl } from '../data/posts';
 import { url } from '../utils/url';
 
 const feedPosts = samplePosts.filter((p) => p.postType !== "academic_paper");
@@ -66,7 +66,7 @@ const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category
             <!-- Left Academic Monograph Plate or Cover (Larger, balanced portrait ratio) -->
             <div class="md:col-span-5 lg:col-span-4">
               <a
-                href={`/feed/${post.slug}`}
+                href={getPostUrl(post)}
                 class="block group-hover:opacity-95 transition-opacity"
               >
                 <PostPlate post={post} aspect="aspect-[4/3] sm:aspect-[3/4]" />
@@ -94,7 +94,7 @@ const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category
               </div>
 
               <h2 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-                <a href={`/feed/${post.slug}`}>
+                <a href={getPostUrl(post)}>
                   {post.title}
                 </a>
               </h2>
@@ -113,7 +113,7 @@ const categories = ["All", ...Array.from(new Set(feedPosts.map((p) => p.category
               <div class="flex flex-wrap gap-2 pt-1 font-sans">
                 {post.tags.map((tag) => (
                   <a
-                    href={`/archive?q=${encodeURIComponent(tag)}`}
+                    href={url(`/archive?q=${encodeURIComponent(tag)}`)}
                     class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors"
                   >
                     #{tag.toLowerCase()}

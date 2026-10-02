@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostPlate from '../components/PostPlate.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import { samplePosts, getPostUrl } from '../data/posts';
+import { url } from '../utils/url';
+
+// Extract all poems and oral literature posts
+const poems = samplePosts.filter(
+  (p) => p.postType === "poem" || p.category.toLowerCase().includes("poet")
+);
+
+// Traditional Simte poetic genres documented
+const poeticGenres = [
+  {
+    name: "Ngai La",
+    gloss: "Songs of Longing & Affection",
+    desc: "Lyrical couplets expressing nostalgia for ancestral hills, filial affection, and romantic longing across mountain valleys."
+  },
+  {
+    name: "Han La",
+    gloss: "Heroic & Victory Ballads",
+    desc: "Chanted verses commemorating courage, community protection, ancestral migrations, and heroic figures in oral history."
+  },
+  {
+    name: "Lhang La",
+    gloss: "Communal & Nature Lyrics",
+    desc: "Songs celebrating agricultural seasons, the rhythms of shifting cultivation, rivers, rain, and highland flora."
+  },
+  {
+    name: "Dawi La",
+    gloss: "Archaic Ceremonial Chants",
+    desc: "Ritual and ancestral invocations preserving archaic Simte vocabulary not commonly heard in everyday modern speech."
+  }
+];
+---
+
+<BaseLayout
+  title="Poems & Oral Literature | H. Kapginlian"
+  description="Simte oral poetry, ancestral ballads (La), traditional couplets, and lyrical reflections on land, longing, and memory by H. Kapginlian."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16">
+    
+    <!-- Hero Header -->
+    <header class="border-b border-[var(--border-color)] pb-10 space-y-6">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Indigenous Verse • Oral Traditions (La)
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-bold font-sans tracking-tight text-[var(--text-primary)] mt-1.5 mb-4">
+          Poems &amp; Oral Literature
+        </h1>
+        <p class="text-base sm:text-lg font-serif text-[var(--text-secondary)] leading-relaxed max-w-3xl">
+          In traditional Simte society, poetry (<em class="text-[var(--text-primary)] font-serif">La</em>) is the living vault of collective memory. These verses, couplets, and ballads preserve historical migrations, kinship bonds, and ecological dialogue with the highland landscape of southern Manipur.
+        </p>
+      </div>
+
+      <!-- Quick Context Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4 px-5 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] text-center font-sans">
+        <div>
+          <span class="block text-xl font-bold text-[var(--text-primary)] font-mono">{poems.length}</span>
+          <span class="text-xs text-[var(--text-secondary)]">Published Collection</span>
+        </div>
+        <div class="border-l border-[var(--border-color)]">
+          <span class="block text-xl font-bold text-[var(--text-primary)] font-mono">Simte (smt)</span>
+          <span class="text-xs text-[var(--text-secondary)]">Source Language</span>
+        </div>
+        <div class="border-l border-[var(--border-color)]">
+          <span class="block text-xl font-bold text-[var(--text-primary)] font-mono">Bilingual</span>
+          <span class="text-xs text-[var(--text-secondary)]">Simte &amp; English</span>
+        </div>
+        <div class="border-l border-[var(--border-color)]">
+          <span class="block text-xl font-bold text-[var(--text-primary)] font-mono">Parallelism</span>
+          <span class="text-xs text-[var(--text-secondary)]">Metrical Couplets</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Poems Collection -->
+    <section class="space-y-10">
+      <div class="space-y-1">
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Featured Verses
+        </span>
+        <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+          Documented Poetry &amp; Ballads
+        </h2>
+      </div>
+
+      <div class="space-y-10">
+        {poems.map((poem) => (
+          <article class="group rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] hover:border-[var(--accent)]/40 p-6 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center">
+              
+              <!-- Left: Plate / Monograph Art -->
+              <div class="md:col-span-5 lg:col-span-4">
+                <a href={getPostUrl(poem)} class="block group-hover:opacity-95 transition-opacity">
+                  <PostPlate post={poem} aspect="aspect-[4/3] sm:aspect-[3/4]" />
+                </a>
+              </div>
+
+              <!-- Right: Content & Excerpt -->
+              <div class="md:col-span-7 lg:col-span-8 space-y-4">
+                <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
+                  <span class="px-2.5 py-0.5 rounded-full font-mono font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-[11px]">
+                    Oral Literature
+                  </span>
+                  <span>•</span>
+                  <span class="font-mono text-[var(--accent)] font-medium">
+                    {poem.language || "Simte"}
+                  </span>
+                  <span>•</span>
+                  <span>{poem.readingTime}</span>
+                </div>
+
+                <h3 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors leading-snug">
+                  <a href={getPostUrl(poem)}>
+                    {poem.title}
+                  </a>
+                </h3>
+
+                {poem.subtitle && (
+                  <p class="text-xs sm:text-sm font-sans font-medium text-[var(--text-secondary)]">
+                    {poem.subtitle}
+                  </p>
+                )}
+
+                <!-- Poetic Fragment Quote Block -->
+                <blockquote class="p-4 rounded-xl bg-[var(--bg-secondary)]/60 border-l-4 border-purple-500/60 font-serif italic text-sm text-[var(--text-primary)] leading-relaxed space-y-1">
+                  <p class="font-semibold text-xs tracking-wider uppercase font-mono not-italic text-[var(--accent)] mb-1">
+                    Ancestral Fragment (Aw Simlei):
+                  </p>
+                  <p>“Aw Simlei ningzuo awng, ka vangkhuo ngai ing e;</p>
+                  <p>Tuongtuong a guon dam lai, lungzuong a vei ing e.”</p>
+                  <p class="text-xs text-[var(--text-secondary)] not-italic pt-1">
+                    (O gentle hills of home, how my spirit pines for you; Through rolling green valleys, my thoughts forever wander.)
+                  </p>
+                </blockquote>
+
+                <p class="text-sm font-serif text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+                  {poem.excerpt}
+                </p>
+
+                <!-- Tags & Action -->
+                <div class="pt-2 flex flex-wrap items-center justify-between gap-3">
+                  <div class="flex flex-wrap gap-1.5 font-sans">
+                    {poem.tags.slice(0, 3).map((tag) => (
+                      <span class="text-xs font-mono text-[var(--text-secondary)]">
+                        #{tag.toLowerCase()}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={getPostUrl(poem)}
+                    class="min-h-[40px] px-4 py-2 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 font-sans font-semibold text-xs transition-opacity inline-flex items-center gap-1.5"
+                  >
+                    <span>Read Full Verse &amp; Commentary</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Traditional Simte Poetic Forms Grid -->
+    <section class="space-y-6 pt-4 border-t border-[var(--border-color)]">
+      <div class="space-y-1">
+        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+          Typology of Simte Verse
+        </span>
+        <h2 class="text-2xl font-bold font-sans tracking-tight text-[var(--text-primary)]">
+          Traditional Genres of <em>La</em> (Oral Songs)
+        </h2>
+        <p class="text-xs sm:text-sm font-serif text-[var(--text-secondary)] leading-relaxed">
+          Unlike Western end-rhyme schemes, Simte poetry relies on tonal cadence, semantic parallelism, and paired couplets (*la-chang*) that mirror inner emotional states with the highland topography.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 font-sans">
+        {poeticGenres.map((genre) => (
+          <div class="p-5 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/30 space-y-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-base text-[var(--text-primary)]">
+                {genre.name}
+              </h3>
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">
+                {genre.gloss}
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm font-serif text-[var(--text-secondary)] leading-relaxed">
+              {genre.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Community & Fieldwork Archival Callout -->
+    <section class="p-8 rounded-3xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] text-center space-y-4 font-sans">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
+        Preservation of Intangible Heritage
+      </span>
+      <h3 class="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
+        Documenting Vanishing Oral Verse
+      </h3>
+      <p class="text-sm font-serif text-[var(--text-secondary)] max-w-xl mx-auto leading-relaxed">
+        Many archaic ballads and song texts exist solely in the memories of village elders. If you have recordings, lyrics, or variations of traditional Simte songs and couplets you would like documented, we warmly welcome community collaboration.
+      </p>
+      <div class="pt-2">
+        <a
+          href={url("/socials")}
+          class="min-h-[44px] px-5 py-2.5 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 font-medium text-xs font-sans inline-flex items-center gap-1.5 transition-opacity"
+        >
+          <span>Share or Inquire via Academic Hub</span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
