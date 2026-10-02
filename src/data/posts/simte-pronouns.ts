@@ -19,7 +19,7 @@ export const simtePronounsPost: Post = {
   journal: "Language in India (www.languageinindia.com)",
   volume: "Vol. 23:6 (June 2023), pp. 172–187",
   issn: "1930-2940",
-  authors: "H. Kapginlian, Ph.D. Scholar & Dr. Saralin A. Lyngdoh, Associate Professor (NEHU, Shillong)",
+  authors: "H. Kapginlian & Dr. Saralin A. Lyngdoh, Associate Professor (NEHU, Shillong)",
   pdfUrl: "/papers/simte-pronouns.pdf",
   abstract: "Simte is one of the Kuki-Chin languages spoken mostly in Churachandpur and Pherzawl districts of Manipur. This paper attempts to investigate the forms of pronouns and its types in Simte. Data has been collected through elicitation from four Simte elders aged around 50–55. Pronouns in Simte are free forms that function alone to fill the position of a noun phrase in a clause. Since it is a pro-drop language, pronoun dropping is evident extensively in the reflexive and reciprocal pronoun, realized by the reflexive prefix 'ki-' added to the main verb. The emphatic pronoun is realized by the suffix '-maʔ' added to the subject pronoun. For demonstratives, Simte employs 'hi' for proximal distance near the deictic centre and 'hu' for distal referents.",
   keywords: ["Pronouns", "Simte", "Deictic centre", "Emphatic", "Pro-drop", "Kuki-Chin"],
