@@ -11,6 +11,18 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname;
+const homeHref = url("/");
+
+function checkIsActive(itemHref: string): boolean {
+  const normCurrent = currentPath.replace(/\/$/, "");
+  const normItem = itemHref.replace(/\/$/, "");
+  const normHome = homeHref.replace(/\/$/, "");
+
+  if (normItem === normHome) {
+    return normCurrent === normHome;
+  }
+  return normCurrent === normItem || normCurrent.startsWith(`${normItem}/`);
+}
 ---
 
 <header class="sticky top-0 z-50 backdrop-blur-md bg-[var(--bg-primary)]/90 border-b border-[var(--border-color)] transition-colors duration-200">
@@ -20,15 +32,12 @@ const currentPath = Astro.url.pathname;
       <span class="font-sans font-bold text-xl tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
         H. Kapginlian
       </span>
-      <span class="hidden sm:inline text-xs font-mono tracking-wider text-[var(--text-secondary)] uppercase">
-        Linguistics
-      </span>
     </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-1 font-sans text-sm font-medium">
       {navItems.map((item) => {
-        const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+        const isActive = checkIsActive(item.href);
         return (
           <a
             href={item.href}
@@ -87,18 +96,21 @@ const currentPath = Astro.url.pathname;
 
   <!-- Mobile Dropdown -->
   <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-5 space-y-1.5 bg-[var(--bg-primary)] border-b border-[var(--border-color)] shadow-lg">
-    {navItems.map((item) => (
-      <a
-        href={item.href}
-        class={`block px-4 py-3 rounded-lg text-base font-medium font-sans min-h-[44px] flex items-center ${
-          currentPath === item.href
-            ? "bg-[var(--accent-light)] text-[var(--accent)] font-semibold"
-            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
-        }`}
-      >
-        {item.label}
-      </a>
-    ))}
+    {navItems.map((item) => {
+      const isActive = checkIsActive(item.href);
+      return (
+        <a
+          href={item.href}
+          class={`block px-4 py-3 rounded-lg text-base font-medium font-sans min-h-[44px] flex items-center ${
+            isActive
+              ? "bg-[var(--accent-light)] text-[var(--accent)] font-semibold"
+              : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
+          }`}
+        >
+          {item.label}
+        </a>
+      );
+    })}
   </div>
 </header>
 
