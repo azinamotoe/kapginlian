@@ -4,6 +4,9 @@ import { numeralsKaipengSimtePost } from './posts/numerals-kaipeng-simte';
 import { historyChristianityPost } from './posts/history-christianity-simte';
 import { indigenousKnowledgePost } from './posts/indigenous-knowledge';
 import { simtePoetryPost } from './posts/simte-poetry';
+import { tuithaphaiVersePost } from './posts/tuithaphai-verse';
+import { changVuiHarvestPost } from './posts/chang-vui-harvest';
+import { zanKhawThiangPost } from './posts/zan-khaw-thiang';
 
 export interface PostSection {
   heading: string;
@@ -67,7 +70,10 @@ export const samplePosts: Post[] = [
   numeralsKaipengSimtePost,
   historyChristianityPost,
   indigenousKnowledgePost,
-  simtePoetryPost
+  simtePoetryPost,
+  tuithaphaiVersePost,
+  changVuiHarvestPost,
+  zanKhawThiangPost
 ];
 
 import { url } from '../utils/url';
