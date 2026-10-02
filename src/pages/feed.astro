@@ -47,7 +47,17 @@ const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.catego
           data-category={post.category}
         >
           <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <!-- Left Info & Text -->
+            <!-- Left Academic Monograph Plate or Cover -->
+            <div class="md:col-span-4">
+              <a
+                href={`/feed/${post.slug}`}
+                class="block group-hover:opacity-95 transition-opacity"
+              >
+                <PostPlate post={post} aspect="aspect-video md:aspect-[4/3]" />
+              </a>
+            </div>
+
+            <!-- Right Info & Text -->
             <div class="md:col-span-8 space-y-3">
               <div class="flex flex-wrap items-center gap-2 text-xs font-sans text-[var(--text-secondary)]">
                 <span class="font-semibold text-[var(--accent)]">
@@ -94,16 +104,6 @@ const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.catego
                   </a>
                 ))}
               </div>
-            </div>
-
-            <!-- Right Academic Monograph Plate or Cover -->
-            <div class="md:col-span-4">
-              <a
-                href={`/feed/${post.slug}`}
-                class="block group-hover:opacity-95 transition-opacity"
-              >
-                <PostPlate post={post} aspect="aspect-video md:aspect-[4/3]" />
-              </a>
             </div>
           </div>
         </article>
