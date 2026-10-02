@@ -4,56 +4,53 @@ const currentYear = new Date().getFullYear();
 
 <footer class="mt-20 border-t border-[var(--border-color)] bg-[var(--bg-secondary)]/50 py-12 transition-colors duration-200">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 font-sans">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 font-sans">
       <!-- Col 1: Scholar Bio -->
-      <div class="md:col-span-2 space-y-3">
+      <div class="md:col-span-5 space-y-3">
         <h3 class="text-base font-bold text-[var(--text-primary)]">H. Kapginlian</h3>
-        <p class="text-sm text-[var(--text-secondary)] max-w-md font-serif leading-relaxed">
-          Linguist specializing in Tibeto-Burman &amp; Kuki-Chin morphology and syntax, Indigenous Knowledge Systems, and intangible cultural heritage documentation. All field materials and analyses are shared for research and community preservation.
+        <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-serif leading-relaxed">
+          Linguist specializing in Tibeto-Burman &amp; Kuki-Chin morphology and syntax, Indigenous Knowledge Systems, and intangible cultural heritage documentation. Ph.D. scholar at North-Eastern Hill University (NEHU), Shillong.
         </p>
-        <p class="text-xs text-[var(--text-secondary)]">
-          Fonts powered by Charis SIL & Newsreader for academic phonetic accuracy.
+        <p class="text-xs font-mono text-[var(--text-secondary)]">
+          Documented: Simte (<span class="text-[var(--accent)] font-semibold">smt</span>) &bull; Kaipeng (<span class="text-[var(--accent)] font-semibold">kzp</span>)
         </p>
       </div>
 
       <!-- Col 2: Navigation -->
-      <div class="space-y-2">
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">Index</h4>
-        <ul class="text-sm space-y-2">
-          <li><a href="/" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Home (Split View)</a></li>
-          <li><a href="/feed" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Chronological Feed</a></li>
-          <li><a href="/archive" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Archive & Search</a></li>
-          <li><a href="/about" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Research & About</a></li>
-          <li><a href="/socials" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Social & Academic Hub</a></li>
+      <div class="md:col-span-4 space-y-2">
+        <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">Navigation</h4>
+        <ul class="text-xs sm:text-sm space-y-1.5 font-sans">
+          <li><a href="/" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Home</a></li>
+          <li><a href="/research" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Research Publications</a></li>
+          <li><a href="/feed" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing &amp; Dispatches</a></li>
+          <li><a href="/archive" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Writing Archive &amp; Search</a></li>
+          <li><a href="/about" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Curriculum &amp; Biography</a></li>
+          <li><a href="/socials" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Academic Hub &amp; Socials</a></li>
         </ul>
       </div>
 
-      <!-- Col 3: Legal & Meta -->
-      <div class="space-y-2">
-        <h4 class="text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">Colophon & Legal</h4>
-        <ul class="text-sm space-y-2">
-          <li><a href="/privacy" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Privacy Policy</a></li>
-          <li><a href="/terms" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1 inline-block">Terms & Citation Use</a></li>
+      <!-- Col 3: Legal & Citations -->
+      <div class="md:col-span-3 space-y-2">
+        <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-secondary)]">Archive &amp; Legal</h4>
+        <ul class="text-xs sm:text-sm space-y-1.5 font-sans">
           <li>
-            <a href="/socials#rss" class="inline-flex items-center gap-1 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-1">
-              <span class="text-xs">📡</span> RSS Feed
+            <a href="https://orcid.org/0009-0008-9045-3527" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-flex items-center gap-1">
+              <span>ORCID Registry</span>
+              <span class="text-xs">↗</span>
             </a>
           </li>
-          <li>
-            <span class="inline-block text-xs font-mono text-[var(--text-secondary)] mt-2">
-              Static build via Astro
-            </span>
-          </li>
+          <li><a href="/terms" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Terms &amp; Citation Use</a></li>
+          <li><a href="/privacy" class="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors py-0.5 inline-block">Privacy Policy</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="pt-8 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-secondary)] font-sans gap-4">
-      <p>© {currentYear} H. Kapginlian. All rights reserved.</p>
+    <div class="pt-6 border-t border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-secondary)] font-sans gap-3">
+      <p>&copy; {currentYear} H. Kapginlian. All rights reserved.</p>
       <p class="flex items-center gap-4">
-        <span>ISO 639-3 Research Archiving</span>
-        <span>•</span>
-        <a href="#top" class="hover:text-[var(--text-primary)] transition-colors p-1">Back to top ↑</a>
+        <span>ISO 639-3 Documentation Standards</span>
+        <span>&bull;</span>
+        <a href="#top" class="hover:text-[var(--text-primary)] transition-colors">Back to top &uarr;</a>
       </p>
     </div>
   </div>
