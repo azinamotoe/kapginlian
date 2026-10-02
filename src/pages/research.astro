@@ -28,8 +28,8 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
       <!-- Quick Metrics Bar -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-4 px-5 rounded-2xl bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] text-center font-sans">
         <div>
-          <span class="block text-xl font-bold text-[var(--text-primary)]">3</span>
-          <span class="text-xs text-[var(--text-secondary)]">Peer-Reviewed Papers</span>
+          <span class="block text-xl font-bold text-[var(--text-primary)]">{researchPapers.length}</span>
+          <span class="text-xs text-[var(--text-secondary)]">Research Publications</span>
         </div>
         <div class="border-l border-[var(--border-color)]">
           <span class="block text-xl font-bold text-[var(--text-primary)]">Simte & Kaipeng</span>
@@ -94,9 +94,13 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
                     <span>DOI Indexed</span>
                     <span>↗</span>
                   </a>
-                ) : (
+                ) : paper.issn ? (
                   <span class="px-2.5 py-0.5 rounded-full font-mono text-[11px] text-[var(--text-secondary)] bg-[var(--bg-secondary)] border border-[var(--border-color)]">
                     ISSN Indexed
+                  </span>
+                ) : (
+                  <span class="px-2.5 py-0.5 rounded-full font-mono text-[11px] text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20">
+                    Archival Monograph
                   </span>
                 )}
                 <span class="text-[var(--text-secondary)] hidden sm:inline">•</span>

@@ -15,7 +15,7 @@ export const historyChristianityPost: Post = {
   tags: ["Oral History", "Simte", "Christianity", "Thanlon", "Heritage", "Church History"],
   coverImage: "https://placehold.co/800x450/292524/ffffff?text=Advent+of+Christianity+Among+the+Simtes",
   featured: false,
-  postType: "essay",
+  postType: "academic_paper",
   journal: "Historical & Sociolinguistic Documentation Series",
   volume: "Archival Monograph (pp. 1–9)",
   authors: "H. Kapginlian (North-Eastern Hill University, Shillong)",
