@@ -79,12 +79,28 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
 
             <!-- Right Paper Metadata & Abstract -->
             <div class="md:col-span-7 lg:col-span-8 space-y-4">
-              {/* Journal / Publication Badge */}
-              <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
-                <span class="px-2.5 py-0.5 rounded-full font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                  Peer-Reviewed Paper
+              {/* Journal & Status Badges (Spacious layout, no cramping) */}
+              <div class="flex flex-wrap items-center gap-2.5 text-xs font-sans">
+                <span class="px-2.5 py-0.5 rounded-full font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 text-[11px]">
+                  ✓ Peer-Reviewed
                 </span>
-                <span class="font-serif italic text-[var(--text-secondary)]">
+                {paper.doi ? (
+                  <a
+                    href={`https://doi.org/${paper.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-2.5 py-0.5 rounded-full font-mono font-semibold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[11px] hover:underline inline-flex items-center gap-1"
+                  >
+                    <span>DOI Indexed</span>
+                    <span>↗</span>
+                  </a>
+                ) : (
+                  <span class="px-2.5 py-0.5 rounded-full font-mono text-[11px] text-[var(--text-secondary)] bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                    ISSN Indexed
+                  </span>
+                )}
+                <span class="text-[var(--text-secondary)] hidden sm:inline">•</span>
+                <span class="font-serif italic text-xs text-[var(--text-secondary)]">
                   {paper.journal}
                 </span>
               </div>
@@ -101,14 +117,9 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
                 {paper.volume && <span>{paper.volume}</span>}
                 {paper.issn && <span>ISSN: {paper.issn}</span>}
                 {paper.doi && (
-                  <a
-                    href={`https://doi.org/${paper.doi}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-[var(--accent)] hover:underline inline-flex items-center gap-1"
-                  >
-                    DOI: {paper.doi} ↗
-                  </a>
+                  <span class="text-[var(--accent)]">
+                    doi:{paper.doi}
+                  </span>
                 )}
               </div>
 

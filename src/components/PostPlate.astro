@@ -162,16 +162,15 @@ const config = plateConfigs[post.slug] || {
       </div>
     </div>
 
-    {/* Bottom Metadata Badges (Hidden in minimal mode for clean Home view) */}
+    {/* Bottom Metadata Badges: Clean language focus, zero cramping */}
     {!minimal && (
-      <div class="relative z-10 flex items-center justify-between text-[11px] font-mono pt-3 border-t border-white/10">
-        <span class="inline-flex items-center gap-1 text-stone-300 font-medium">
+      <div class="relative z-10 flex items-center justify-between text-[11px] font-mono pt-3 border-t border-white/10 text-stone-300">
+        <span class="inline-flex items-center gap-1 font-medium">
           <span class="text-stone-400">#</span>
           <span class="truncate">{config.languageBadge}</span>
         </span>
-        <span class="inline-flex items-center gap-1 text-[10px] text-stone-200 font-medium bg-white/10 px-2.5 py-0.5 rounded border border-white/15">
-          <span>📄</span>
-          <span>{config.statusBadge}</span>
+        <span class="text-[10px] text-stone-400 font-sans tracking-wide">
+          H. Kapginlian
         </span>
       </div>
     )}
