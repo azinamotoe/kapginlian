@@ -69,16 +69,16 @@ const researchPapers = samplePosts.filter((p) => p.postType === "academic_paper"
     <div class="space-y-12">
       {researchPapers.map((paper, index) => (
         <article class="group rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] hover:border-[var(--accent)]/40 p-6 sm:p-8 transition-all duration-200 shadow-xs hover:shadow-md">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <!-- Left Monograph Plate -->
-            <div class="md:col-span-4">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-center">
+            <!-- Left Monograph Plate (Larger, academic portrait book ratio) -->
+            <div class="md:col-span-5 lg:col-span-4">
               <a href={`/feed/${paper.slug}`} class="block group-hover:opacity-95 transition-opacity">
-                <PostPlate post={paper} aspect="aspect-[4/3]" />
+                <PostPlate post={paper} aspect="aspect-[4/3] sm:aspect-[3/4]" />
               </a>
             </div>
 
             <!-- Right Paper Metadata & Abstract -->
-            <div class="md:col-span-8 space-y-4">
+            <div class="md:col-span-7 lg:col-span-8 space-y-4">
               {/* Journal / Publication Badge */}
               <div class="flex flex-wrap items-center gap-2 text-xs font-sans">
                 <span class="px-2.5 py-0.5 rounded-full font-mono font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">

@@ -119,13 +119,13 @@ const config = plateConfigs[post.slug] || {
   </div>
 ) : (
   <div
-    class={`relative flex flex-col justify-between overflow-hidden rounded-xl border border-stone-800/80 p-3.5 sm:p-4 select-none bg-gradient-to-br ${config.themeClass} ${aspect} ${className} shadow-sm group-hover:shadow-md group-hover:border-stone-700 transition-all duration-300`}
+    class={`relative flex flex-col justify-between overflow-hidden rounded-xl border border-stone-800/80 p-4 sm:p-5 select-none bg-gradient-to-br ${config.themeClass} ${aspect} ${className} shadow-sm group-hover:shadow-md group-hover:border-stone-700 transition-all duration-300`}
   >
     {/* Fine Top Accent Color Spine */}
-    <div class={`absolute top-0 left-0 right-0 h-1 ${config.accentBarClass}`}></div>
+    <div class={`absolute top-0 left-0 right-0 h-1.5 ${config.accentBarClass}`}></div>
 
     {/* Background Subtle Watermark Grid / Rings */}
-    <div class="absolute inset-0 opacity-[0.07] pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" aria-hidden="true">
       <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id={`plate-grid-${post.slug}`} width="20" height="20" patternUnits="userSpaceOnUse">
@@ -138,38 +138,38 @@ const config = plateConfigs[post.slug] || {
 
     {/* Top Header Row (Hidden in minimal mode for clean Home view) */}
     {!minimal && (
-      <div class="relative z-10 flex items-center justify-between gap-1 text-[10px] font-mono tracking-wider text-stone-300 uppercase">
+      <div class="relative z-10 flex items-center justify-between gap-1 text-[11px] font-mono tracking-wider text-stone-300 uppercase">
         <div class="flex items-center gap-1.5 truncate">
-          <span class="inline-block w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+          <span class="inline-block w-2 h-2 rounded-full bg-stone-400"></span>
           <span class="truncate font-semibold">{config.headerLabel}</span>
         </div>
-        <span class="shrink-0 px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-stone-300 font-medium">
+        <span class="shrink-0 px-2 py-0.5 rounded bg-white/10 text-[10px] text-stone-200 font-medium font-mono">
           {post.year}
         </span>
       </div>
     )}
 
     {/* Center Typography Block */}
-    <div class="relative z-10 my-auto py-2 space-y-1 sm:space-y-1.5 text-center">
-      <span class="block text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-stone-400 font-bold">
+    <div class="relative z-10 my-auto py-3 space-y-1.5 text-center">
+      <span class="block text-[10px] sm:text-[11px] font-mono tracking-widest uppercase text-stone-400 font-bold">
         {config.subCategory}
       </span>
-      <div class={`${minimal ? "text-base sm:text-lg lg:text-xl" : "text-sm sm:text-base"} font-bold font-serif tracking-tight text-white ipa group-hover:text-amber-200 transition-colors drop-shadow-xs line-clamp-1`}>
+      <div class="text-base sm:text-lg lg:text-xl font-bold font-serif tracking-tight text-white ipa group-hover:text-amber-200 transition-colors drop-shadow-xs line-clamp-1">
         {config.formula}
       </div>
-      <div class={`${minimal ? "text-[11px] sm:text-xs" : "text-[10px] sm:text-[11px]"} font-mono text-stone-300 tracking-tight truncate`}>
+      <div class="text-xs sm:text-xs font-mono text-stone-300 tracking-tight truncate">
         {config.formulaSub}
       </div>
     </div>
 
     {/* Bottom Metadata Badges (Hidden in minimal mode for clean Home view) */}
     {!minimal && (
-      <div class="relative z-10 flex items-center justify-between text-[10px] font-mono pt-2 border-t border-white/10">
+      <div class="relative z-10 flex items-center justify-between text-[11px] font-mono pt-3 border-t border-white/10">
         <span class="inline-flex items-center gap-1 text-stone-300 font-medium">
           <span class="text-stone-400">#</span>
           <span class="truncate">{config.languageBadge}</span>
         </span>
-        <span class="inline-flex items-center gap-1 text-[10px] text-stone-300 font-medium bg-white/5 px-2 py-0.5 rounded border border-white/10">
+        <span class="inline-flex items-center gap-1 text-[10px] text-stone-200 font-medium bg-white/10 px-2.5 py-0.5 rounded border border-white/15">
           <span>📄</span>
           <span>{config.statusBadge}</span>
         </span>
