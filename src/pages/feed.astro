@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { samplePosts } from '../data/posts';
-
-const categories = ["All", "Phonology", "Morphosyntax", "Language Documentation", "Syntax", "Digital Humanities"];
+const categories = ["All", ...Array.from(new Set(samplePosts.map((p) => p.category)))];
 ---
 
 <BaseLayout
