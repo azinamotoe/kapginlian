@@ -10,9 +10,9 @@ interface Props {
 }
 
 const {
-  title = "H.K. Hangluah | Linguist & Researcher",
-  description = "Linguistics research, field notes, morphosyntax, and language documentation by H. Kapginlian Hangluah.",
-  ogImage = "https://placehold.co/1200x630/1c1917/ffffff?text=H.K.+Hangluah+Linguistics",
+  title = "H. Kapginlian | Linguist & Researcher",
+  description = "Linguistics research, field notes, morphosyntax, and language documentation by H. Kapginlian.",
+  ogImage = "https://placehold.co/1200x630/1c1917/ffffff?text=H.+Kapginlian+Linguistics",
 } = Astro.props;
 ---
 
@@ -20,7 +20,7 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -52,7 +52,7 @@ const {
       }
     </script>
   </head>
-  <body class="min-h-screen flex flex-col antialiased selection:bg-[var(--accent-light)] selection:text-[var(--accent)]" id="top">
+  <body class="min-h-[100dvh] flex flex-col antialiased selection:bg-[var(--accent-light)] selection:text-[var(--accent)]" id="top">
     <Header />
     <main class="flex-grow">
       <slot />

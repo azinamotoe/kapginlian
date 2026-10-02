@@ -6,22 +6,22 @@ const recentPosts = samplePosts.slice(0, 4);
 ---
 
 <BaseLayout
-  title="H.K. Hangluah | Linguist & Language Researcher"
-  description="Personal academic website, fieldwork notes, and linguistic essays by H. Kapginlian Hangluah."
+  title="H. Kapginlian | Linguist & Language Researcher"
+  description="Personal academic website, fieldwork notes, and linguistic essays by H. Kapginlian."
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
     <!-- Split Layout: Desktop 2-column (Left Sticky Bio, Right Feed), Mobile Stacked -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
       <!-- LEFT COLUMN: Sticky Bio Card & Credentials -->
       <aside class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-        <div class="bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] rounded-xl p-6 sm:p-7 shadow-xs">
+        <div class="bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] rounded-2xl p-6 sm:p-7 shadow-xs">
           <!-- Author Avatar & Name -->
           <div class="flex items-center gap-4 mb-5">
             <img
               src={authorProfile.avatar}
               alt={authorProfile.name}
-              class="w-18 h-18 sm:w-20 sm:h-20 rounded-full object-cover border-2 border-[var(--border-color)] shadow-sm"
+              class="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl object-cover border-2 border-[var(--border-color)] shadow-sm"
               loading="eager"
             />
             <div>
@@ -67,7 +67,7 @@ const recentPosts = samplePosts.slice(0, 4);
           </div>
 
           <!-- Quick Metrics -->
-          <div class="grid grid-cols-2 gap-3 py-3 px-4 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-color)] text-center mb-6">
+          <div class="grid grid-cols-2 gap-3 py-3 px-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] text-center mb-6">
             <div>
               <span class="block text-base font-bold font-sans text-[var(--text-primary)]">4</span>
               <span class="text-xs text-[var(--text-secondary)]">Doc. Dialects</span>
@@ -78,11 +78,11 @@ const recentPosts = samplePosts.slice(0, 4);
             </div>
           </div>
 
-          <!-- Action Buttons -->
+          <!-- Action Buttons (Min 44px height for mobile comfort) -->
           <div class="space-y-2.5 font-sans">
             <a
               href="/about"
-              class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 font-medium text-sm transition-opacity"
+              class="w-full min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 font-medium text-sm transition-opacity"
             >
               <span>Full Biography & Research</span>
               <span>→</span>
@@ -90,13 +90,13 @@ const recentPosts = samplePosts.slice(0, 4);
             <div class="grid grid-cols-2 gap-2">
               <a
                 href="/about#publications"
-                class="inline-flex items-center justify-center px-3 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
+                class="min-h-[44px] inline-flex items-center justify-center px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
               >
                 📄 Publications
               </a>
               <a
                 href="/socials"
-                class="inline-flex items-center justify-center px-3 py-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
+                class="min-h-[44px] inline-flex items-center justify-center px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-xs font-medium text-[var(--text-primary)] transition-colors"
               >
                 🌐 Academic Hub
               </a>
@@ -105,7 +105,7 @@ const recentPosts = samplePosts.slice(0, 4);
         </div>
 
         <!-- Linguistic Feature Showcase Card: Interactive Leipzig Gloss Sample -->
-        <div class="bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] rounded-xl p-5 text-sm">
+        <div class="bg-[var(--bg-secondary)]/50 border border-[var(--border-color)] rounded-2xl p-5 text-sm">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-sans font-bold uppercase tracking-wider text-[var(--accent)]">
               Morphology Sample (Leipzig Gloss)
@@ -151,7 +151,7 @@ const recentPosts = samplePosts.slice(0, 4);
           </div>
           <a
             href="/feed"
-            class="text-xs sm:text-sm font-sans font-medium text-[var(--accent)] hover:underline flex items-center gap-1"
+            class="text-xs sm:text-sm font-sans font-medium text-[var(--accent)] hover:underline flex items-center gap-1 min-h-[44px]"
           >
             <span>All Posts</span>
             <span>→</span>
@@ -161,12 +161,12 @@ const recentPosts = samplePosts.slice(0, 4);
         <!-- Post Cards List -->
         <div class="space-y-6">
           {recentPosts.map((post) => (
-            <article class="group bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 border border-[var(--border-color)] rounded-xl p-5 sm:p-6 transition-all duration-200">
+            <article class="group bg-[var(--bg-secondary)]/40 hover:bg-[var(--bg-secondary)]/80 border border-[var(--border-color)] rounded-2xl p-5 sm:p-6 transition-all duration-200">
               <div class="grid grid-cols-1 sm:grid-cols-12 gap-5 items-start">
                 
                 <!-- Thumbnail Image (placehold.co) -->
                 <div class="sm:col-span-4 order-last sm:order-first">
-                  <a href={`/feed/${post.slug}`} class="block overflow-hidden rounded-lg aspect-video sm:aspect-square bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                  <a href={`/feed/${post.slug}`} class="block overflow-hidden rounded-xl aspect-video sm:aspect-square bg-[var(--bg-secondary)] border border-[var(--border-color)]">
                     <img
                       src={post.coverImage}
                       alt={post.title}
@@ -219,7 +219,7 @@ const recentPosts = samplePosts.slice(0, 4);
         </div>
 
         <!-- Bottom Feed Navigation CTA -->
-        <div class="p-6 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-center sm:text-left">
+        <div class="p-6 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/30 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-center sm:text-left">
           <div>
             <h4 class="font-bold text-sm text-[var(--text-primary)]">Looking for specific language tags or topics?</h4>
             <p class="text-xs text-[var(--text-secondary)] mt-0.5">Explore the categorized archive with real-time keyword search.</p>
@@ -227,13 +227,13 @@ const recentPosts = samplePosts.slice(0, 4);
           <div class="flex items-center gap-2">
             <a
               href="/feed"
-              class="px-4 py-2 text-xs font-medium rounded-lg bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
+              class="min-h-[44px] inline-flex items-center px-4 py-2 text-xs font-medium rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
             >
               Chronological Feed
             </a>
             <a
               href="/archive"
-              class="px-4 py-2 text-xs font-medium rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] transition-colors"
+              class="min-h-[44px] inline-flex items-center px-4 py-2 text-xs font-medium rounded-xl border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] transition-colors"
             >
               Search Archive
             </a>

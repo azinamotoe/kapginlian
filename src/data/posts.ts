@@ -107,16 +107,17 @@ export const samplePosts: Post[] = [
 ];
 
 export const authorProfile = {
-  name: "H. Kapginlian Hangluah",
-  shortName: "H.K. Hangluah",
+  name: "H. Kapginlian",
+  shortName: "H. Kapginlian",
   title: "Linguist & Language Researcher",
   affiliation: "Specializing in Tibeto-Burman & Kuki-Chin Languages",
   bio: "Investigating morphosyntax, tonogenesis, verb stem alternation, and phonetic documentation in Northeast India and the Indo-Myanmar borderlands. Committed to open-access language archiving and linguistic typology.",
-  avatar: "https://placehold.co/320x320/262626/ffffff?text=H.K.+Hangluah",
+  avatar: "/images/author.jpg",
   location: "Northeast India",
-  email: "contact@hangluah.org",
+  email: "contact@lianhangluah.com",
   orcid: "0000-0002-1234-5678",
   scholar: "https://scholar.google.com",
   github: "https://github.com",
   bluesky: "https://bsky.app",
 };
+

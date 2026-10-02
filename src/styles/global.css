@@ -23,16 +23,29 @@
     --accent-light: #2A2318;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: 'Newsreader', Georgia, serif;
     transition: background-color 0.2s ease, color 0.2s ease;
+    min-height: 100dvh;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Prevent iOS automatic zoom on focus by enforcing >= 16px */
+  input, textarea, select {
+    font-size: 16px !important;
   }
 }
 
@@ -43,15 +56,17 @@
   letter-spacing: 0.02em;
 }
 
-/* Leipzig Interlinear Glosses */
+/* Leipzig Interlinear Glosses: Mobile hardened */
 .gloss-block {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 1rem;
   margin: 1.25rem 0;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   font-size: 0.95rem;
+  max-width: 100%;
 }
 
 .gloss-line-src {
@@ -84,6 +99,7 @@
   flex-wrap: wrap;
   gap: 1.25rem;
   margin-bottom: 0.5rem;
+  min-width: max-content;
 }
 
 .gloss-word-unit {
