@@ -5,9 +5,10 @@ interface Props {
   post: Post;
   aspect?: string;
   class?: string;
+  minimal?: boolean;
 }
 
-const { post, aspect = "aspect-video md:aspect-[4/3]", class: className = "" } = Astro.props;
+const { post, aspect = "aspect-video md:aspect-[4/3]", class: className = "", minimal = false } = Astro.props;
 
 // Determine if the post has an authentic local photo or needs an Academic Monograph Plate
 const hasRealImage = post.coverImage && !post.coverImage.includes('placehold.co') && !post.coverImage.includes('placeholder');
@@ -124,40 +125,44 @@ const config = plateConfigs[post.slug] || {
       </svg>
     </div>
 
-    {/* Top Header Row */}
-    <div class="relative z-10 flex items-center justify-between gap-1 text-[10px] font-mono tracking-wider text-stone-300 uppercase">
-      <div class="flex items-center gap-1.5 truncate">
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-stone-400"></span>
-        <span class="truncate font-semibold">{config.headerLabel}</span>
+    {/* Top Header Row (Hidden in minimal mode for clean Home view) */}
+    {!minimal && (
+      <div class="relative z-10 flex items-center justify-between gap-1 text-[10px] font-mono tracking-wider text-stone-300 uppercase">
+        <div class="flex items-center gap-1.5 truncate">
+          <span class="inline-block w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+          <span class="truncate font-semibold">{config.headerLabel}</span>
+        </div>
+        <span class="shrink-0 px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-stone-300 font-medium">
+          {post.year}
+        </span>
       </div>
-      <span class="shrink-0 px-1.5 py-0.2 rounded bg-white/10 text-[9px] text-stone-300 font-medium">
-        {post.year}
-      </span>
-    </div>
+    )}
 
     {/* Center Typography Block */}
-    <div class="relative z-10 my-auto py-1.5 sm:py-2 space-y-0.5 sm:space-y-1 text-center">
+    <div class="relative z-10 my-auto py-2 space-y-1 sm:space-y-1.5 text-center">
       <span class="block text-[9px] sm:text-[10px] font-mono tracking-widest uppercase text-stone-400 font-bold">
         {config.subCategory}
       </span>
-      <div class="text-sm sm:text-base font-bold font-serif tracking-tight text-white ipa group-hover:text-amber-200 transition-colors drop-shadow-xs line-clamp-1">
+      <div class={`${minimal ? "text-base sm:text-lg lg:text-xl" : "text-sm sm:text-base"} font-bold font-serif tracking-tight text-white ipa group-hover:text-amber-200 transition-colors drop-shadow-xs line-clamp-1`}>
         {config.formula}
       </div>
-      <div class="text-[10px] sm:text-[11px] font-mono text-stone-300 tracking-tight truncate">
+      <div class={`${minimal ? "text-[11px] sm:text-xs" : "text-[10px] sm:text-[11px]"} font-mono text-stone-300 tracking-tight truncate`}>
         {config.formulaSub}
       </div>
     </div>
 
-    {/* Bottom Metadata Badges */}
-    <div class="relative z-10 flex items-center justify-between text-[10px] font-mono pt-2 border-t border-white/10">
-      <span class="inline-flex items-center gap-1 text-stone-300 font-medium">
-        <span class="text-stone-400">#</span>
-        <span class="truncate">{config.languageBadge}</span>
-      </span>
-      <span class="inline-flex items-center gap-1 text-[10px] text-stone-300 font-medium bg-white/5 px-2 py-0.5 rounded border border-white/10">
-        <span>📄</span>
-        <span>{config.statusBadge}</span>
-      </span>
-    </div>
+    {/* Bottom Metadata Badges (Hidden in minimal mode for clean Home view) */}
+    {!minimal && (
+      <div class="relative z-10 flex items-center justify-between text-[10px] font-mono pt-2 border-t border-white/10">
+        <span class="inline-flex items-center gap-1 text-stone-300 font-medium">
+          <span class="text-stone-400">#</span>
+          <span class="truncate">{config.languageBadge}</span>
+        </span>
+        <span class="inline-flex items-center gap-1 text-[10px] text-stone-300 font-medium bg-white/5 px-2 py-0.5 rounded border border-white/10">
+          <span>📄</span>
+          <span>{config.statusBadge}</span>
+        </span>
+      </div>
+    )}
   </div>
 )}
