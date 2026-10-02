@@ -109,16 +109,23 @@ export const samplePosts: Post[] = [
 export const authorProfile = {
   name: "H. Kapginlian",
   shortName: "H. Kapginlian",
-  title: "Linguist & Language Researcher",
-  affiliation: "Specializing in Tibeto-Burman & Kuki-Chin Languages",
-  bio: "Investigating morphosyntax, tonogenesis, verb stem alternation, and phonetic documentation in Northeast India and the Indo-Myanmar borderlands. Committed to open-access language archiving and linguistic typology.",
+  title: "Linguist & Researcher",
+  affiliation: "Morphology, Syntax & Indigenous Knowledge Systems",
+  shortBio: "I am H. Kapginlian, a linguist working at the intersection of morphology and syntax, Indigenous Knowledge Systems, language documentation, traditional folklore and folktales, and intangible cultural heritage.",
+  fullBio: [
+    "I am H. Kapginlian, a linguist working at the intersection of morphology and syntax, Indigenous Knowledge Systems, language documentation, traditional folklore and folktales, and intangible cultural heritage.",
+    "This website is a space where I bring together my linguistic research, writings on society and culture, theological reflections, book reviews, and poetry. It is also an attempt to document, preserve, and share knowledge, stories, languages, and cultural expressions that are often passed down through generations but remain less visible in the wider world.",
+    "For me, language is more than a system of words and grammar—it is a repository of memory, identity, knowledge, and lived experience. Through my research and writings, I hope to explore these connections and contribute, in my own small way, to the understanding and preservation of Indigenous languages and cultures.",
+    "Welcome to my world of language, culture, thought, faith, and words."
+  ],
   avatar: "/images/author-avatar.jpg",
   fullPhoto: "/images/author-full.jpg",
   location: "Northeast India",
   email: "contact@lianhangluah.com",
-  orcid: "0000-0002-1234-5678",
+  orcid: "0009-0008-9045-3527",
   scholar: "https://scholar.google.com",
   github: "https://github.com",
   bluesky: "https://bsky.app",
 };
+
 

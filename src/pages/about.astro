@@ -64,24 +64,36 @@ const publications = [
         <p class="text-lg sm:text-xl font-serif text-[var(--accent)] font-medium">
           {authorProfile.title} — {authorProfile.affiliation}
         </p>
-        <p class="text-base font-serif text-[var(--text-secondary)] leading-relaxed">
-          I am a linguist and researcher investigating the morphosyntax, acoustic phonology, and historical development of Tibeto-Burman languages, with a dedicated focus on the Kuki-Chin branch spoken across Northeast India, Western Myanmar, and the Chittagong Hill Tracts.
-        </p>
+        <div class="space-y-4 text-base font-serif text-[var(--text-secondary)] leading-relaxed pt-1">
+          {authorProfile.fullBio.map((para) => (
+            <p>{para}</p>
+          ))}
+        </div>
         
-        <!-- CV & Contact Action Bar -->
-        <div class="flex flex-wrap items-center gap-3 pt-2 font-sans text-xs">
+        <!-- Action Bar: ORCID & Contact -->
+        <div class="flex flex-wrap items-center gap-3 pt-3 font-sans text-xs">
           <a
-            href="#cv-download"
+            href={`https://orcid.org/${authorProfile.orcid}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="min-h-[44px] px-4 py-2.5 rounded-xl bg-[#A6CE39]/15 border border-[#A6CE39]/40 text-[var(--text-primary)] font-semibold hover:bg-[#A6CE39]/25 transition-colors inline-flex items-center gap-2"
+          >
+            <span class="w-4 h-4 rounded-full bg-[#A6CE39] text-white text-[10px] font-bold flex items-center justify-center">iD</span>
+            <span>ORCID: {authorProfile.orcid}</span>
+            <span>↗</span>
+          </a>
+          <a
+            href="#publications"
             class="min-h-[44px] px-4 py-2.5 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity inline-flex items-center gap-1.5"
           >
-            <span>Download Full CV (PDF)</span>
+            <span>Selected Papers</span>
             <span>↓</span>
           </a>
           <a
             href="/socials"
             class="min-h-[44px] px-4 py-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium hover:bg-[var(--bg-primary)] transition-colors inline-flex items-center gap-1.5"
           >
-            <span>Scholar, ORCID & Contact</span>
+            <span>Academic Network</span>
             <span>→</span>
           </a>
         </div>
