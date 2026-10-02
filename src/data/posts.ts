@@ -53,6 +53,8 @@ export interface Post {
   pdfUrl?: string;
   abstract?: string;
   keywords?: string[];
+  citationApa?: string;
+  bibtex?: string;
   sections?: PostSection[];
   references?: string[];
 }

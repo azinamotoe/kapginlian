@@ -110,17 +110,27 @@ const isAcademic = post.postType === "academic_paper";
           </div>
         </div>
 
-        {/* PDF Download Button for Academic Papers */}
+        {/* Action Buttons: PDF Download + Cite Jump */}
         {post.pdfUrl && (
-          <div class="flex items-center gap-2">
+          <div class="flex flex-wrap items-center gap-2">
             <a
               href={post.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="min-h-[44px] px-4 py-2.5 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-xs hover:opacity-90 transition-opacity inline-flex items-center gap-2 shadow-xs"
+              class="min-h-[44px] px-4 py-2.5 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-bold text-xs hover:opacity-90 transition-opacity inline-flex items-center gap-2 shadow-xs cursor-pointer"
             >
-              <span>📥 Download Published PDF</span>
+              <span>📥 Download PDF</span>
             </a>
+
+            {post.bibtex && (
+              <a
+                href="#citation"
+                class="min-h-[44px] px-3.5 py-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-secondary)]/80 text-xs font-mono font-semibold text-[var(--text-primary)] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <span>📋</span>
+                <span>Cite (BibTeX)</span>
+              </a>
+            )}
           </div>
         )}
       </div>
@@ -231,6 +241,59 @@ const isAcademic = post.postType === "academic_paper";
       ))}
     </div>
 
+    <!-- CITE THIS PUBLICATION (APA & BibTeX) -->
+    {(post.bibtex || post.citationApa) && (
+      <section id="citation" class="mt-14 p-6 sm:p-7 rounded-2xl bg-[var(--bg-secondary)]/70 border border-[var(--border-color)] space-y-5 font-sans scroll-mt-24">
+        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-base">📋</span>
+            <h3 class="text-sm font-bold uppercase tracking-wider text-[var(--text-primary)] font-mono">
+              Cite This Publication
+            </h3>
+          </div>
+          <span class="text-[11px] font-mono text-[var(--accent)] font-semibold">BibTeX & APA 7th</span>
+        </div>
+
+        {/* Formatted APA Citation */}
+        {post.citationApa && (
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
+              <span class="font-mono uppercase font-semibold text-[11px]">Formatted Reference (APA 7th)</span>
+              <button
+                type="button"
+                id="copy-apa-btn"
+                data-text={post.citationApa}
+                class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[11px] font-mono transition-colors inline-flex items-center gap-1 cursor-pointer"
+              >
+                <span>Copy APA</span>
+              </button>
+            </div>
+            <div class="p-3.5 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] text-xs sm:text-sm font-serif leading-relaxed text-[var(--text-primary)]">
+              {post.citationApa}
+            </div>
+          </div>
+        )}
+
+        {/* Raw BibTeX Entry with 1-Click Copy */}
+        {post.bibtex && (
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs text-[var(--text-secondary)]">
+              <span class="font-mono uppercase font-semibold text-[11px]">LaTeX / BibTeX Citation</span>
+              <button
+                type="button"
+                id="copy-bibtex-btn"
+                data-text={post.bibtex}
+                class="px-2.5 py-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] hover:bg-[var(--bg-secondary)] text-[11px] font-mono transition-colors inline-flex items-center gap-1 cursor-pointer font-bold text-[var(--accent)]"
+              >
+                <span>Copy BibTeX</span>
+              </button>
+            </div>
+            <pre class="p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border-color)] text-xs font-mono text-[var(--text-primary)] overflow-x-auto leading-relaxed select-all"><code>{post.bibtex}</code></pre>
+          </div>
+        )}
+      </section>
+    )}
+
     <!-- REFERENCES & BIBLIOGRAPHY (Extracted from Paper) -->
     {post.references && post.references.length > 0 && (
       <footer class="mt-14 pt-8 border-t border-[var(--border-color)] space-y-4">
@@ -284,3 +347,28 @@ const isAcademic = post.postType === "academic_paper";
     </footer>
   </article>
 </BaseLayout>
+
+<script>
+  function setupCopyButton(btnId: string, defaultText: string) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-text');
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.innerHTML = '<span>✓ Copied!</span>';
+        btn.classList.add('text-green-600', 'font-bold');
+        setTimeout(() => {
+          btn.innerHTML = `<span>${defaultText}</span>`;
+          btn.classList.remove('text-green-600', 'font-bold');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy text', err);
+      }
+    });
+  }
+
+  setupCopyButton('copy-apa-btn', 'Copy APA');
+  setupCopyButton('copy-bibtex-btn', 'Copy BibTeX');
+</script>

@@ -22,6 +22,18 @@ export const genderInSimtePost: Post = {
   pdfUrl: "/papers/gender-in-simte.pdf",
   abstract: "Simte is one of the Kuki-Chin languages spoken mostly in Churachandpur and Pherzawl districts of Manipur. This paper describes the gender markers in Simte. The gender markers for [+human] are '-pa' for masculine and '-nu' for feminine gender. Whereas the gender markers for [-human, +animal] are '-tal' for masculine and '-pi' for feminine. Neuter gender is expressed lexically, such as 'naupaŋ' for child. The morphemes 'pu' and 'pi' exhibit multiple functional roles: maternal/paternal grandfathers and grandmothers, honorific terms of social respect, and designations for male and female authorities in society.",
   keywords: ["Simte", "Kuki-Chin", "Northeast India", "Gender markers", "Neuter gender", "Kinship"],
+  citationApa: "Kapginlian, H., & Lyngdoh, S. A. (2024). Gender in Simte. Vāk Manthan, 10(2), 28–36.",
+  bibtex: `@article{kapginlian2024gender,
+  title     = {Gender in Simte},
+  author    = {Kapginlian, H. and Lyngdoh, Saralin A.},
+  journal   = {V\\={a}k Manthan},
+  volume    = {10},
+  number    = {2},
+  pages     = {28--36},
+  year      = {2024},
+  issn      = {2426-2149},
+  url       = {https://lianhangluah.com/papers/gender-in-simte.pdf}
+}`,
   sections: [
     {
       heading: "1. Introduction",

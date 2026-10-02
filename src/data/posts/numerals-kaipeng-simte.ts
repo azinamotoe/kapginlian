@@ -23,6 +23,19 @@ export const numeralsKaipengSimtePost: Post = {
   pdfUrl: "/papers/numerals-kaipeng-simte.pdf",
   abstract: "Kaipeng and Simte belong to the Kuki-Chin sub-group of the Tibeto-Burman language family. Kaipeng belongs to the Old Kuki sub-group while Simte belongs to the Northern Kuki-Chin group (Grierson 1903). Kaipeng is spoken in Tripura by approximately 15,000 speakers. According to the 2011 Census, Simte constitutes a population of 6,728. This paper presents a comparative analysis of the numeral systems in both languages in the realm of cardinals, ordinals, fractionals, multiplicatives, distributives, and approximate numerals.",
   keywords: ["Approximate", "Distributive", "Fractional", "Kaipeng", "Simte", "Kuki-Chin", "Old Kuki"],
+  citationApa: "Tariang, L. D., & Kapginlian, H. (2025). Numerals in Kaipeng and Simte. Veda’s Journal of English Language and Literature (JOELL), 12(2), 8–17. https://doi.org/10.54513/JOELL.2024.12202",
+  bibtex: `@article{tariang2025numerals,
+  title     = {Numerals in Kaipeng and Simte},
+  author    = {Tariang, Lorina D. and Kapginlian, H.},
+  journal   = {Veda's Journal of English Language and Literature (JOELL)},
+  volume    = {12},
+  number    = {2},
+  pages     = {8--17},
+  year      = {2025},
+  issn      = {2349-9788},
+  doi       = {10.54513/JOELL.2024.12202},
+  url       = {https://lianhangluah.com/papers/numerals-kaipeng-simte.pdf}
+}`,
   sections: [
     {
       heading: "1. Introduction",

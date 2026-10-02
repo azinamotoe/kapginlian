@@ -21,6 +21,14 @@ export const historyChristianityPost: Post = {
   pdfUrl: "/papers/history-christianity-simte.pdf",
   abstract: "The gospel was first brought to Southern Manipur by missionary Watkin R. Roberts in May 1910. By 1917, evangelistic teams reached the Simte villages under the Thadou-Kuki Pioneer Mission (TKPM), later reorganized as the North East India General Mission (NEIGM). Initial propagation faced severe resistance from traditional animist village chiefs who viewed the new doctrine as a threat to ancestral hierarchy. This paper documents the oral testimonies of pioneer converts across Thanlon, Sumtuh, Leizangphai, Dumsau, and Khuangnung up to the formation of the NTBCA in 1958 and the historic translation of the Simte Holy Bible.",
   keywords: ["Simte", "Manipur", "Watkin Roberts", "NEIGM", "TKPM", "Oral History", "Animism", "BMM", "Thanlon"],
+  citationApa: "Kapginlian, H. (2022). Brief History of the Advent of Christianity Among the Simtes (1917–1958). Historical & Sociolinguistic Documentation Series, NEHU Shillong.",
+  bibtex: `@unpublished{kapginlian2022christianity,
+  title  = {Brief History of the Advent of Christianity Among the Simtes (1917--1958)},
+  author = {Kapginlian, H.},
+  note   = {Historical and Sociolinguistic Documentation Series, NEHU Shillong},
+  year   = {2022},
+  url    = {https://lianhangluah.com/papers/history-christianity-simte.pdf}
+}`,
   sections: [
     {
       heading: "1. The Pioneer Missionaries & First Inroads (1910–1917)",
